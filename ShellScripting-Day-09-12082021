@@ -1,0 +1,55 @@
+# Shell Scripting Interview Questions
+
+Ques-1: How to see a file
+
+Sol-1: cat <file_name>
+
+Ques-2: Pass multiple arguments
+
+Sol-2: ./<script_name> arg1 arg2 arg3 .. argn # $0: name of script
+
+Ques-3: Difference between $* and $@ ?
+
+Sol-3: ./<script_name> 12 2 
+$*: 12 2 
+$@: 12 2
+$#: 2
+
+$@: treats each quoted args as separated arguments
+$*: considers the entire set of positional paramenters as a single string
+
+Ques-4: Command to display the list of files in a directory ?
+
+Sol-4: ls -lart | grep ^-
+
+Ques-5: Command to see the open files ?
+
+Sol-5 ls -of
+
+Ques-6: Shell script to display the last updated file or the newest file in a directory ?
+
+Sol-6:
+[cloudshell-user@ip-10-0-81-244 20_Interview_Questions]$ cat -n last_updated.sh 
+     1  #!/bin/bash
+     2
+     3  ls -lart | grep ^- | awk 'END{print $NF}'
+[cloudshell-user@ip-10-0-81-244 20_Interview_Questions]$ ./last_updated.sh 
+last_updated.sh
+[cloudshell-user@ip-10-0-81-244 20_Interview_Questions]$
+
+Ques-7: Shell Script to get the current date, time, username and current working directory.
+
+Sol-7
+[cloudshell-user@ip-10-0-81-244 20_Interview_Questions]$ cat -n date_time_username.sh 
+     1  #!/bin/bash
+     2
+     3  echo "Hello, LOGNAME: " $LOGNAME
+     4  echo "Current DATE is: " $(date)
+     5  echo "User is WHOAMI:  " $(whoami)
+     6  echo "Current DIRECTORY IS: " $(pwd)
+[cloudshell-user@ip-10-0-81-244 20_Interview_Questions]$
+[cloudshell-user@ip-10-0-81-244 20_Interview_Questions]$ ./date_time_username.sh 
+Hello, LOGNAME:  cloudshell-user
+Current DATE is:  Thu Aug 12 07:25:36 UTC 2021
+User is WHOAMI:   cloudshell-user
+Current DIRECTORY IS:  /home/cloudshell-user/Shell-Scripting/20_Interview_Questions

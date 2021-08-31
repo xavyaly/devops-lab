@@ -1,0 +1,92 @@
+# Linux Commands:
+
+# Check System Memory
+
+[cloudshell-user@ip-10-0-99-142 ~]$ free 
+              total        used        free      shared  buff/cache   available
+Mem:        3822148      293084     1328668         396     2200396     3309844
+Swap:             0           0           0
+[cloudshell-user@ip-10-0-99-142 ~]$ free -m : MB
+[cloudshell-user@ip-10-0-99-142 ~]$ free -g: GB
+[cloudshell-user@ip-10-0-99-142 ~]$ free -k: KB
+
+# Check the memory consumption, sometimes root access required to run the command
+
+[cloudshell-user@ip-10-0-99-142 ~]$ sudo cat /proc/meminfo
+
+# reverts with the memory usage in the same way as the command does. root user required 
+
+[cloudshell-user@ip-10-0-99-142 ~]$ vmstat 
+[cloudshell-user@ip-10-0-99-142 ~]$ vmstat -s
+      
+$ top: memory usage in between 90-100%
+
+$ htop: display the memory usage
+
+$ ps: processes
+
+[cloudshell-user@ip-10-0-99-142 ~]$ ps 
+[cloudshell-user@ip-10-0-99-142 ~]$ ps -ef 
+[cloudshell-user@ip-10-0-99-142 ~]$ ps -ef | grep bash
+[cloudshell-user@ip-10-0-99-142 ~]$ ps aux
+[cloudshell-user@ip-10-0-99-142 ~]$ ps aux --sort=-resident | head -5
+[cloudshell-user@ip-10-0-99-142 ~]$ ps aux --sort -rss
+
+$ kill  : kill the processes
+
+https://www.linux.com/training-tutorials/how-kill-process-command-line/
+
+$ du: disk usage
+
+[cloudshell-user@ip-10-0-99-142 ~]$ du 
+[cloudshell-user@ip-10-0-99-142 ~]$ du -sh  : MB and KB
+[cloudshell-user@ip-10-0-99-142 ~]$ du -sh ./Shell-Scripting/20_Interview_Questions/dir_1 : specific dir disk usage
+4.0K    ./Shell-Scripting/20_Interview_Questions/dir_1
+[cloudshell-user@ip-10-0-99-142 ~]$ pwd
+/home/cloudshell-user
+[cloudshell-user@ip-10-0-99-142 ~]$ ls -l
+total 12
+-rw-rw-r-- 1 cloudshell-user cloudshell-user  764 Aug 17 06:27 file
+drwxrwxr-x 2 cloudshell-user cloudshell-user 4096 Aug 11 20:06 linode
+drwxrwxr-x 6 cloudshell-user cloudshell-user 4096 Aug 12 06:51 Shell-Scripting
+[cloudshell-user@ip-10-0-99-142 ~]$ ls -l Shell-Scripting/
+20_Interview_Questions/     dir/                        read_file.sh                search_find.sh
+AAGHgihysdfgibh8098978.txt  Effective/                  read_items.sh               test.txt
+Challenges_10/              employee.txt                read_last_word.sh           
+check-divisible.sh          file.sh                     read_nos.sh                 
+check_file.sh               read_array.sh               search_files.sh             
+[cloudshell-user@ip-10-0-99-142 ~]$ du -ah --exclude="*.txt" ./Shell-Scripting/
+[cloudshell-user@ip-10-0-99-142 ~]$ du -ah --exclude="*.new" ./Shell-Scripting/20_Interview_Questions/dir_1/
+4.0K    ./Shell-Scripting/20_Interview_Questions/dir_1/
+[cloudshell-user@ip-10-0-99-142 ~]$
+
+[cloudshell-user@ip-10-0-99-142 ~]$ ls -lSrh  : locate the biggest files in the current directory and sub-directories
+
+[cloudshell-user@ip-10-0-99-142 ~]$ du -kx | egrep -v "\./.*/" | sort -n  : Look out for the largest directories and sort it
+12      ./.config
+36      ./linode
+3608    ./Shell-Scripting
+3736    .
+
+# disk space
+
+[cloudshell-user@ip-10-0-99-142 ~]$ df : monitor disk space
+[cloudshell-user@ip-10-0-99-142 ~]$ df -a : disk usgae of all the file systems
+[cloudshell-user@ip-10-0-99-142 ~]$ df -B 100 : B stands block, shows in K
+[cloudshell-user@ip-10-0-99-142 ~]$ df -h
+[cloudshell-user@ip-10-0-99-142 ~]$ df -T
+
+$ find
+
+[cloudshell-user@ip-10-0-99-142 ~]$ find . -size +100M  : search for files more than 100MB
+[cloudshell-user@ip-10-0-99-142 ~]$ find . -mtime -3  : check files created within the last 3 days
+[cloudshell-user@ip-10-0-99-142 ~]$ find *.gz -mtime 14 -type f -exec rm -rf {} \;  : remove files older than 14 days or 2 weeks, extenstion must be aware
+[cloudshell-user@ip-10-0-99-142 ~]$ tail -f file.log | grep -i "error"   : monitor a log file for errors or some text
+
+# ps
+
+
+
+
+
+

@@ -1,0 +1,169 @@
+# Shell Scripting
+
+Ex-1:
+
+Syntax:
+awk options 'selection_crteria {action}' input_file > output_file
+
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat file.sh 
+Wikipedia was launched on January 15, 2001, by Jimmy Wales and Larry Sanger; 
+Sanger coined its name as a blending of "wiki" and "encyclopedia".
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n file.sh | awk '{print $2}'
+Wikipedia
+Sanger
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n file.sh | awk '{print $3}'
+was
+coined
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n file.sh | awk '{print $1}'
+1
+2
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n file.sh | awk '{print $1.$2}'
+1Wikipedia
+2Sanger
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n file.sh | awk '{print $1,$2}'
+1 Wikipedia
+2 Sanger
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat file.sh | awk '{print $1}'
+Wikipedia
+Sanger
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n file.sh 
+     1  Wikipedia was launched on January 15, 2001, by Jimmy Wales and Larry Sanger; 
+     2  Sanger coined its name as a blending of "wiki" and "encyclopedia".
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ 
+
+
+Ex-2:
+
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n employee.txt 
+     1  sonu manager account 45000
+     2  sunil cleark account 25000
+     3  vishal manager account 50000
+     4  arun peon account 15000
+     5  raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print}' employee.txt 
+sonu manager account 45000
+sunil cleark account 25000
+vishal manager account 50000
+arun peon account 15000
+raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '/manager/ {print}' employee.txt 
+sonu manager account 45000
+vishal manager account 50000
+raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1,$4}' employee.txt 
+sonu 45000
+sunil 25000
+vishal 50000
+arun 15000
+raja 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ 
+
+Ex-3:
+
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat employee.txt 
+sonu manager account 45000
+sunil cleark account 25000
+vishal manager account 50000
+arun peon account 15000
+raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $0}'
+^C
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print NR,$0}' employee.txt # use of NR buit-in variables (Display line numbers)
+1 sonu manager account 45000
+2 sunil cleark account 25000
+3 vishal manager account 50000
+4 arun peon account 15000
+5 raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n employee.txt 
+     1  sonu manager account 45000
+     2  sunil cleark account 25000
+     3  vishal manager account 50000
+     4  arun peon account 15000
+     5  raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $0}' employee.txt 
+sonu manager account 45000
+sunil cleark account 25000
+vishal manager account 50000
+arun peon account 15000
+raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ 
+
+
+Ex-4:
+
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n employee.txt 
+     1  sonu manager account 45000
+     2  sunil cleark account 25000
+     3  vishal manager account 50000
+     4  arun peon account 15000
+     5  raja manager account 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1}' employee.txt 
+sonu
+sunil
+vishal
+arun
+raja
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1,$4}' employee.txt 
+sonu 45000
+sunil 25000
+vishal 50000
+arun 15000
+raja 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1}' employee.txt 
+sonu
+sunil
+vishal
+arun
+raja
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1,NF}' employee.txt 
+sonu 4
+sunil 4
+vishal 4
+arun 4
+raja 4
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1,$NF}' employee.txt  # Use of NF built-in variables (Display last field)
+sonu 45000
+sunil 25000
+vishal 50000
+arun 15000
+raja 28000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1,$NF-1}' employee.txt 
+sonu 44999
+sunil 24999
+vishal 49999
+arun 14999
+raja 27999
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ 
+
+Ex-5:
+
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ cat -n employee.txt 
+     1  sonu manager account 45000
+     2  sunil cleark account 25000
+     3  vishal manager account 50000
+     4  arun peon account 15000
+     5  raja manager account 28000
+     6  manish software account 46000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk 'NR==3, NR==6 {print NR,$0}' employee.txt 
+3 vishal manager account 50000
+4 arun peon account 15000
+5 raja manager account 28000
+6 manish software account 46000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ awk '{print $1,$NF}' employee.txt 
+sonu 45000
+sunil 25000
+vishal 50000
+arun 15000
+raja 28000
+manish 46000
+[cloudshell-user@ip-10-0-67-229 Shell-Scripting]$ 
+
+
+
+
+
+
+
+
+

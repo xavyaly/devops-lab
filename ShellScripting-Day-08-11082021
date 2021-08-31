@@ -1,0 +1,380 @@
+# Shell Scripting
+
+Ques-1:
+
+Print out the number of CPU cores have in your system.
+Hint: nproc command
+
+Solution:
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n cpu_cores.sh 
+     1  #!/bin/bash
+     2
+     3  echo -n "Number of CPUs: "; nproc
+[cloudshell-user@ip-10-0-190-240 Challenges]$ chmod u+x cpu_cores.sh 
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./cpu_cores.sh 
+Number of CPUs: 2
+[cloudshell-user@ip-10-0-190-240 Challenges]$
+
+Ques-2:
+
+Script would prompt the user to enter a year, correspondingly it would display the calender's year
+Hint: cal command
+
+Solution:
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n cal_prompt.sh 
+     1  #!/bin/bash
+     2
+     3  echo -n "Please enter a year: "
+     4  read year
+     5  echo "Calender of $year"
+     6  cal $year
+[cloudshell-user@ip-10-0-190-240 Challenges]$ chmod u+x cal_prompt.sh 
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./cal_prompt.sh 
+Please enter a year: 2030
+Calender of 2030
+                               2030                               
+
+       January               February                 March       
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+       1  2  3  4  5                   1  2                   1  2   
+ 6  7  8  9 10 11 12    3  4  5  6  7  8  9    3  4  5  6  7  8  9   
+13 14 15 16 17 18 19   10 11 12 13 14 15 16   10 11 12 13 14 15 16   
+20 21 22 23 24 25 26   17 18 19 20 21 22 23   17 18 19 20 21 22 23   
+27 28 29 30 31         24 25 26 27 28         24 25 26 27 28 29 30   
+                                              31                     
+        April                   May                   June        
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6             1  2  3  4                      1   
+ 7  8  9 10 11 12 13    5  6  7  8  9 10 11    2  3  4  5  6  7  8   
+14 15 16 17 18 19 20   12 13 14 15 16 17 18    9 10 11 12 13 14 15   
+21 22 23 24 25 26 27   19 20 21 22 23 24 25   16 17 18 19 20 21 22   
+28 29 30               26 27 28 29 30 31      23 24 25 26 27 28 29   
+                                              30                     
+        July                  August                September     
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6                1  2  3    1  2  3  4  5  6  7   
+ 7  8  9 10 11 12 13    4  5  6  7  8  9 10    8  9 10 11 12 13 14   
+14 15 16 17 18 19 20   11 12 13 14 15 16 17   15 16 17 18 19 20 21   
+21 22 23 24 25 26 27   18 19 20 21 22 23 24   22 23 24 25 26 27 28   
+28 29 30 31            25 26 27 28 29 30 31   29 30                  
+                                                                     
+       October               November               December      
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+       1  2  3  4  5                   1  2    1  2  3  4  5  6  7   
+ 6  7  8  9 10 11 12    3  4  5  6  7  8  9    8  9 10 11 12 13 14   
+13 14 15 16 17 18 19   10 11 12 13 14 15 16   15 16 17 18 19 20 21   
+20 21 22 23 24 25 26   17 18 19 20 21 22 23   22 23 24 25 26 27 28   
+27 28 29 30 31         24 25 26 27 28 29 30   29 30 31               
+                                                                     
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$
+
+
+Quest-3:
+
+Display the file content in upper case.
+The file must be passed to the script as an argument.
+Hint: tr command
+
+Solution:
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n file 
+     1  exceptions always there
+     2  we need to add +x and -x to troubleshoot 
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n tr_upper.sh 
+     1  #!/bin/bash
+     2
+     3  echo "Display the content of $1 in upper case.."
+     4
+     5  cat $1 | tr [:lower:] [:upper:]
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./tr_upper.sh 
+Display the content of  in upper case..
+^C
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./tr_upper.sh file 
+Display the content of file in upper case..
+EXCEPTIONS ALWAYS THERE
+WE NEED TO ADD +X AND -X TO TROUBLESHOOT 
+[cloudshell-user@ip-10-0-190-240 Challenges]$
+
+Question-4:
+
+Suppose below is a script:
+
+num=(1 2 3 5 4)
+echo "Before sorting array num: "
+echo ${num[@]}
+your_code_at_here
+echo "After sorting array num: "
+echo ${num[@]}
+
+O/P:
+Before sorting array num: 
+1 2 3 5 4
+After sorting array num: 
+1 2 3 4 5
+
+Hint: swap the last two elements of the array; use unset to delete the 4rth element of array and then add it back
+
+Solution:
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n sorted_array.sh 
+     1  #!/bin/bash
+     2
+     3  num=(1 2 3 5 4)
+     4
+     5  echo "Before sorting array num: "
+     6  echo ${num[@]}
+     7
+     8  unset num[3]
+     9  num+=(5)
+    10
+    11  echo "After soring array num: "
+    12  echo ${num[@]}
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./sorted_array.sh 
+Before sorting array num: 
+1 2 3 5 4
+After soring array num: 
+1 2 3 4 5
+[cloudshell-user@ip-10-0-190-240 Challenges]$
+
+Question-5:
+
+Calculate the net salary of an employee.
+Script would prompt the user to enter a monthly gross salary(before) and a tax rate(in %age).
+Calculate and ouput the total net annual salary(after tax)
+
+Hint: bc
+
+O/P:
+
+Please enter your monthly gross salary: 5000
+Please enter your tax rate(in %age): 10
+
+Your total net annual salary(after tax): 54,000
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n net_salary.sh 
+     1  #!/bin/bash
+     2
+     3  echo -n "Please enter your monthly salary: "
+     4  read m_gross
+     5
+     6  echo -n "Please enter your tax rate: "
+     7  read t_rate
+     8
+     9  set +x
+    10  m_deduct=$(echo "scale=2";($t_rate/100)*$m_gross | bc -l)
+    11  set -x
+    12  m_net=$(echo "$m_gross-$m_deduct" | bc -l)
+    13
+    14  t_net=$(echo "$m_net*12" | bc -l)
+    15
+    16  echo "Your total net annual salary is: " $t_net
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./net_salary.sh 
+Please enter your monthly salary: 10000
+Please enter your tax rate: 10
+./net_salary.sh: command substitution: line 11: syntax error near unexpected token `*$m_gross'
+./net_salary.sh: command substitution: line 11: `echo "scale=2";($t_rate/100)*$m_gross | bc -l)'
+++ bc -l
+./net_salary.sh: line 12: bc: command not found
+++ echo 10000-
++ m_net=
+++ bc -l
+./net_salary.sh: line 14: bc: command not found
+++ echo '*12'
++ t_net=
++ echo 'Your total net annual salary is: '
+Your total net annual salary is: 
+[cloudshell-user@ip-10-0-190-240 Challenges]$
+
+
+Question-6:
+
+Please enter a string:
+h********an****db***oo*******k
+Updated string: HANDBOOK
+
+Hint: use the escape character with the asterisk!
+
+Soltuon:
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n remove_sc.sh 
+     1  #!/bin/bash
+     2
+     3  echo -n "Please enter a string: "
+     4  read str
+     5
+     6  str=`echo ${str//\*}`
+     7  str=`echo ${str^^}`
+     8
+     9  echo "Updated string is: $str"
+[cloudshell-user@ip-10-0-190-240 Challenges]$ chmod u+x remove_sc.sh 
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./remove_sc.sh 
+Please enter a string: h****an****db****oo****k
+Updated string is: HANDBOOK
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n file 
+     1  exceptions always there
+     2  we need to add +x and -x to troubleshoot 
+[cloudshell-user@ip-10-0-190-240 Challenges]$ sed 's/always//g' file 
+exceptions  there
+we need to add +x and -x to troubleshoot 
+[cloudshell-user@ip-10-0-190-240 Challenges]$ 
+
+Question-7:
+
+Leap Year
+Hint: reminder operator
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n leap.sh 
+     1  #!/bin/bash
+     2
+     3  year=$1
+     4  if [ $(($year % 400)) -eq 0 ]; then
+     5          echo "$year is a leap year..."
+     6  elif [ $(($year % 4)) -eq 0 ] && [ $(($year % 100)) -ne 0 ]; then
+     7          echo "$year is a leap year.."
+     8  else
+     9          echo "$year is not a leap year..."
+    10  fi
+    11
+[cloudshell-user@ip-10-0-190-240 Challenges]$ ./leap.sh 
+./leap.sh: line 4: % 400: syntax error: operand expected (error token is "% 400")
+[cloudshell-user@ip-10-0-190-240 Challenges]$ 
+
+Question-8: Interview Perspective
+
+Ping every server in the 25.227.36.x subnet where x is a number between 0 to 255
+If ping succeeded display the statement 
+"Server 25.227.36.x is up and running"
+Otherwise
+"Server 25.227.36.x is unreachable"
+
+O/P:
+Server 25.227.36.0 is up and running
+Server 25.227.36.1 is up and running
+Server 25.227.36.2 is up and running
+Server 25.227.36.3 is unreachable 
+
+Hint: for loop and ping command
+
+Solution:
+
+[cloudshell-user@ip-10-0-190-240 Challenges]$ cat -n ping.sh 
+     1  #!/bin/bash
+     2
+     3  for((i=0;i<256;i++)); do
+     4          ping -c 1 25.227.36.$i >> /dev/null 2>&1
+     5          if [ $? -eq 0 ]; then
+     6                  echo "Server 25.227.36.$i is up and running.."
+     7          else
+     8                  echo "Server 25.227.36.$i is unreachable.."
+     9          fi
+    10  done
+    
+ Question-9:
+ 
+ Calculate the GCD (Greatest Common Divisor) of two nos: num1 & num2 (passed as script arguments)
+ 
+ The GCD of 2 or more integers, which are not all zero, is the largest +ive integer that divides each of the integers.
+ 
+ Create a function names common_divisor that tests whether a num evenly divides num1 & num2
+ 
+ Hint: Remainders and loops 
+ 
+ O/P:
+ 
+ ./gcd.sh 25 5 
+ The gcd of 25 and 5 is: 5
+ ./gcd.sh 100 80
+ The gcd of 100 and 80 is: 20
+ ./gcd.sh 1000 600
+ The gcd of 1000 and 600 is: 200
+ ./gcd.sh -100 -88
+ The gcd of -100 and -88 is: 1 
+ ./gcd.sh 999 777
+ The gcd of 999 and 777 is: 111
+ 
+ Solution-9:
+ 
+ [cloudshell-user@ip-10-0-81-244 Challenges]$ cat -n gcd.sh 
+     1  #!/bin/bash
+     2
+     3  num1=$1
+     4  num2=$2
+     5  gcd=1
+     6  common_divisor() {
+     7          x=$1
+     8          if [ $(($num1 % $x)) -eq 0 ] && [ $(($num2 % $x)) -eq 0 ]; then
+     9                  return 1
+    10          else
+    11                  return 0
+    12          fi
+    13  }
+    14  for ((i=1;i<=$num1 && i<=$num2;i++)); do
+    15          common_divisor $i
+    16          if [ $? -eq 1 ]; then
+    17                  gcd=$i
+    18          fi
+    19  done
+    20
+    21  echo "The GCD of num1 & num2 is: $gcd"
+[cloudshell-user@ip-10-0-81-244 Challenges]$ ./gcd.sh 12 2
+The GCD of num1 & num2 is: 2
+[cloudshell-user@ip-10-0-81-244 Challenges]$ ./gcd.sh 999 777
+The GCD of num1 & num2 is: 111
+[cloudshell-user@ip-10-0-81-244 Challenges]$ echo $?
+0
+[cloudshell-user@ip-10-0-81-244 Challenges]$ ./gcd.sh 25 5
+The GCD of num1 & num2 is: 5
+[cloudshell-user@ip-10-0-81-244 Challenges]$ ./gcd.sh 1000 600
+The GCD of num1 & num2 is: 200
+[cloudshell-user@ip-10-0-81-244 Challenges]$ ./gcd.sh -100 -88
+The GCD of num1 & num2 is: 1
+[cloudshell-user@ip-10-0-81-244 Challenges]$
+
+Example-10:
+
+A script would automatically detect whether a server in your environment is down!
+Store all your hostnames that you want to monitor in a file names servers.txt as below.
+
+[cloudshell-user@ip-10-0-81-244 Challenges]$ cat -n server.txt 
+     1  server_1
+     2  server_2
+     3  server_3
+     4  server_4
+     5  server_5
+
+If there is server outage, send an email to yourself specifying which server is unreachable.
+
+Your script should run every 2 hours.
+
+Hint: Use mail and cron.
+
+Read about the cronjob
+
+Solution-10: Interview Perspective
+
+[cloudshell-user@ip-10-0-81-244 Challenges]$ cat -n outage.sh 
+     1  #!/bin/bash
+     2
+     3  servers=$(cat server.txt)
+     4
+     5  for i in $servers; do
+     6          ping -c 1 $i >> /dev/null 2>&1
+     7          if [ $? -ne 0 ]; then
+     8                  echo "Sending out an outage email."
+     9                  echo "$i is unreachable" | mail -s "$i outage" your_email
+    10          fi
+    11  done
+   
+
+
+
+
+
+
+
+
+
+

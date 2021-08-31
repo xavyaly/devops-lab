@@ -1,0 +1,84 @@
+$ ls : listing of files and folders in current location
+$ pwd: present working directory
+$ users:  list all users
+$ whoami: user
+$ ls -la: listing files and dirs with hidden files
+$ touch <file_name>: create an empty file
+$ ls -lart: hidden, recursilvely, listing files and dirs
+$ clear: clear the screen
+$ mkdir <dir_name>: create a directory
+$ cd <dir_name>: change directory 
+$ cd ..: move one step back to directory
+$ ls -l <dir_name>/*: list all files and folders from any location, *: all files
+
+# Notes: Editor
+Linux: vi, vim, nano, gmacs
+Ubuntu: vi, vim, nano, gmacs
+Windows: notepad, nodepad++
+Microsoft: visual studio 
+
+$ rm <file_name>: remove a file
+$ rm -rf <dir_name>: removes recursively all files and folders present inside dir | V.V.Imp Command
+$ rmdir <dir_name>: remove the empty directory
+
+$ cp <source_file> <destination_file>: copy file1 to file2
+$ rm file_*: remove files present with the same extension
+$ cp -r <dir1> <dir2>: copy the files, content and create a new directory called dir2 if not present
+$ cp -r <dir1> <dir3>: copy the files, content and create a new directory called dir3 if present
+
+$ mv <file1> <file2>: cut paste, rename or move file1 to file2 if file1 is an existing directory
+$ mv <dir1> <dir2>: move, rename dir1 to dir2, if dir2 not present and dir1 removed
+
+# skip symbolic link file
+
+$ cat <file_name>: to view the content of a file
+$ cat <dir1/dir2/file_name>: to view the content of a file
+$ cat -n <file_name>: to view the content of a file with line no, Imp command
+$ cat > <file_name>: place standard input into file, add contents, removes the previous content
+$ cat >> <file_name>: add at the end of a file without removing the previous contents of a file
+
+$ more <file_name>: output contents of a file
+$ more -n <file_name>: see the nth line from the TOP contents of a file
+$ head -n <file_name>: see the nth line from the TOP contents of a file
+$ tail -n <file_name>: see the nth line from the BOTTOM contents of a file
+
+$ ps: display ur current active processes
+$ ps -ef: display all ur current active processes 
+$ ps -ef | grep /bin/bash: list the specific process
+$ ps -ef | grep "ps -ef": list the ps -ef process
+
+$ top: display all running processes
+$ man <command>: to view details of command
+
+$ kill <PID>: kill process of PID
+
+$ bg: list stopped or background jobs
+$ fg: brings the most recent job to foreground
+
+# File Permissions SKIPPED, Deal in Shell Scripting
+
+### System Information ###
+
+$ uname -a: tell us the OS name
+$ date
+$ cal
+$ uptime
+$ w
+$ whoami
+
+$ df: shows the disk usage
+$ df -HT
+
+$ du: directory space usage
+$ du -m: mb
+$ du -k: kb
+$ du -g: gb
+
+$ free: show memroy and swap memory
+
+
+
+
+
+
+

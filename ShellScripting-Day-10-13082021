@@ -1,0 +1,195 @@
+# Shell Scripting
+
+Question-1: Shell script that adds an extenstion ".new" to all the files in a directory
+
+Hint: supply directory as an argument
+
+Solution:
+
+mkdir dir_1
+touch f{1..6}.txt
+
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ cat -n extenstion.sh 
+     1  #!/bin/bash
+     2
+     3  dir=$1
+     4
+     5  for i in `ls $1/*`
+     6  do
+     7          mv $i $i.new
+     8  done
+     9
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./extenstion.sh dir_1/
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ls -l dir_1/*
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug 13 06:08 dir_1/f1.txt.new
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug 13 06:08 dir_1/f2.txt.new
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug 13 06:08 dir_1/f3.txt.new
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug 13 06:08 dir_1/f4.txt.new
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug 13 06:08 dir_1/f5.txt.new
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug 13 06:08 dir_1/f6.txt.new
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ 
+
+Question-2:
+
+Shell script to print a number in reverse order. 
+Should support the following requirements.
+
+1. Script should accept the input from the command line.
+2. If you dont input any data, then display an error message to execute the script correct 
+
+Solution-2:
+
+Alog:
+
+Steps involved in the script:
+
+1. Suppose the input number is n.
+2. Set reverse and single  digit to 0 (i.e rev=0, sd=0)
+3. The expression (n%10) will give the single leftmost digit i.e sd.
+4. To reverse the number, use this expression <rev * 10 + sd>.
+5. Decrese the input number (n) by 1.
+6. If n is greater than 0, then go to step 3, Else, execute the step no 7.
+7. Print the result
+
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ cat -n rev.sh 
+     1  #!/bin/bash
+     2
+     3  if [ $# -ne 1 ]
+     4  then
+     5          echo "Press correct input..."
+     6          echo "Usage $0 number.."
+     7          echo "Script will revers eg: 1234 to 4321"
+     8          exit 1
+     9  fi
+    10
+    11  n=$1
+    12  sd=0
+    13  rev=0
+    14  while [ $n -gt 0 ]
+    15  do
+    16          sd=`expr $n % 10`
+    17          rev=`expr $rev \* 10 + $sd`
+    18          n=`expr $n / 10`
+    19  done
+    20  echo "Reverse number is $rev"
+    21
+    22
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ chmod u+x rev.sh 
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./rev.sh 1234
+Reverse number is 4321
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./rev.sh 1
+Reverse number is 1
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./rev.sh    
+Press correct input...
+Usage ./rev.sh number..
+Script will revers eg: 1234 to 4321
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./rev.sh 12345
+Reverse number is 54321
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ 
+
+Question-3:
+
+Delete a file which has special characters in its file name ?
+
+Special characters:
+
+-
+--
+;
+&
+$
+?
+*
+ 
+rm command may not be able to delete such file.
+use inode number delete files have special characters
+
+Solution-3:
+
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ls -li
+total 20
+64 -rwxrw-r-- 1 cloudshell-user cloudshell-user  151 Aug 12 07:25 date_time_username.sh
+83 drwxrwxr-x 2 cloudshell-user cloudshell-user 4096 Aug 13 06:12 dir_1
+92 -rwxrw-r-- 1 cloudshell-user cloudshell-user   63 Aug 13 06:12 extenstion.sh
+65 -rwxrw-r-- 1 cloudshell-user cloudshell-user   55 Aug 12 07:01 last_updated.sh
+91 -rwxrw-r-- 1 cloudshell-user cloudshell-user  288 Aug 13 06:26 rev.sh
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ 
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ 
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ find . -inum 64 -exec rm -i {} \; 
+rm: remove regular file ‘./date_time_username.sh’? yes
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ls -li
+total 16
+83 drwxrwxr-x 2 cloudshell-user cloudshell-user 4096 Aug 13 06:12 dir_1
+92 -rwxrw-r-- 1 cloudshell-user cloudshell-user   63 Aug 13 06:12 extenstion.sh
+65 -rwxrw-r-- 1 cloudshell-user cloudshell-user   55 Aug 12 07:01 last_updated.sh
+91 -rwxrw-r-- 1 cloudshell-user cloudshell-user  288 Aug 13 06:26 rev.sh
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$
+
+Question-4:
+
+How can we perform numeric comparisons in Linux ?
+
+Hint:
+
+Syntax: INTEGER1 -eq INTEGER2
+Description: INTEGER1 is equal to INTEGER2
+Example Code:
+
+Solution-4:
+
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ cat comparison.sh 
+#!/bin/bash
+
+read -p "Please enter number 20 from the keyboard: " n
+
+if test $n -eq 20 
+then
+        echo "Thanks for rentering the num 20."
+else
+        echo "U r not following my instructions."
+fi
+
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ chmod u+x comparison.sh 
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./comparison.sh 
+Please enter number 20 from the keyboard: 20
+Thanks for rentering the num 20.
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ ./comparison.sh 
+Please enter number 20 from the keyboard: 10
+U r not following my instructions.
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ 
+
+Try for this:
+<-eq>
+<ge>
+<gt>
+<le>
+<lt>
+<ne>
+
+Question-5:
+
+Find the sum of all the numbers in a file in a Linux ?
+
+Solution:
+
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ cat -n file 
+     1  2
+     2  3
+     3  4
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$ awk '{x+=$0}END{print x}' file 
+9
+[cloudshell-user@ip-10-0-144-87 20_Interview_Questions]$
+
+
+
+
+
+
+
+
+
+
+
+
+

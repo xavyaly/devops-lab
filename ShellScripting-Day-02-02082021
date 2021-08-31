@@ -1,0 +1,148 @@
+# For loop syntax
+
+for n in <>
+do
+.....
+done
+
+# Ex-1:
+
+[cloudshell-user@ip-10-0-164-192 ~]$ vim read_items.sh
+# Default cmd mode
+# Press i or a: insert mode
+# Write the script
+# :wq : save and quit
+
+[cloudshell-user@ip-10-0-164-192 ~]$ cat -n read_items.sh 
+     1  #!/bin/bash
+     2
+     3  echo "hello student..."
+[cloudshell-user@ip-10-0-164-192 ~]$ ls -l read_items.sh 
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 37 Aug  2 06:19 read_items.sh
+[cloudshell-user@ip-10-0-164-192 ~]$ chmod u+x read_items.sh
+[cloudshell-user@ip-10-0-164-192 ~]$ ls -l read_items.sh 
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 37 Aug  2 06:19 read_items.sh
+[cloudshell-user@ip-10-0-164-192 ~]$ ./read_items.sh 
+hello student...
+[cloudshell-user@ip-10-0-164-192 ~]$ bash read_items.sh 
+hello student...
+[cloudshell-user@ip-10-0-164-192 ~]$ source read_items.sh 
+hello student...
+
+# Ex-2:
+
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ cat -n read_
+read_items.sh  read_nos.sh    
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ cat -n read_nos.sh 
+     1  #!/bin/bash
+     2
+     3  for n in 10 20 30 40 50
+     4  do
+     5          echo "Nos is $n"
+     6  done
+     7
+     8
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ls -l read_nos.sh 
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 65 Aug  2 06:31 read_nos.sh
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ chmod u+x read_nos.sh 
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ls -l read_nos.sh 
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 65 Aug  2 06:31 read_nos.sh
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ./read_nos.sh 
+Nos is 10
+Nos is 20
+Nos is 30
+Nos is 40
+Nos is 50
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ 
+
+# Ex-3:
+
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ cat -n read_
+read_array.sh  read_items.sh  read_nos.sh    
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ cat -n read_array.sh 
+     1  #!/bin/bash
+     2
+     3  program="Java Python PS SS Perl"
+     4
+     5  for n in $program
+     6  do
+     7          if [ $n == Java ]
+     8          then
+     9                  echo "$n is an advanced language"
+    10          else
+    11                  echo "$n is a scripting language"
+    12          fi
+    13  done
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ls -l read_array.sh 
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 187 Aug  2 06:38 read_array.sh
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ chmod u+x read_array.sh 
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ls -l read_array.sh 
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 187 Aug  2 06:38 read_array.sh
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ source read_array.sh
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ bash read_array.sh 
+Java is an advanced language
+Python is a scripting language
+PS is a scripting language
+SS is a scripting language
+Perl is a scripting language
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ source read_array.sh 
+Java is an advanced language
+Python is a scripting language
+PS is a scripting language
+SS is a scripting language
+Perl is a scripting language
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ./read_array.sh 
+Java is an advanced language
+Python is a scripting language
+PS is a scripting language
+SS is a scripting language
+Perl is a scripting language
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ 
+
+# Ex-4:
+
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ cat -n read_array.sh 
+     1  #!/bin/bash
+     2
+     3  #program="Java Python PS SS Perl"
+     4
+     5  for n in "Java" "Python" "PS" "SS" "Perl"
+     6  do
+     7          if [ $n == Java ]
+     8          then
+     9                  echo "$n is an advanced language"
+    10          else
+    11                  echo "$n is a scripting language"
+    12          fi
+    13  done
+    14
+    15
+    16
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ./read_array.sh 
+Java is an advanced language
+Python is a scripting language
+PS is a scripting language
+SS is a scripting language
+Perl is a scripting language
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ 
+
+# Ex-5:
+
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ cat -n check-divisible.sh 
+     1  #!/bin/bash
+     2
+     3  for n in {100..50..10}
+     4  do
+     5          if (( $n%5==0 && $n%10==0 ))
+     6          then
+     7                  echo -n "$n "
+     8          fi
+     9  done
+    10
+    11  echo "Done"
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ ./check-divisible.sh 
+100 90 80 70 60 50 Done
+[cloudshell-user@ip-10-0-164-192 Shell-Scripting]$ 
+
+
+

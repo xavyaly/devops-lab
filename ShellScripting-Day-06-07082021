@@ -1,0 +1,282 @@
+# Shell Scripting
+
+Ex-1:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n function.sh 
+     1  #!/bin/bash
+     2
+     3  echo -n "Enter a no: "
+     4  read x
+     5
+     6  echo -n "Enter a new no: "
+     7  read y
+     8
+     9  echo "Sum of x & y is: $((x+y))"
+    10
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./function.sh 
+Enter a no: 10
+Enter a new no: 20
+Sum of x & y is: 30
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+
+Ex-2:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n function.sh 
+     1  #!/bin/bash
+     2
+     3  # Create a function
+     4
+     5  function Add()
+     6  {
+     7  echo -n "Enter a no: "
+     8  read x
+     9
+    10  echo -n "Enter a new no: "
+    11  read y
+    12
+    13  echo "Sum of x & y is: $((x+y))"
+    14  }
+    15
+    16  # Call a function
+    17  Add
+    18
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./function.sh 
+Enter a no: 10
+Enter a new no: 20
+Sum of x & y is: 30
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+
+
+Ex-3:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n function.sh 
+     1  #!/bin/bash
+     2
+     3  # Create a function
+     4
+     5  function Add()
+     6  {
+     7  echo -n "Enter a no: "
+     8  read x
+     9
+    10  echo -n "Enter a new no: "
+    11  read y
+    12
+    13  echo "Sum of x & y is: $((x+y))"
+    14  }
+    15
+    16  # Call a function
+    17  #Add
+    18
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./function.sh 
+
+Ex-4: Create a directory
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n Create_Dir.sh 
+     1  #!/bin/bash
+     2
+     3  echo "***************"
+     4  echo -n "Enter the dir name needs to create.."
+     5  read newdir
+     6
+     7  cmd="mkdir $newdir"
+     8  eval $cmd
+     9
+[cloudshell-user@ip-10-0-171-90 Effective]$ chmod u+x Create_Dir.sh 
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./Create_Dir.sh 
+***************
+Enter the dir name needs to create..manish
+[cloudshell-user@ip-10-0-171-90 Effective]$ ls -l 
+total 32
+drwxrwxr-x 2 cloudshell-user cloudshell-user 4096 Aug  7 06:57 manish
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+
+Ex-5: Create a dir after confirming it's existance (Interview)
+
+#!/bin/bash
+  
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n Create_Dir.sh 
+     1  #!/bin/bash
+     2
+     3  echo "***************************************"
+     4  echo -n "Enter the dir name needs to create..: "
+     5  read newdir
+     6
+     7  if [ -d "$newdir" ]
+     8  then
+     9          echo "Dir exists..."
+    10  else
+    11          `mkdir $newdir`
+    12  echo "Directory created by user..."
+    13  fi
+    14
+    15
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./Create_Dir.sh 
+***************************************
+Enter the dir name needs to create..: manish
+Dir exists...
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./Create_Dir.sh 
+***************************************
+Enter the dir name needs to create..: kella
+Directory created by user...
+[cloudshell-user@ip-10-0-171-90 Effective]$ ls -l
+total 36
+drwxrwxr-x 2 cloudshell-user cloudshell-user 4096 Aug  7 07:04 kella
+drwxrwxr-x 2 cloudshell-user cloudshell-user 4096 Aug  7 06:57 manish
+[cloudshell-user@ip-10-0-171-90 Effective]$
+
+Ex-6:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ touch f{1..4}.txt
+[cloudshell-user@ip-10-0-171-90 Effective]$ ls -l *.txt
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug  7 07:06 f1.txt
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug  7 07:06 f2.txt
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug  7 07:06 f3.txt
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 0 Aug  7 07:06 f4.txt
+[cloudshell-user@ip-10-0-171-90 Effective]$ ls -l *.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 197 Aug  5 06:46 arguments.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 179 Aug  5 06:35 case.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 115 Aug  5 07:02 concatenate.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 232 Aug  7 07:03 Create_Dir.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 145 Aug  5 07:10 slicing.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user  67 Aug  5 06:26 while.sh
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+
+Ex-6:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n call_file_ext.sh 
+     1  #!/bin/bash
+     2
+     3  for i in "ls -l *.sh"
+     4  do
+     5          echo $i
+     6  done
+     7
+[cloudshell-user@ip-10-0-171-90 Effective]$ chmod u+x call_file_ext.sh 
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./call_file_ext.sh 
+ls -l arguments.sh call_file_ext.sh case.sh concatenate.sh Create_Dir.sh slicing.sh while.sh
+[cloudshell-user@ip-10-0-171-90 Effective]$ ls -l *.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 197 Aug  5 06:46 arguments.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user  53 Aug  7 07:11 call_file_ext.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 179 Aug  5 06:35 case.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 115 Aug  5 07:02 concatenate.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 232 Aug  7 07:03 Create_Dir.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user 145 Aug  5 07:10 slicing.sh
+-rwxrw-r-- 1 cloudshell-user cloudshell-user  67 Aug  5 06:26 while.sh
+[cloudshell-user@ip-10-0-171-90 Effective]$
+
+Ex-7:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat >> file.txt
+a.sh
+b.txt
+c.png
+d.mov
+^C
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n file.txt 
+     1  a.sh
+     2  b.txt
+     3  c.png
+     4  d.mov
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+SKIPPED WILL DISCUSS IN POWERSHELL
+
+Ex-8: Check the file existance at run time (Interview)
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n file_exists.sh 
+     1  #!/bin/bash
+     2
+     3  file_name=$1
+     4
+     5  if [ -f "$file_name" ]; then
+     6          echo "File exists..."
+     7  else
+     8          echo "File doesn't exist..."
+     9  fi
+    10
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./file_exists.sh
+File doesn't exist...
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./file_exists.sh file.txt
+File exists...
+[cloudshell-user@ip-10-0-171-90 Effective]$
+
+Ex-9:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n mail.sh 
+     1
+     2  #!/bin/bash
+     3
+     4  TO_ADDRESS="wellboy.alam13@gmail.com"
+     5  FROM_ADDRESS="wellboy.alam13@gmail.com"
+     6  SUBJECT="Mail Server Hosting Demo"
+     7  BODY="Linux is one of the email operating systems which can be used to send and receive emails."
+     8
+     9  echo ${BODY}| mail -s ${SUBJECT} ${TO_ADDRESS} -- -r ${FROM_ADDRESS}
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./mail.sh 
+
+Ex-10: Backquotes
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ a=10
+[cloudshell-user@ip-10-0-171-90 Effective]$ echo $a
+10
+[cloudshell-user@ip-10-0-171-90 Effective]$ a=`pwd`
+[cloudshell-user@ip-10-0-171-90 Effective]$ echo $a
+/home/cloudshell-user/Shell-Scripting/Effective
+[cloudshell-user@ip-10-0-171-90 Effective]$ a="pwd"
+[cloudshell-user@ip-10-0-171-90 Effective]$ echo $a
+pwd
+[cloudshell-user@ip-10-0-171-90 Effective]$ 
+[cloudshell-user@ip-10-0-171-90 Effective]$ date
+Sat Aug  7 07:44:28 UTC 2021
+[cloudshell-user@ip-10-0-171-90 Effective]$ date +%Y
+2021
+[cloudshell-user@ip-10-0-171-90 Effective]$ date +%m
+08
+[cloudshell-user@ip-10-0-171-90 Effective]$ date +%d
+07
+[cloudshell-user@ip-10-0-171-90 Effective]$ date +%H
+07
+[cloudshell-user@ip-10-0-171-90 Effective]$ date +%M
+44
+[cloudshell-user@ip-10-0-171-90 Effective]$ date +%S
+57
+[cloudshell-user@ip-10-0-171-90 Effective]$
+
+Ex-11: Backquotes & timing
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n time.sh 
+     1  #!/bin/bash
+     2
+     3  year=`date +%Y`
+     4  month=`date +%m`
+     5  day=`date +%d`
+     6  min=`date +%M`
+     7  hr=`date +%H`
+     8  sec=`date +%S`
+     9  echo "Today's date is: $month/$day/$year"
+    10  echo "Today's time is: $hr:$min:$sec"
+    11
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./time.sh 
+Today's date is: 08/07/2021
+Today's time is: 07:50:08
+[cloudshell-user@ip-10-0-171-90 Effective]$
+
+Ex-12:
+
+[cloudshell-user@ip-10-0-171-90 Effective]$ cat -n sleep.sh 
+     1  #!/bin/bash
+     2
+     3  echo "Please wait till the time..."
+     4  read time
+     5
+     6  sleep $time
+     7  echo "Needs for $time in seconds..."
+[cloudshell-user@ip-10-0-171-90 Effective]$ chmod u+x sleep.sh 
+[cloudshell-user@ip-10-0-171-90 Effective]$ ./sleep.sh 
+Please wait till the time...
+10
+Needs for 10 in seconds...
+[cloudshell-user@ip-10-0-171-90 Effective]$
+
+

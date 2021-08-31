@@ -1,0 +1,43 @@
+# Linux Commands
+
+[cloudshell-user@ip-10-0-143-149 ~]$ ps -ef : running processes along with their PID, CPU/RAM usage
+[cloudshell-user@ip-10-0-143-149 ~]$ ps -p $$ : Shell you are using
+[cloudshell-user@ip-10-0-143-149 ~]$ echo $SHELL : Shell you are using
+[cloudshell-user@ip-10-0-143-149 ~]$ ps aux | grep -v `whoami`  : processes not owned by me
+[cloudshell-user@ip-10-0-143-149 ~]$ ps aux | grep bash
+[cloudshell-user@ip-10-0-143-149 ~]$ ps aux | grep bash | grep -v grep : filter the process list
+[cloudshell-user@ip-10-0-143-149 ~]$ ps auxww -H  : display process including params and hierarchy
+[cloudshell-user@ip-10-0-143-149 ~]$ lsof -p $PID : list the files opened by process (didn't worked)
+
+[cloudshell-user@ip-10-0-143-149 ~]$ watch -n <sec> <commands> : run command after every seconds
+[cloudshell-user@ip-10-0-143-149 ~]$ watch -n 1 ls -l : run ls -l command after every 1 second
+[cloudshell-user@ip-10-0-143-149 ~]$ watch -d -n 1 free : see the difference between previous and present output
+ctrl+Z: take control back
+
+[cloudshell-user@ip-10-0-143-149 ~]$ sudo yum install net-tools : install net-tools, for linux, (sudo apt-get install net-tools)
+[cloudshell-user@ip-10-0-143-149 ~]$ ifconfig : print the IP address of the current machine
+[cloudshell-user@ip-10-0-143-149 ~]$ ifconfig eth0  : print the info related to a particular interface
+[cloudshell-user@ip-10-0-143-149 ~]$ sudo ifconfig eth0 192.168.1.1 netmask 255.255.255.0 : assign IP address and set gateway
+[cloudshell-user@ip-10-0-143-149 ~]$ ifup eth0  : enable the interface
+[cloudshell-user@ip-10-0-143-149 ~]$ ifdown eth0  : disable the interface
+
+ping: skipped
+
+[cloudshell-user@ip-10-0-143-149 ~]$ traceroute localhost : troubleshoot the network issues, print no of hopes taken to reach the target
+
+# Compare AWS Global Accelerator and Azure Network Watcher
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
