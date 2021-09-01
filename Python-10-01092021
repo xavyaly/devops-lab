@@ -162,6 +162,16 @@ My mulitple line comments....
 
 # annotations: skipped
 
+>>> import math
+>>> def circum(rad: float)-> float:
+...     return 2 * math.pi * rad
+... 
+>>> circum.__annotations__
+{'rad': <class 'float'>, 'return': <class 'float'>}
+>>> 
+>>> circum(1.23)
+7.728317927830891
+>>> 
 
 
 
