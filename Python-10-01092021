@@ -1,0 +1,170 @@
+# Python Programming
+
+# Keyword Arguments
+
+>>> def xyz(i):
+...     print(i)
+... 
+>>> xyz('java')
+java
+>>> def xyz(i,j):
+...     print(i,j)
+... 
+>>> xyz('java','python')
+java python
+>>> 
+
+# kind: positional only
+# *arg: positional or keyword
+# **keywords: keyword only
+
+>>> def shop(kind,*arg,**keywords):
+...     print("It's ",kind,"shop")
+...     for i in arg:
+...             print(i)
+...     for kw in keywords:
+...             print(kw,":",keywords[kw])
+... 
+>>> shop('cheese',"it's good","It's ready","hello sir")
+It's  cheese shop
+it's good
+It's ready
+hello sir
+>>> 
+>>> shop('cheese',"it's good","It's ready","hello sir",shop='xyz',cust=20,add='xyzrs')
+It's  cheese shop
+it's good
+It's ready
+hello sir
+shop : xyz
+cust : 20
+add : xyzrs
+>>>
+
+
+Ex-1:
+
+>>> def concatenate(*args,sep="/"):
+...     return sep.join(args)
+... 
+>>> concatenate("hello","world","!!!")
+'hello/world/!!!'
+>>> concatenate("hello","world","!!!",sep=",")
+'hello,world,!!!'
+>>> 
+
+
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+>>> for i in range(5):
+...     print(i,end=',')
+... 
+0,1,2,3,4,>>> 
+>>> 
+
+>>> list(range(3,6))    # normal call with separate argument
+[3, 4, 5]
+>>> args=[3,6]
+>>> list(range(*args))  # call with arguments unpacked from a list
+[3, 4, 5]
+>>> 
+
+
+# List comprehension
+
+>>> for i in range(5):
+...     print(i)
+... 
+0
+1
+2
+3
+4
+>>> a=[i for i in range(5)]
+>>> print(a)
+[0, 1, 2, 3, 4]
+>>> 
+
+
+# Lambda function in python
+
+>>> def increment(n):
+...     return lambda x: x+n
+... 
+>>> increment(45)
+<function increment.<locals>.<lambda> at 0x7f1ec0ab3e60>
+>>> f=increment(45)
+>>> f(0)
+45
+>>> f(1)
+46
+>>> f(5)
+50
+>>> f=increment(200)
+>>> f(0)
+200
+>>> f(5)
+205
+>>> 
+
+>>> def increment(n):
+...     return lambda x: x*n
+... 
+>>> f=increment(2)
+>>> f(0)
+0
+>>> f(1)
+2
+>>> f(2)
+4
+>>> f(4)
+8
+>>> 
+
+Ex:
+
+>>> pairs=[(1,'one'),(2,'two'),(3,'three'),(4,'four')]
+>>> pairs[0]
+(1, 'one')
+>>> pairs[1]
+(2, 'two')
+>>> pairs.sort(key=lambda pair:pair[1])
+>>> pairs
+[(4, 'four'), (1, 'one'), (3, 'three'), (2, 'two')]
+
+
+# Document String
+
+>>> def my_func():
+...     '''My mulitple line comments....'''
+...     pass
+... 
+>>> my_func.__doc__
+'My mulitple line comments....'
+>>> print(my_func.__doc__)
+My mulitple line comments....
+>>>
+
+
+# Type
+
+>>> str='Java'
+>>> type(str)
+<class 'str'>
+>>> a=20
+>>> type(a)
+<class 'int'>
+>>> a=20.02
+>>> type(a)
+<class 'float'>
+>>> a,b,c=20,20.02,'java'
+>>> 
+
+# annotations: skipped
+
+
+
+
+
+
+
