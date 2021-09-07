@@ -1,0 +1,246 @@
+# PYTHON PROGRAMMING
+
+# SETS
+
+>>> list=[]
+>>> tuples=()
+>>> dict={'key':'values'}
+>>> 
+>>> basket_f={'apple','guava','apple','banana','orange','orange'}
+>>> print(basket_f)
+basket_f
+>>> print(basket_f)
+{'guava', 'orange', 'banana', 'apple'}
+>>> orange in basket_f
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'orange' is not defined
+>>> 'orange' in basket_f
+True
+>>> 'java' in basket_f
+False
+>>> 
+>>> a=set('hskajgfhajsifbif')
+>>> a
+{'i', 's', 'b', 'f', 'h', 'j', 'k', 'a', 'g'}
+>>> b=set('wunveiveibv')
+>>> b
+{'w', 'e', 'n', 'b', 'i', 'v', 'u'}
+>>> a-b
+{'s', 'f', 'h', 'j', 'k', 'a', 'g'}
+>>> a+b
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'set' and 'set'
+>>> a | b
+{'w', 'e', 'i', 's', 'n', 'b', 'f', 'h', 'j', 'k', 'a', 'v', 'g', 'u'}
+>>> a & b
+{'i', 'b'}
+>>> a ^ b 
+{'w', 'e', 's', 'n', 'f', 'h', 'j', 'k', 'a', 'v', 'g', 'u'}
+>>> 
+
+# LIST COMPREHENSION IN SETS
+
+>>> a={i for i in 'aghdfgwihfwihubevuhbhf' if i not in 'abc'}
+>>> a
+{'d', 'w', 'e', 'f', 'h', 'v', 'i', 'u', 'g'}
+>>> a={i for i in 'aghdfgwihfwihubevuhbhf' if i not in 'ghkfsgakhskh'}
+>>> a
+{'d', 'w', 'e', 'b', 'v', 'i', 'u'}
+>>> 
+
+# DICTIONARY
+
+>>> dict={'java':4048,'c++':4123}
+>>> dict
+{'java': 4048, 'c++': 4123}
+>>> dict['shell']=4129
+>>> dict
+{'java': 4048, 'c++': 4123, 'shell': 4129}
+>>> del dict['c++']
+>>> dict
+{'java': 4048, 'shell': 4129}
+>>> dict.keys()
+dict_keys(['java', 'shell'])
+>>> dict.values()
+dict_values([4048, 4129])
+>>> 
+>>> sorted(dict)
+['java', 'shell']
+>>> dict
+{'java': 4048, 'shell': 4129}
+>>> 
+>>> 'c++' in dict
+False
+>>> dict
+dict
+>>> dict
+{'java': 4048, 'shell': 4129}
+>>> 'java' in dict
+True
+>>> 
+
+>>> a={i**2 for i in (2,4,6)}
+>>> a
+{16, 4, 36}
+>>> a={i:i**2 for i in (2,4,6)}
+>>> a
+{2: 4, 4: 16, 6: 36}
+>>> 
+
+# LOOPING TECHNIQUES
+
+>>> kiwi={'java':4125,'c++':4128,'ss':'language'}
+>>> kiwi
+{'java': 4125, 'c++': 4128, 'ss': 'language'}
+>>> for i,j in kiwi:
+...     print(i,j)
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: too many values to unpack (expected 2)
+>>> 
+>>> for i,j in kiwi.items():
+...     print(i,j)
+... 
+java 4125
+c++ 4128
+ss language
+>>> 
+
+# ENUMERATE FUNCTION
+
+>>> for i,j in enumerate(['a','b','c']):
+...     print(i,j)
+... 
+0 a
+1 b
+2 c
+>>> 
+>>> a=[(i,j) for i,j in enumerate(['a','b','c'])]
+>>> a
+[(0, 'a'), (1, 'b'), (2, 'c')]
+>>> 
+
+
+# ZIP FUNCTION
+
+>>> ques=['name','dob','addr','phone']
+>>> ans=['java','13031988','xyz',67665587587]
+>>> ques
+['name', 'dob', 'addr', 'phone']
+>>> ans
+['java', '13031988', 'xyz', 67665587587]
+>>> for i,j in zip(ques,ans):
+...     print("what's ur {0} ? It's {1}".format(i,j))
+... 
+what's ur name ? It's java
+what's ur dob ? It's 13031988
+what's ur addr ? It's xyz
+what's ur phone ? It's 67665587587
+>>> 
+
+# REVERSED FUNCTION
+
+>>> for i in reversed(range(1,20,2)):
+...     print(i,end=' ')
+... 
+19 17 15 13 11 9 7 5 3 1 >>> 
+>>>
+
+# SORTED FUNCTION
+
+>>> for i in sorted(['o','i','e','a','u']):
+...     print(i)
+... 
+a
+e
+i
+o
+u
+>>> 
+>>> vowels=['o','i','e','a','u']
+>>> for i in vowels:
+...     print(i)
+... 
+o
+i
+e
+a
+u
+>>> 
+
+
+# SORTED IN COMBINATION WITH SET
+
+>>> for i in sorted(set(['o','i','e','a','u','a'])):
+...     print(i)
+... 
+a
+e
+i
+o
+u
+>>> 
+
+
+# CREATED A NEW LIST
+
+>>> import math
+>>> raw_d=[52.5,float('NaN'),52.3,56,9,float('NaN'),43.2]
+>>> raw_d
+[52.5, nan, 52.3, 56, 9, nan, 43.2]
+>>> empty_list=[]
+>>> for v in raw_d:
+...     if not math.isnan(v):
+...             empty_list.append(v)
+... 
+>>> empty_list
+[52.5, 52.3, 56, 9, 43.2]
+>>> 
+
+
+# NON_NULL
+
+>>> str1,str2,str3='java','c++',''
+>>> str1
+'java'
+>>> str2
+'c++'
+>>> str3
+''
+>>> non_null=str1 or str2 or str3
+>>> non_null
+'java'
+>>> 
+>>> str1,str2,str3='','c++','java'
+>>> non_null=str1 or str2 or str3
+>>> non_null
+'c++'
+>>> 
+
+
+# COMPARING SEQUENCE 
+
+>>> (1,2,3) < (1,2,4)
+True
+>>> [1,2,3] < [1,2,4]
+True
+>>> 'ABCD' < 'E'
+True
+>>> 'ABCD' < 'A'
+False
+>>> 
+>>> 'ABC' < 'C' < 'JAVA'
+True
+>>> (1,2) < (1,2,-1)
+True
+>>> (1,2,3,4) == (1.0,2.0,3.0,4.0)
+True
+>>> (1,2,('ab','abc')) < (1,2,('abc','ab'),4)
+True
+>>> 
+
+
+
