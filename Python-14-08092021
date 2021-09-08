@@ -119,6 +119,22 @@ NameError: name 'fib' is not defined
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 
 >>> 
 
+# How do I tell a Python script to use a particular version
+
+[cloudshell-user@ip-10-0-159-174 Python]$ cat -n fibo.py 
+     1  #!/usr/bin/env python3.7
+     2
+     3  def fib(n):
+     4      a,b=0,1
+     5      while a<n:
+     6          print(a,end=' ')
+     7          a,b=b,a+b
+     8      print()
+     9
+    10  fib(1000)
+[cloudshell-user@ip-10-0-159-174 Python]$ ./fibo.py 
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 
+
 # execute modules as scripts 
 
 
