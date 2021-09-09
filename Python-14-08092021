@@ -158,7 +158,7 @@ NameError: name 'fib' is not defined
     16      fib(int(sys.argv[1]))
 [cloudshell-user@ip-10-0-159-174 Python]$ ./fibo.py 1000
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 
-[cloudshell-user@ip-10-0-159-174 Python]$ python fibo.py 1000
+[cloudshell-user@ip-10-0-159-174 Python]$ python fibo.py 1000   # picking 2.7 
   File "fibo.py", line 6
     print(a,end=' ')
                ^
