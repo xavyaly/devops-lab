@@ -1,0 +1,194 @@
+# PYTHON PROGRAMMING
+
+
+>>> import sys
+>>> sys.ps1
+'>>> '
+>>> sys.ps2
+'... '
+>>> for i in range(10):
+...     print(i,end=' ')
+... 
+0 1 2 3 4 5 6 7 8 9 >>> 
+>>> import sys
+>>> sys.ps1 = '$$ '
+$$ sys.ps2 = '.... '
+$$ for i in range(10):
+....    print(i,end=' ')
+.... 
+0 1 2 3 4 5 6 7 8 9 $$ 
+$$ quit()
+[cloudshell-user@ip-10-0-166-112 Python]$ python3.7
+Python 3.7.10 (default, Jun  3 2021, 00:02:01) 
+[GCC 7.3.1 20180712 (Red Hat 7.3.1-13)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+
+
+# dir() function
+
+import os
+dir(os)
+
+import builtins
+dir(builtins)
+
+
+# import 
+
+[cloudshell-user@ip-10-0-166-112 Python]$ cat -n fibo.py 
+     1  #!/usr/bin/env python3.7
+     2
+     3  def fib(n):
+     4      a,b=0,1
+     5      while a<n:
+     6          print(a,end=' ')
+     7          a,b=b,a+b
+     8      print()
+     9
+    10  #fib(1000)
+    11
+    12  # main function call
+    13
+    14  if __name__ == '__main__':
+    15      import sys
+    16      fib(int(sys.argv[1]))
+[cloudshell-user@ip-10-0-166-112 Python]$ pwd
+/home/cloudshell-user/Python
+[cloudshell-user@ip-10-0-166-112 Python]$
+>>> import os
+>>> os.getcwd()
+'/home/cloudshell-user/Python'
+>>> import fibo
+>>> a=[1,2,3,4]
+>>> fib=fibo.fib
+>>> dir(fib)
+['__annotations__', '__call__', '__class__', '__closure__', '__code__', '__defaults__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get__', '__getattribute__', '__globals__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__kwdefaults__', '__le__', '__lt__', '__module__', '__name__', '__ne__', '__new__', '__qualname__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+>>> 
+>>> dir()
+['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', 'a', 'fib', 'fibo', 'os']
+>>>
+
+
+# LIST COMPREHENSION
+
+>>> [i for i in range(10)]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> [_ for _ in range(10)]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> [$ for $ in range(10)]
+  File "<stdin>", line 1
+    [$ for $ in range(10)]
+     ^
+SyntaxError: invalid syntax
+>>> 
+
+
+# INPUT & OUTPUT FORMATTING
+
+# formatted string literals
+
+>>> year = 2020
+>>> event = 'Happy New Year'
+>>> f'Results of {year} {event}'
+'Results of 2020 Happy New Year'
+>>> 
+
+>>> a_1 = 23_24_1234
+>>> b_1 = 12_23_12345
+>>> percent = a_1 / b_1
+>>> percent
+0.19001543956989786
+>>> '{:-9} A is {:2.2%}'.format(a_1,percent)
+' 23241234 A is 19.00%'
+>>> 
+
+# STRING
+
+# LIST, TUPLE, DICTIONARY, SET # ALREADY COMPLETED
+
+>>> s = "Hello World..."
+>>> len(s)
+14
+>>> str(s)
+'Hello World...'
+>>> repr(s)
+"'Hello World...'"
+>>> str(1/7)
+'0.14285714285714285'
+>>> 
+>>> x = 2 * 12
+>>> y = 20 * 12.00
+>>> 
+>>> s = ' The value of x is ' + repr(x) + ' and y is ' + repr(y) + '....'
+>>> print(s)
+ The value of x is 24 and y is 240.0....
+>>> 
+>>> repr((x,y,('spam','eggs')))
+"(24, 240.0, ('spam', 'eggs'))"
+>>> 
+>>> 
+
+# formatted string literals
+
+>>> import math
+>>> math.pi
+3.141592653589793
+>>> print('The value of pi is approximately {math.pi:.3f}')
+The value of pi is approximately {math.pi:.3f}
+>>> print(f'The value of pi is approximately {math.pi:.3f}')
+The value of pi is approximately 3.142
+>>> 
+
+>>> table = {'a':'1234','b':'2345','c':'3456'}
+>>> table 
+{'a': '1234', 'b': '2345', 'c': '3456'}
+>>> 
+>>> for i,j in table.items():
+...     print(f'{i:10} ---> {j:10}')
+... 
+a          ---> 1234      
+b          ---> 2345      
+c          ---> 3456      
+>>> 
+
+
+# string format() method
+
+>>> print('We are the {} who say {}!!'.format('wolf','that'))
+We are the wolf who say that!!
+>>> 
+
+>>> print('We are the {0} who say {1}!!'.format('wolf','that'))
+We are the wolf who say that!!
+>>> print('We are the {1} who say {0}!!'.format('wolf','that'))
+We are the that who say wolf!!
+>>>
+
+>>> print('We are the {a} who say {b}!!'.format(a='wolf',b='that'))
+We are the wolf who say that!!
+>>> print('We are the {b} who say {a}!!'.format(a='wolf',b='that'))
+We are the that who say wolf!!
+>>>
+
+>>> print('We are the {0} who say {1}....,{c}!!'.format('wolf','that',c='hello'))
+We are the wolf who say that....,hello!!
+>>> 
+
+>>> for i in range(1,11):
+...     print('{0:2d} {1:3d} {2:4d}'.format(i,i*i,i**i))
+... 
+ 1   1    1
+ 2   4    4
+ 3   9   27
+ 4  16  256
+ 5  25 3125
+ 6  36 46656
+ 7  49 823543
+ 8  64 16777216
+ 9  81 387420489
+10 100 10000000000
+>>> 
+
+# MANUAL STRING FORMATTING
+
