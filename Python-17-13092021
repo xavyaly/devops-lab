@@ -1,0 +1,224 @@
+# PYTHON PROGRAMMING
+
+# EXCEPTION & SYNTAX ERRORS
+
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n syntax_error.py 
+     1  #!/usr/bin/python
+     2
+     3  a=12
+     4
+     5  if (a>10)
+     6  print("Free to elibile")
+     7
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x syntax_error.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./syntax_error.py 
+  File "./syntax_error.py", line 5
+    if (a>10)
+            ^
+SyntaxError: invalid syntax
+[cloudshell-user@ip-10-0-136-118 Python]$
+
+
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n zerodivision_error.py 
+     1  #!/usr/bin/python
+     2
+     3  a=10
+     4
+     5  value=a/0
+     6
+     7  print(value)
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x zerodivision_error.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./zerodivision_error.py 
+Traceback (most recent call last):
+  File "./zerodivision_error.py", line 5, in <module>
+    value=a/0
+ZeroDivisionError: integer division or modulo by zero
+[cloudshell-user@ip-10-0-136-118 Python]$
+
+
+# TRY EXCEPT
+
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n error.py 
+     1  #!/usr/bin/python
+     2
+     3  a=[1,2,3]
+     4
+     5  try:
+     6      print("Second element of a is %d" % (a[1]))
+     7
+     8      print("Fifth element of a is %d" % (a[4]))
+     9
+    10  except:
+    11      print("An error occured")
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x error.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./error.py 
+Second element of a is 2
+An error occured
+[cloudshell-user@ip-10-0-136-118 Python]$ python3.7
+Python 3.7.10 (default, Jun  3 2021, 00:02:01) 
+[GCC 7.3.1 20180712 (Red Hat 7.3.1-13)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a=[1,2,3]
+>>> a[1]
+2
+>>> a[4]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+>>> 
+
+
+# CAN USE MULTIPLE EXCEPT
+
+try:
+  # statements(s)
+ except IndexError:
+  # statements(s)
+ except ValueError:
+  # statements(s)
+  
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n catching_exception.py 
+     1  #!/usr/bin/python
+     2
+     3  def function(n):
+     4      if n<10:
+     5          # throws ZeroDivisionError for n=5
+     6          b=n/(n-5)
+     7
+     8      # throws NameError if n>=10
+     9      print("Value of b is ",b)
+    10
+    11  try:
+    12      function(5)
+    13      function(12)
+    14
+    15  except ZeroDivisionError:
+    16      print("ZeroDivisionError Occured...")
+    17  except NameError:
+    18      print("NameError Occured...")
+    19
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x catching_exception.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./catching_exception.py 
+ZeroDivisionError Occured...
+[cloudshell-user@ip-10-0-136-118 Python]$ 
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n catching_exception.py 
+     1  #!/usr/bin/python
+     2
+     3  def function(n):
+     4      if n<10:
+     5          # throws ZeroDivisionError for n=5
+     6          b=n/(n-5)
+     7
+     8      # throws NameError if n>=10
+     9      print("Value of b is ",b)
+    10
+    11  try:
+    12     #function(5)
+    13      function(12)
+    14
+    15  except ZeroDivisionError:
+    16      print("ZeroDivisionError Occured...")
+    17  except NameError:
+    18      print("NameError Occured...")
+    19
+[cloudshell-user@ip-10-0-136-118 Python]$ ./catching_exception.py 
+NameError Occured...
+[cloudshell-user@ip-10-0-136-118 Python]$ 
+
+
+# TRY EXCEPT ELSE 
+
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n try_except_else.py 
+     1  #!/usr/bin/python
+     2
+     3  def function(a,b):
+     4      try:
+     5          calculation=((a+b)/(a-b))
+     6      except ZeroDivisionError:
+     7          print("ZeroDivisionError at line no: 7")
+     8      else:
+     9          print(calculation)
+    10
+    11  function(2.0,3.0)
+    12
+    13  function(2.0,2.0)
+    14
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x try_except_else.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./try_except_else.py 
+-5.0
+ZeroDivisionError at line no: 7
+[cloudshell-user@ip-10-0-136-118 Python]$ 
+
+
+# TRY EXCEPT ELSE FINALLY
+
+try:
+  # statements(s)
+  # some codes ....
+except:
+  # handling exceptions if required 
+  # optional block
+else:
+  # exceute if no exception
+finally:
+  # some code ...(always executed)
+  
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n try_except_finally.py 
+     1  #!/usr/bin/python
+     2
+     3  try:
+     4      a=5//0
+     5      print(a)
+     6  except ZeroDivisionError:
+     7      print("ZeroDivisionError at line no: 4")
+     8  finally:
+     9      print("Always executed...")
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x try_except_finally.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./try_except_finally.py 
+ZeroDivisionError at line no: 4
+Always executed...
+[cloudshell-user@ip-10-0-136-118 Python]$ 
+
+Good Article:
+http://tutors.ics.uci.edu/index.php/79-python-resources/104-try-except
+
+# Skipped, Need to check on it
+
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n try_except_finally.py 
+     1  #!/usr/bin/python
+     2
+     3  try:
+     4      a=5//0:
+     5      print(a)
+     6  except SyntaxError:
+     7      print("SyntaxError at line no: 4")
+     8  except ZeroDivisionError:
+     9      print("ZeroDivisionError at line no: 4")
+    10  finally:
+    11      print("Always executed...")
+[cloudshell-user@ip-10-0-136-118 Python]$ 
+
+# RAISE
+
+[cloudshell-user@ip-10-0-136-118 Python]$ cat -n raise_execption.py 
+     1  #!/usr/bin/python
+     2
+     3  try:
+     4      raise NameError("Hello...")
+     5  except NameError:
+     6      print("An exception occured")
+     7      raise
+     8
+     9
+[cloudshell-user@ip-10-0-136-118 Python]$ chmod u+x raise_execption.py 
+[cloudshell-user@ip-10-0-136-118 Python]$ ./raise_execption.py 
+An exception occured
+Traceback (most recent call last):
+  File "./raise_execption.py", line 4, in <module>
+    raise NameError("Hello...")
+NameError: Hello...
+[cloudshell-user@ip-10-0-136-118 Python]$
+
+
+
+
