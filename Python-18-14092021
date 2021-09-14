@@ -1,0 +1,191 @@
+# PYTHON PROGRAMMING
+
+# Scopes and Namespaces
+
+# global and nonlocal
+
+[cloudshell-user@ip-10-0-34-32 Python]$ cat -n global_nonlocal.py 
+     1  #!/usr/bin/python
+     2
+     3  def scope_test():
+     4      def do_local():
+     5          spam = "local spams"
+     6      def do_nonlocal():
+     7          nonlocal spam 
+     8          spam = "nonlocal spam"
+     9      def do_global():
+    10          global spam 
+    11          spam = "global spam"
+    12
+    13      spam = "test spam"
+    14      do_local()
+    15      print("After local assignment: ",spam)  # test spam
+    16      do_nonlocal()
+    17      print("After nonlocal assignment: ",spam) # nonlocal spam
+    18      do_global()
+    19      print("After global assignment: ",spam) # nonlocal spam 
+    20
+    21  scope_test()
+    22  print("In global scope: ",spam) # global spam 
+[cloudshell-user@ip-10-0-34-32 Python]$ 
+
+
+# Class 
+
+class ClassName:
+  <statement-1>
+  .
+  .
+  .
+  <statement-N>
+  
+ >>> class Complex:
+...     def __init__(self,real_part,img_part):
+...             self.r = real_part
+...             self.i = img_part
+... 
+>>> c = Complex(2.0,4.0)
+>>> c
+<__main__.Complex object at 0x7f679b47e450>
+>>> c.r
+2.0
+>>> c.i
+4.0
+>>> 
+
+>>> class Animals:
+...     kind = "canine" 
+...     def __init__(self,name):
+...             self.name = name 
+... 
+>>> d = Animals('Fido')
+>>> d
+<__main__.Animals object at 0x7f679b47e590>
+>>> d.kind
+'canine'
+>>> e = Animals('Bud')
+>>> e
+<__main__.Animals object at 0x7f679b47e5d0>
+>>> e.kind
+'canine'
+>>> e.name
+'Bud'
+>>> d.name 
+'Fido'
+>>> 
+
+>>> class Animals:
+...     tricks = []
+...     def __init__(self,name):
+...             self.name = name 
+...     def add_trick(self,trick):
+...             self.tricks.append(trick)
+... 
+>>> d = Animals('Fido')
+>>> e = Animals('Bud')
+>>> d.add_trick('rolling')
+>>> e.add_trick('play')
+>>> d.tricks
+['rolling', 'play']
+>>> e.tricks
+['rolling', 'play']
+>>> 
+
+>>> class Animals:
+...     def __init__(self,name):
+...             self.name = name 
+...             self.tricks = [] # empty list 
+...     def add_trick(self,trick):
+...             self.tricks.append(trick)
+... 
+>>> d = Animals('Fido')
+>>> e = Animals('Bud')
+>>> d.add_trick('rolling')
+>>> e.add_trick('play')
+>>> d.tricks
+['rolling']
+>>> e.tricks
+['play']
+>>> d.name
+'Fido'
+>>> e.name
+'Bud'
+>>> d.add_trick('name')
+>>> d.tricks
+['rolling', 'name']
+>>> d.add_trick('self.name')
+>>> d.tricks
+['rolling', 'name', 'self.name']
+>>> 
+
+>>> class WareHouse:
+...     purpose = 'storage'
+...     region = 'east-1a'
+... 
+>>> w = WareHouse()
+>>> w
+<__main__.WareHouse object at 0x7f679ad7cfd0>
+>>> print(w.purpose,w.region)
+storage east-1a
+>>> w1 = WareHouse()
+>>> w1.region
+'east-1a'
+>>> w1.purpose
+'storage'
+>>> w.purpose
+'storage'
+>>> w.region
+'east-1a'
+>>> 
+
+# 'iter': iterator method
+
+>>> s = 'abcd'
+>>> it = iter(s)
+>>> it
+<str_iterator object at 0x7f679adda750>
+>>> next(it)
+'a'
+>>> next(it)
+'b'
+>>> next(it)
+'c'
+>>> next(it)
+'d'
+>>> next(it)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>> 
+
+# Generator are a simple and powerful tool for creating iterators
+
+>>> def reverse(data):
+...     for index in range(len(data)-1,-1,-1):
+...             yield data[index]
+... 
+>>> c = [char for char in reverse('carom')]
+>>> c
+['m', 'o', 'r', 'a', 'c']
+>>> 
+
+Ref:
+>>> a = [i for i in range(4,-1,-1)]
+>>> a
+[4, 3, 2, 1, 0]
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
