@@ -1,0 +1,132 @@
+# PYTHON PROGRAMMING 
+
+# LIST COMPREHENTION 
+>>> a = [i for i in range(5)]
+>>> a
+[0, 1, 2, 3, 4]
+>>> 
+
+# GENERATOR EXPRESSIONS
+
+>>> sum(i*i for i in range(5))
+30
+>>> sum(i*i for i in range(10))
+285
+>>> 
+
+>>> x = [10,20,30]
+>>> y = [1,2,3]
+>>> sum(i*j for i,j in zip(x,y))
+140
+# 10X1+20X2+30X3 = 140
+
+>>> unique_words=set(word for line in 'page' for word in line.split())
+>>> unique_words
+{'e', 'g', 'a', 'p'}
+>>> for line in 'page':
+...     for word in line.split():
+...             print(word)
+... 
+p
+a
+g
+e
+>>> 
+
+
+>>> a=[i for i in range(4,-1,-1)]
+>>> a
+[4, 3, 2, 1, 0]
+
+
+>>> data 
+'golf'
+>>> list(data[i] for i in range(len(data)-1,-1,-1))
+['f', 'l', 'o', 'g']
+>>> 
+
+
+>>> import os
+>>> os.getcwd()
+'/home/cloudshell-user'
+>>> 
+>>> os.chdir('/home/')
+>>> os.getcwd()
+'/home'
+>>> os.chdir('/home/cloudshell-user')
+>>> os.getcwd()
+'/home/cloudshell-user'
+>>> 
+
+
+>>> import shutil
+>>> shutil.copyfile('<source-path>','<destination-path>')
+>>> shutil.move('<source-path>','<destination-path>')
+
+
+# FILE WILDCARDS
+
+>>> import glob
+>>> dir(glob)
+['__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_glob0', '_glob1', '_glob2', '_iglob', '_ishidden', '_isrecursive', '_iterdir', '_rlistdir', 'escape', 'fnmatch', 'glob', 'glob0', 'glob1', 'has_magic', 'iglob', 'magic_check', 'magic_check_bytes', 'os', 're']
+>>> glob.glob('*.py')
+['squareDecimal.py', 'multiply.py', 'func.py', 'test.py', 'class.py', 'try_except_finally.py', 'prime.py', 'raise_execption.py', 'fibo.py', 'random.py', 'pversion.py', 'squaredict.py', 'try_except_else.py', 'error.py', 'global_nonlocal.py', 'catching_exception.py', 'multiline.py', '2d-array.py', 'prompt.py', 'open_file.py', 'tupleOutput.py', 'fact.py', 'zerodivision_error.py', 'myclass.py', 'divisible.py', 'square.py', 'complex.py', 'syntax_error.py']
+>>> glob.glob('*.txt')
+[]
+>>> 
+
+
+>>> import sys
+>>> dir(sys)
+['__breakpointhook__', '__displayhook__', '__doc__', '__excepthook__', '__interactivehook__', '__loader__', '__name__', '__package__', '__spec__', '__stderr__', '__stdin__', '__stdout__', '_clear_type_cache', '_current_frames', '_debugmallocstats', '_framework', '_getframe', '_git', '_home', '_xoptions', 'abiflags', 'api_version', 'argv', 'base_exec_prefix', 'base_prefix', 'breakpointhook', 'builtin_module_names', 'byteorder', 'call_tracing', 'callstats', 'copyright', 'displayhook', 'dont_write_bytecode', 'exc_info', 'excepthook', 'exec_prefix', 'executable', 'exit', 'flags', 'float_info', 'float_repr_style', 'get_asyncgen_hooks', 'get_coroutine_origin_tracking_depth', 'get_coroutine_wrapper', 'getallocatedblocks', 'getcheckinterval', 'getdefaultencoding', 'getdlopenflags', 'getfilesystemencodeerrors', 'getfilesystemencoding', 'getprofile', 'getrecursionlimit', 'getrefcount', 'getsizeof', 'getswitchinterval', 'gettrace', 'hash_info', 'hexversion', 'implementation', 'int_info', 'intern', 'is_finalizing', 'last_traceback', 'last_type', 'last_value', 'maxsize', 'maxunicode', 'meta_path', 'modules', 'path', 'path_hooks', 'path_importer_cache', 'platform', 'prefix', 'ps1', 'ps2', 'set_asyncgen_hooks', 'set_coroutine_origin_tracking_depth', 'set_coroutine_wrapper', 'setcheckinterval', 'setdlopenflags', 'setprofile', 'setrecursionlimit', 'setswitchinterval', 'settrace', 'stderr', 'stdin', 'stdout', 'thread_info', 'version', 'version_info', 'warnoptions']
+>>> 
+>>> 
+>>> print(sys.argv)
+['']
+>>> 
+>>> sys.version
+'3.7.10 (default, Jun  3 2021, 00:02:01) \n[GCC 7.3.1 20180712 (Red Hat 7.3.1-13)]'
+>>> sys.version_info
+sys.version_info(major=3, minor=7, micro=10, releaselevel='final', serial=0)
+>>> 
+
+
+>>> import re
+>>> dir(re)
+['A', 'ASCII', 'DEBUG', 'DOTALL', 'I', 'IGNORECASE', 'L', 'LOCALE', 'M', 'MULTILINE', 'Match', 'Pattern', 'RegexFlag', 'S', 'Scanner', 'T', 'TEMPLATE', 'U', 'UNICODE', 'VERBOSE', 'X', '_MAXCACHE', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', '_cache', '_compile', '_compile_repl', '_expand', '_locale', '_pickle', '_special_chars_map', '_subx', 'compile', 'copyreg', 'enum', 'error', 'escape', 'findall', 'finditer', 'fullmatch', 'functools', 'match', 'purge', 'search', 'split', 'sre_compile', 'sre_parse', 'sub', 'subn', 'template']
+>>> 
+>>> re.findall(r'\bf[a-z]','which foot or hand fell fastest')
+['fo', 'fe', 'fa']
+>>> 
+
+
+>>> re.sub(r'(\b[a-z]+) \1',r'\1','cat in the the hat')
+'cat in the hat'
+>>>
+
+
+>>> 'tea for too'.replace('too','two')
+'tea for two'
+>>> 
+
+
+>>> import math
+>>> dir(math)
+['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'pi', 'pow', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
+>>> 
+>>> math.cos(math.pi / 4)
+0.7071067811865476
+>>> 
+>>> math.log(1024,2)
+10.0
+>>>
+
+
+# MODULES 
+
+import os
+import sys
+import math
+import random
+
+
