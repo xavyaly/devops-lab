@@ -1,0 +1,110 @@
+# POWERSHELL SCRIPTING
+
+cd C:\Users\
+dir 
+clear
+ipconfig
+
+Get-Help
+Get-Command
+Show-Command
+alias
+
+# Check PS Version
+Get-Host      
+
+# Update PS
+Update-Help -Force
+
+# Copy Items 
+Get-Help Copy-Item -Online
+Copy-Item -Path <SOURCE-PATH> -Destination <DESTINATION-PATH>
+
+# Process
+Get-Process -Id 5568 
+Get-Help Get-Process -Detailed
+Get-Help Get-Process -Full
+Get-Help Get-Process -Examples
+Get-Help Get-Process -Online  # redirect to browser
+Get-Help Get-Process -ShowWindow
+
+# Example
+start -> calculator -> enter 
+Get-Process -Name Calculator
+Get-Process -Id 28320
+Stop-Process -Id 28320
+
+Get-Help *Event*
+Get-Help *Eventlog* 
+Get-Help wmi -Category Cmdlet
+Get-Help log -Category Cmdlet
+Get-Help about*
+
+alias 
+Get-Command
+gcm: Get-Command
+gcm -Verb se*
+gcm -Noun o*
+Get-Help *Bits*
+gcm -Noun *Event*
+
+# Module
+Get-Command -Module BitsTransfer
+Get-Command -Verb get -Noun *Bits* -Module BitsTransfer
+Get-Command -Module Microsoft.PowerShell.Management
+
+# Common Parameters
+Get-Help about_commonparameters   # start searching
+
+# Errors on console and variable
+Get-Process calc -ErrorVariable out     # error throw in console
+echo $out 
+Get-Process notepad -ErrorAction SilentlyContinue -ErrorVariable out_1    # error will show in console 
+echo $out_1
+# start -> calculator -> enter
+Get-Process Calculator -ErrorVariable out   # no error 
+echo $out 
+
+pwd
+dir
+Get-ChildItem
+Get-Alias  # List all aliases 
+Set-Alias list Get-ChildItem  # list is the new alias name for get-childitem
+list
+get-alias -Name list    # fetch the details whose alias setup by us 
+
+Clear-Host # same as clear command in linux, clear the screen
+Get-Process # List all process 
+Stop-Process # stop the process 
+Get-Service # list the status of services in PS like running, stopped etc
+
+sleep -Seconds 5
+sleep -Milliseconds 5
+
+Get-Item # Fetch the full path only
+Get-ChildItem 'C:\Users\All Users'  # List all files,Folders
+Get-ChildItem -Path 'C:\Users\All Users'
+Get-ChildItem -Path 'C:\Users\All Users' -Recurse # Recursely list files, folders 
+Get-ChildItem -Path 'C:\Users\All Users' -Recurse -Force  # Recursely and Forcefully list files, folders 
+
+# create a directory and test
+New-Item -Path 'C:\Users\All Users' -Name MyTest -ItemType directory
+Get-ChildItem -Path 'C:\Users\All Users' -Name MyTest
+Test-Path 'C:\Users\All Users\MyTest'  # True
+Test-Path 'C:\Users\All Users\MyTest1' # False
+
+# create a file and test
+New-Item -Path 'C:\Users\All Users' -Name MyFile -ItemType file
+Get-ChildItem -Path 'C:\Users\All Users' -Name MyFile
+Test-Path 'C:\Users\All Users\MyFile'
+Test-Path 'C:\Users\All Users\MyFile_1'
+
+# remove the file and directory
+Remove-Item 'C:\Users\All Users\MyTest'
+Remove-Item 'C:\Users\All Users\MyFile'
+
+
+
+
+
+
