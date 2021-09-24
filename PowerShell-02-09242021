@@ -1,0 +1,195 @@
+# POWERSHELL SCRIPTING
+
+# Creating file, adding content, viewing content, overriding content
+New-Item -Path 'C:\Users\All Users' -Name myFile.txt -ItemType file
+Get-Content 'C:\Users\All Users\myFile.txt'
+Add-Content 'C:\Users\All Users\myFile.txt' -Value "Additional Info"
+Set-Content 'C:\Users\All Users\myFile.txt' -Value "Override content"
+
+# copy
+Copy-Item -Path 'C:\Users\All Users\myFile.txt' -Destination 'C:\Users\All Users\myFile_1.txt'
+Test-Path 'C:\Users\All Users\myFile.txt'  # True
+Test-Path 'C:\Users\All Users\myFile_1.txt'  # True
+
+# adding content at run time
+PS C:\Users> Set-Content 'C:\Users\All Users\myFile.txt'
+cmdlet Set-Content at command pipeline position 1
+Supply values for the following parameters:
+Value[0]: Adding 
+Value[1]: more
+Value[2]: content hkhj
+Value[3]: inside a file
+Value[4]: 
+PS C:\Users> Get-Content 'C:\Users\All Users\myFile.txt'
+Adding 
+more
+content hkhj
+inside a file
+
+# List all drives available on system
+Get-PSDrive
+New-PSDrive -PSProvider Registry -Root HKEY_CLASSES_ROOT -Name HKCR
+Get-PSDrive
+
+# Processes
+Start-Process calc
+Get-Process -name Calculator
+Stop-Process -Name Calculator
+
+# move all services output in a file, imp
+Get-Service | Out-File -FilePath 'C:\Users\All Users\myFile.txt' # output
+Get-Content 'C:\Users\All Users\myFile.txt'
+Get-Service > 'C:\Users\All Users\myFile.txt' # overwrite
+Get-Content 'C:\Users\All Users\myFile.txt'
+Get-Service >> 'C:\Users\All Users\myFile.txt' # append
+
+Get-Process | Out-GridView
+
+# Format 
+Get-Service | Format-List
+Get-Service | Format-Wide
+Get-Service | Format-Table -AutoSize
+alias
+gci: Get-ChildItem
+Get-ChildItem 'C:\Users\All Users' | Format-List
+Get-ChildItem 'C:\Users\All Users' | Format-Wide
+Get-ChildItem 'C:\Users\All Users' | Format-Table -AutoSize
+
+# Risk mitigation parameters
+Get-Process -Name Calculator
+Stop-Process -Name Calculator -Confirm  # POPUP Confirmation
+
+-----------------------------------------------------------------------------
+
+# Variable
+PS C:\Users> $myVar = "Hello World!!"
+PS C:\Users> echo $myVar
+Hello World!!
+PS C:\Users> New-Variable -Name var -Value 200
+PS C:\Users> echo $var
+200
+PS C:\Users> Set-Variable -Name var -Value 500
+PS C:\Users> echo $var
+500
+
+# 
+PS C:\Users> New-Variable -Name var_1 -Value 205 -Option ReadOnly
+PS C:\Users> echo $var_1
+205
+PS C:\Users> Set-Variable -Name var_1 -Value 210
+Set-Variable : Cannot overwrite variable var_1 because it is read-only or 
+constant.
+At line:1 char:1
++ Set-Variable -Name var_1 -Value 210
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (var_1:String) [Set-Variable], Sessio 
+   nStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable,Microsoft.PowerShell.Commands 
+   .SetVariableCommand
+ PS C:\Users> $var_1
+205
+
+PS C:\Users> $var_1 = 210
+Cannot overwrite variable var_1 because it is read-only or constant.
+At line:1 char:1
++ $var_1 = 210
++ ~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (var_1:String) [], SessionStateUnauth 
+   orizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+
+PS C:\Users> Remove-Variable var_1
+Remove-Variable : Cannot remove variable var_1 because it is constant or 
+read-only. If the variable is read-only, try the operation again specifying the 
+Force option.
+At line:1 char:1
++ Remove-Variable var_1
++ ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (var_1:String) [Remove-Variable], Ses 
+   sionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotRemovable,Microsoft.PowerShell.Command 
+   s.RemoveVariableCommand
+ 
+PS C:\Users> 
+PS C:\Users>
+PS C:\Users> Set-Variable -Name var_1 -Value 210 -Force
+PS C:\Users> echo $var_1
+210
+
+-----------------------------------------------------------------------------
+
+PS C:\Users> New-Variable -Name var_2 -Value 305 -Option Constant
+
+PS C:\Users> echo $var_2
+305
+
+PS C:\Users> Set-Variable -Name var_2 -Value 310 
+Set-Variable : Cannot overwrite variable var_2 because it is read-only or 
+constant.
+At line:1 char:1
++ Set-Variable -Name var_2 -Value 310
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (var_2:String) [Set-Variable], Sessio 
+   nStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable,Microsoft.PowerShell.Commands 
+   .SetVariableCommand
+ 
+
+PS C:\Users> Remove-Variable var_2
+Remove-Variable : Cannot remove variable var_2 because it is constant or 
+read-only. If the variable is read-only, try the operation again specifying the 
+Force option.
+At line:1 char:1
++ Remove-Variable var_2
++ ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (var_2:String) [Remove-Variable], Ses 
+   sionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotRemovable,Microsoft.PowerShell.Command 
+   s.RemoveVariableCommand
+ 
+
+PS C:\Users> Set-Variable -Name var_2 -Value 310 -Force
+Set-Variable : Cannot overwrite variable var_2 because it is read-only or 
+constant.
+At line:1 char:1
++ Set-Variable -Name var_2 -Value 310 -Force
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (var_2:String) [Set-Variable], Sessio 
+   nStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable,Microsoft.PowerShell.Commands 
+   .SetVariableCommand
+ 
+
+PS C:\Users> 
+
+-----------------------------------------------------------------------------
+
+PS C:\Users> [int]$a=1 
+
+PS C:\Users> $a
+1
+
+PS C:\Users> [int]$b="hello world!!!"
+Cannot convert value "hello world!!!" to type "System.Int32". Error: "Input 
+string was not in a correct format."
+At line:1 char:1
++ [int]$b="hello world!!!"
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : MetadataError: (:) [], ArgumentTransformationMeta 
+   dataException
+    + FullyQualifiedErrorId : RuntimeException
+ 
+
+PS C:\Users> [string]$b="hello world!!!"
+
+PS C:\Users> $b
+hello world!!!
+
+PS C:\Users> [float]$c=0.2
+
+PS C:\Users> $c 
+0.2
+
+-----------------------------------------------------------------------------
+
+
