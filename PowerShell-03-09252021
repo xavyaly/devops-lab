@@ -1,0 +1,90 @@
+# POWERSHELL SCRIPTING
+
+# Getting Input [Read-Host]
+PS C:\Users> $String = Read-Host "Enter any string: "
+Enter any string: : I'm a gradutae
+PS C:\Users> echo $String
+I'm a graduate
+
+--------------------------------------------------------------------------------
+
+PS C:\Users> Write-Output "Your qualification is: $String"
+Your qualification is: I'm a gradutae
+
+--------------------------------------------------------------------------------
+
+PS C:\Users> Write-Warning "Do not touch the mouse..."
+WARNING: Do not touch the mouse...
+
+PS C:\Users> Write-Error "Can't proceed it throws error.."
+Write-Error "Can't proceed it throws error.." : Can't proceed it throws error..
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorExcept 
+   ion
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException
+ 
+--------------------------------------------------------------------------------
+
+# Previous command only
+PS C:\Users> $^
+Write-Error
+
+# Previous command executed successfully or not (True | False)
+PS C:\Users> $?
+True
+
+--------------------------------------------------------------------------------
+
+# Quotes 
+
+PS C:\Users> $i=10 
+
+PS C:\Users> Write-Host "The value of $i is $i"
+The value of 10 is 10
+
+PS C:\Users> Write-Host 'The value of $i is $i'
+The value of $i is $i
+
+PS C:\Users> Write-Host 'The value of `$i is $i'
+The value of `$i is $i
+
+PS C:\Users> Write-Host "The value of `$i is $i"
+The value of $i is 10
+
+PS C:\Users> Get-Help about_quoting_rules
+
+--------------------------------------------------------------------------------
+
+# Comparison Operators 
+
+PS C:\Users> 1 -eq 1 
+True
+
+PS C:\Users> 2 -lt 1 
+False
+
+PS C:\Users> "Hello" -eq "HELLO"
+True
+
+PS C:\Users> "Hello" -ceq "HELLO"
+False
+
+PS C:\Users> Get-Help about_operators 
+
+--------------------------------------------------------------------------------
+
+# Objects:
+
+Get-Process
+Get-Process | Get-Member
+Get-Process | gm
+Get-Process | gm -MemberType Property
+alias
+gps | gm -MemberType Method
+alias 
+gsv
+
+$myVar = Get-Service WinRM
+$myVar.Status
+
+--------------------------------------------------------------------------------
+
