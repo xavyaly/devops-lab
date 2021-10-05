@@ -226,17 +226,19 @@ II. Non-Bare Repository(Local Repo)
 Lab-1
 ------------------------------------------------------------------------------------------------------------------------------
 
-How to use git & create github account?
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git status
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch 
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git add . 		# workspace to staging 
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git commit -m "<msg>" 	# staging to local
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch 
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git push origin master 	# local to remote 
 
-Configuring git:-
+-----------------------------------------------------------------------------------------------------------------------------
 
-➢ sudo su
-➢ yum update –y
-➢ yum install git
-➢ git –version
-➢ git config –global user.name “abdul”
-➢ git config –global user.email abdul@gmail.com
-➢ git config –list (to see created user in git)
+
+
+
+
 
 
 
