@@ -1,1 +1,28 @@
-# Git Commands
+# commit, push, pull from github
+
+vim git-01-10052021-initial-setup
+git status
+git add .
+git status
+git commit -m "added words"
+git status
+git push origin master
+
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git pull origin master
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+   a3f5acd..d4fd873  master     -> origin/master
+Updating a3f5acd..d4fd873
+Fast-forward
+ git-labs/git-02-10062021 | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 git-labs/git-02-10062021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ls -l
