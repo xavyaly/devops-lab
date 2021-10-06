@@ -26,3 +26,180 @@ Fast-forward
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ls -l
+
+---------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ mkdir init
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ cd init/
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ ls -l
+total 0
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git init
+Initialized empty Git repository in /home/ubuntu/git/devops-lab/git-labs/init/.git/
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ ls -lart
+total 12
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  6 02:49 ..
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  6 02:50 .
+drwxrwxr-x 7 ubuntu ubuntu 4096 Oct  6 02:50 .git
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ ls -l .git/*
+-rw-rw-r-- 1 ubuntu ubuntu   92 Oct  6 02:50 .git/config
+-rw-rw-r-- 1 ubuntu ubuntu   73 Oct  6 02:50 .git/description
+-rw-rw-r-- 1 ubuntu ubuntu   23 Oct  6 02:50 .git/HEAD
+
+.git/branches:
+total 0
+
+.git/hooks:
+total 40
+-rwxrwxr-x 1 ubuntu ubuntu  478 Oct  6 02:50 applypatch-msg.sample
+-rwxrwxr-x 1 ubuntu ubuntu  896 Oct  6 02:50 commit-msg.sample
+-rwxrwxr-x 1 ubuntu ubuntu  189 Oct  6 02:50 post-update.sample
+-rwxrwxr-x 1 ubuntu ubuntu  424 Oct  6 02:50 pre-applypatch.sample
+-rwxrwxr-x 1 ubuntu ubuntu 1642 Oct  6 02:50 pre-commit.sample
+-rwxrwxr-x 1 ubuntu ubuntu 1239 Oct  6 02:50 prepare-commit-msg.sample
+-rwxrwxr-x 1 ubuntu ubuntu 1348 Oct  6 02:50 pre-push.sample
+-rwxrwxr-x 1 ubuntu ubuntu 4898 Oct  6 02:50 pre-rebase.sample
+-rwxrwxr-x 1 ubuntu ubuntu 3610 Oct  6 02:50 update.sample
+
+.git/info:
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 240 Oct  6 02:50 exclude
+
+.git/objects:
+total 8
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 02:50 info
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 02:50 pack
+
+.git/refs:
+total 8
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 02:50 heads
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 02:50 tags
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ ls -l
+total 0
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ touch coding_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ cat -n coding_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        coding_file
+
+nothing added to commit but untracked files present (use "git add" to track)
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git add .
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git commit -m "added one file"
+[master (root-commit) c9303ad] added one file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 coding_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git log
+commit c9303adc594c1186c1377e570b3f565c79bb07f2
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:54:27 2021 +0000
+
+    added one file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git show c9303adc594c1186c1377e570b3f565c79bb07f2
+commit c9303adc594c1186c1377e570b3f565c79bb07f2
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:54:27 2021 +0000
+
+    added one file
+
+diff --git a/coding_file b/coding_file
+new file mode 100644
+index 0000000..e69de29
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ cat -n coding_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ cat > coding_file
+added one file and add some contents ....
+^C
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ pwd
+/home/ubuntu/git/devops-lab/git-labs/init
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ ./../git-life-cycle.sh
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   coding_file
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[master 53924e6] 10062021
+ 1 file changed, 1 insertion(+)
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git log
+commit 53924e6850181b36b7e05c5b4f50302113be8130
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:58:36 2021 +0000
+
+    10062021
+
+commit c9303adc594c1186c1377e570b3f565c79bb07f2
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:54:27 2021 +0000
+
+    added one file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git show -1
+commit 53924e6850181b36b7e05c5b4f50302113be8130
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:58:36 2021 +0000
+
+    10062021
+
+diff --git a/coding_file b/coding_file
+index e69de29..a5e693f 100644
+--- a/coding_file
++++ b/coding_file
+@@ -0,0 +1 @@
++added one file and add some contents ....
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$ git show -2
+commit 53924e6850181b36b7e05c5b4f50302113be8130
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:58:36 2021 +0000
+
+    10062021
+
+diff --git a/coding_file b/coding_file
+index e69de29..a5e693f 100644
+--- a/coding_file
++++ b/coding_file
+@@ -0,0 +1 @@
++added one file and add some contents ....
+
+commit c9303adc594c1186c1377e570b3f565c79bb07f2
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Wed Oct 6 02:54:27 2021 +0000
+
+    added one file
+
+diff --git a/coding_file b/coding_file
+new file mode 100644
+index 0000000..e69de29
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+
+
+
+
