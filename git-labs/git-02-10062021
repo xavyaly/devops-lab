@@ -200,6 +200,46 @@ new file mode 100644
 index 0000000..e69de29
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
 
+-----------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git pull origin master
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+   129db6f..3ef2212  master     -> origin/master
+Updating 129db6f..3ef2212
+Fast-forward
+ git-labs/git-02-10062021 | 177 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 177 insertions(+)
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ tail -5 git-02-10062021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+
+
+
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ tail -10 git-02-10062021
+    added one file
+
+diff --git a/coding_file b/coding_file
+new file mode 100644
+index 0000000..e69de29
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/init$
+
+
+
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+
+-------------------------------------------------------------------------------------------
+
+
+
 
 
 
