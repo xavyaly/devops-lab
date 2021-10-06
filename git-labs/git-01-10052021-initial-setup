@@ -2,9 +2,9 @@ Create an Account in https://github.com
 
 Create an Account on AWS/Azure/GCP 
 
-Install putty
+Download putty
 
-Install puttygen # convert "*.pem" file to "*.ppk" file, do google how to convert if face challenges 
+Download puttygen # convert "*.pem" file to "*.ppk" file, do google how to convert if face challenges 
 
 Create an EC2 Instance in AWS 
 
