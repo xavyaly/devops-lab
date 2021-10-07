@@ -1,1 +1,145 @@
+<<<<<<< HEAD
 append some contents
+=======
+# How to create Branch in GIT
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch
+* master
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git checkout staging
+error: pathspec 'staging' did not match any file(s) known to git.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch
+* master
+  staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ls -l
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 30 Oct  7 02:44 git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git checkout staging
+Switched to branch 'staging'
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch
+  master
+* staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ls -la
+total 12
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  7 02:43 .
+drwxrwxr-x 5 ubuntu ubuntu 4096 Oct  7 02:40 ..
+-rw-rw-r-- 1 ubuntu ubuntu   30 Oct  7 02:44 git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ./../git-life-cycle.sh
+On branch staging
+nothing to commit, working directory clean
+On branch staging
+nothing to commit, working directory clean
+Everything up-to-date
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ls
+git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git add .
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git commit -m "added today's file"
+On branch staging
+nothing to commit, working directory clean
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ls
+git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ cat > git-03-10072021
+append some contents
+^C
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ./../git-life-cycle.sh
+On branch staging
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   git-03-10072021
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[staging 911c51c] 10072021
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Everything up-to-date
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch
+  master
+* staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ ls -l
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 21 Oct  7 02:51 git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ cat -n git-03-10072021
+     1  append some contents
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git push origin staging
+Counting objects: 5, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 391 bytes | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'staging' on GitHub by visiting:
+remote:      https://github.com/xavyaly/devops-lab/pull/new/staging
+remote:
+To git@github.com:xavyaly/devops-lab.git
+ * [new branch]      staging -> staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+
+---------------------------------------------------------------------------------------------------
+
+# Branch merge
+
+1. You can't merge branches of different repositories
+2. we use pulling mechanism to merge branches 
+3. To merge branches (git merge <branch_name>)
+4. Then run "git log --online"
+
+
+---------------------------------------------------------------------------------------------------
+
+# git conflict:
+
+1. When same file having different content in different branch, if you do branch merge, conflict occurs (resolve conflitc than add & commit).
+2. Conflict occurs when you merge branch 
+
+Ex-1:
+
+Branch: master 
+File_name: git-03-10072021
+Content: 
+# How to create Branch in GIT
+
+Branch: staging
+File_name: git-03-10072021
+Content: 
+# How to create Branch in GIT
+append some contents
+
+Note:
+when you merge above branch then there is no conflict because there is same line available in both file, it'll know second line to merge
+
+Ex-2:
+
+Branch: master 
+File_name: git-03-10072021
+Content: 
+# How to create Branch in GIT(-)
+
+Branch: staging
+File_name: git-03-10072021
+Content: 
+append some contents(+)
+
+Note:
+In above example, when we merge branches git will confuse which data to add above or below.
+When data is completely different then conflict occurs.
+
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 8b2ba2a7c24a32a48abaa4d873bc14f16feef426
