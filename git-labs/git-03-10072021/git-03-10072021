@@ -131,6 +131,119 @@ When data is completely different then conflict occurs.
 
 ---------------------------------------------------------------------------------------------------
 
+# sync code from master to staging
+
+ubuntu@ip-172-31-7-0:~$ cd git/devops-lab/
+ubuntu@ip-172-31-7-0:~/git/devops-lab$ ls -l
+total 28
+-rw-rw-r-- 1 ubuntu ubuntu 1498 Oct  5 02:41 devops-routine
+drwxrwxr-x 5 ubuntu ubuntu 4096 Oct  7 02:40 git-labs
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  5 02:41 linux-labs
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  5 02:41 powershell-labs
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  5 02:41 python-labs
+-rw-rw-r-- 1 ubuntu ubuntu   17 Oct  5 02:41 README.md
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  5 02:41 shellscripting-labs
+ubuntu@ip-172-31-7-0:~/git/devops-lab$ cd git-labs/
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch
+  master
+* staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ls -l
+total 16
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 03:10 git-01-10052021
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  7 02:37 git-02-10062021
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  7 02:43 git-03-10072021
+-rwxrw-r-- 1 ubuntu ubuntu   84 Oct  7 02:37 git-life-cycle.sh
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ./git-life-cycle.sh
+On branch staging
+nothing to commit, working directory clean
+On branch staging
+nothing to commit, working directory clean
+To git@github.com:xavyaly/devops-lab.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:xavyaly/devops-lab.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git pull origin master
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (5/5), done.
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+   b60fa38..8b2ba2a  master     -> origin/master
+Auto-merging git-labs/git-03-10072021/git-03-10072021
+CONFLICT (content): Merge conflict in git-labs/git-03-10072021/git-03-10072021
+Automatic merge failed; fix conflicts and then commit the result.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ls -l
+total 16
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 03:10 git-01-10052021
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  7 02:37 git-02-10062021
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  7 03:15 git-03-10072021
+-rwxrw-r-- 1 ubuntu ubuntu   84 Oct  7 02:37 git-life-cycle.sh
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ./git-life-cycle.sh
+On branch staging
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   git-03-10072021/git-03-10072021
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[staging 3c1ac0e] 10072021
+To git@github.com:xavyaly/devops-lab.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'git@github.com:xavyaly/devops-lab.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. Check out this branch and integrate the remote changes
+hint: (e.g. 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ cat git-life-cycle.sh
+#!/bin/bash
+
+git status
+git add .
+git commit -m "10072021"
+git push origin master
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ vim git-life-cycle.sh
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ./git-life-cycle.sh
+On branch staging
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   git-life-cycle.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[staging 83935d7] 10072021
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Counting objects: 9, done.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 1.93 KiB | 0 bytes/s, done.
+Total 9 (delta 5), reused 0 (delta 0)
+remote: Resolving deltas: 100% (5/5), completed with 3 local objects.
+To git@github.com:xavyaly/devops-lab.git
+   911c51c..83935d7  staging -> staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+
+---------------------------------------------------------------------------------------------------
 
 
 
