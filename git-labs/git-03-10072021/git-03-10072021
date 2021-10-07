@@ -1,11 +1,11 @@
 # How to create Branch in GIT
 
-ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch    # list of all available branches 
 * master
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
-ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git checkout staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git checkout staging  # switch from one branch to other branch
 error: pathspec 'staging' did not match any file(s) known to git.
-ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch staging    # create a new branch called "staging"
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git branch
 * master
   staging
@@ -242,6 +242,59 @@ ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
 
 ---------------------------------------------------------------------------------------------------
 
+# merge from master to staging branch
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch
+  master
+* staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git pull origin master
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (5/5), done.
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+   8b2ba2a..42d93b4  master     -> origin/master
+Auto-merging git-labs/git-03-10072021/git-03-10072021
+Merge made by the 'recursive' strategy.
+ git-labs/git-03-10072021/git-03-10072021 | 113 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 113 insertions(+)
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ./git-life-cycle.sh
+On branch staging
+nothing to commit, working directory clean
+On branch staging
+nothing to commit, working directory clean
+Counting objects: 5, done.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 2.52 KiB | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To git@github.com:xavyaly/devops-lab.git
+   83935d7..9b444c0  staging -> staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+
+-------------------------------------------------------------------------------------------
+
+# git stash 
+
+1. Suppose, you are implementing a new feature(branch) for your product.
+Your code is in progress & suddenly a customer escalation comes beacuse of this, you have to keep aside your new feature work for few hours.
+You can't commit your partial code & also can't throw away your changes.
+So, you need some temporary storage, where you can store your partial changes & later on commit it.
+2. To stash an item (only applies to modified files not new files)
+
+
+-------------------------------------------------------------------------------------------
 
 
 
