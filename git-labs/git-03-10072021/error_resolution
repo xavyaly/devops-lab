@@ -1,0 +1,37 @@
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ wc -l git-03-10072021
+543 git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git pull origin master
+error: You have not concluded your merge (MERGE_HEAD exists).
+hint: Please, commit your changes before merging.
+fatal: Exiting because of unfinished merge.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git commit -m "reset the changes"
+[master 9973e5a] reset the changes
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git pull origin master
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ wc -l git-03-10072021
+543 git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ git push origin master
+Counting objects: 6, done.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 4.25 KiB | 0 bytes/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 2 local objects.
+To git@github.com:xavyaly/devops-lab.git
+   956746c..9973e5a  master -> master
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ wc -l git-03-10072021
+543 git-03-10072021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$ cat > test
+# added some changes reflects in git central
+^C
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-03-10072021$
+
