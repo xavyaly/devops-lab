@@ -1,5 +1,7 @@
 # git reset:
 
+# staging to workspace
+
 git reset is a powerful command undo local changes to the state of a git repository.
 
 To reset the staging area 
