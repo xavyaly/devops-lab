@@ -1,0 +1,36 @@
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ cat > reset_file
+implementation of reset
+^C
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ cat -n reset_file
+     1  implementation of reset
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ git add .
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   reset_file
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ../../git-03-10072021
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ git reset .
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ../../git-03-10072021
+        ./
+
+nothing added to commit but untracked files present (use "git add" to track)
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$ cat -n reset_file
+     1  implementation of reset
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-04-10082021$
+
