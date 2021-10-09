@@ -1,0 +1,19 @@
+# git revert
+
+revert command helps you undo an existing commit.
+it doesn't delete any data in the process instead rather git creates new commit with the included files reverted to their previous state.
+so, your version history moves forward while the state of your file moves backward.
+when you revert a commit, a commit id is assigned to reverted commit
+
+syntax:
+$ git revert <commit_id>
+
+---------------------------------------------------------------------------------------------------
+
+$ git pull = git fetch + get merge
+
+---------------------------------------------------------------------------------------------------
+
+
+
+
