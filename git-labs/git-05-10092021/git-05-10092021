@@ -14,6 +14,214 @@ $ git pull = git fetch + get merge
 
 ---------------------------------------------------------------------------------------------------
 
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch
+* master
+  staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ cat git-04-10082021/
+git-04-10082021_reset   git-04-10082021_revert  reset_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ cat git-04-10082021/git-04-10082021_revert
+# git revert
+
+revert command helps you undo an existing commit.
+it doesn't delete any data in the process instead rather git creates new commit with the included files reverted to their previous state.
+so, your version history moves forward while the state of your file moves backward.
+when you revert a commit, a commit id is assigned to reverted commit
+
+syntax:
+$ git revert <commit_id>
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ pwd
+/home/ubuntu/git/devops-lab/git-labs
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ll -la
+total 28
+drwxrwxr-x 6 ubuntu ubuntu 4096 Oct  8 03:35 ./
+drwxrwxr-x 8 ubuntu ubuntu 4096 Oct  8 02:47 ../
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 03:10 git-01-10052021/
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  7 02:37 git-02-10062021/
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  8 03:32 git-03-10072021/
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  8 03:50 git-04-10082021/
+-rwxrwxr-x 1 ubuntu ubuntu   84 Oct  8 03:32 git-life-cycle.sh*
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ mkdir git-05-10092021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ cd git-05-10092021/
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ vim git-05-10092021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ cd ..
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ l s-l
+ls: cannot access 's-l': No such file or directory
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ll -la
+total 32
+drwxrwxr-x 7 ubuntu ubuntu 4096 Oct  9 05:41 ./
+drwxrwxr-x 8 ubuntu ubuntu 4096 Oct  8 02:47 ../
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 03:10 git-01-10052021/
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  7 02:37 git-02-10062021/
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  8 03:32 git-03-10072021/
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  8 03:50 git-04-10082021/
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  9 05:41 git-05-10092021/
+-rwxrwxr-x 1 ubuntu ubuntu   84 Oct  8 03:32 git-life-cycle.sh*
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git fetch
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git merge
+Already up-to-date.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch
+* master
+  staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git pull origin master
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ ls -l
+total 24
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  6 03:10 git-01-10052021
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct  7 02:37 git-02-10062021
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  8 03:32 git-03-10072021
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  8 03:50 git-04-10082021
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  9 05:41 git-05-10092021
+-rwxrwxr-x 1 ubuntu ubuntu   84 Oct  8 03:32 git-life-cycle.sh
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ cd git-05-10092021/
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ ll -la
+total 12
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  9 05:41 ./
+drwxrwxr-x 7 ubuntu ubuntu 4096 Oct  9 05:41 ../
+-rw-rw-r-- 1 ubuntu ubuntu  391 Oct  9 05:41 git-05-10092021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ vim git-05-10092021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ vim ../git-life-cycle.sh
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ ./../git-life-cycle.sh
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   ../git-life-cycle.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ../../git-03-10072021
+        ./
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[master 724ba0f] 10092021
+ 1 file changed, 19 insertions(+)
+ create mode 100644 git-labs/git-05-10092021/git-05-10092021
+Counting objects: 5, done.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 644 bytes | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To git@github.com:xavyaly/devops-lab.git
+   fba0939..724ba0f  master -> master
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ pwd
+/home/ubuntu/git/devops-lab/git-labs/git-05-10092021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ ls -l
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 631 Oct  9 05:45 git-05-10092021
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   ../git-life-cycle.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ../../git-03-10072021
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ cat > revert_file
+hello implement revert concept
+^C
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ cat -n revert_file
+     1  hello implement revert concept
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git add .
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git commit -m "added revert file"
+[master aa47bcf] added revert file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 git-labs/git-05-10092021/revert_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git branch
+* master
+  staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git log -1
+commit aa47bcfb9788676981611b2558fedef24c74079e
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Sat Oct 9 05:48:14 2021 +0000
+
+    added revert file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git show aa47bcfb9788676981611b2558fedef24c74079e
+commit aa47bcfb9788676981611b2558fedef24c74079e
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Sat Oct 9 05:48:14 2021 +0000
+
+    added revert file
+
+diff --git a/git-labs/git-05-10092021/revert_file b/git-labs/git-05-10092021/revert_file
+new file mode 100644
+index 0000000..3d76bbb
+--- /dev/null
++++ b/git-labs/git-05-10092021/revert_file
+@@ -0,0 +1 @@
++hello implement revert concept
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git revert aa47bcfb9788676981611b2558fedef24c74079e
+[master 4f063ce] Revert "added revert file"
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 git-labs/git-05-10092021/revert_file
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git log -1
+commit 4f063ce7333dfd17cc7f7b9e947c49cd5ca12e6a
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Sat Oct 9 05:49:34 2021 +0000
+
+    Revert "added revert file"
+
+    This reverts commit aa47bcfb9788676981611b2558fedef24c74079e.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   ../git-life-cycle.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ../../git-03-10072021
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+
+# file removed 
+
+---------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
