@@ -514,7 +514,14 @@ ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
 
 # How to remove the central branch:
 
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git push origin -delete staging
+error: did you mean `--delete` (with two dashes ?)
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git push origin --delete staging
+To git@github.com:xavyaly/devops-lab.git
+ - [deleted]         staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
 
+-----------------------------------------------------------------------------------------------
 
 
 
