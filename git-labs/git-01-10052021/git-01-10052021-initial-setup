@@ -54,10 +54,16 @@ $ git clone git@github.com:xavyaly/devops-lab.git   # add SSH and GPG Key (googl
 
 fork in UI
 
-When u clone someone repo
-Clone will reside into your workspace
-Do some changes in any file 
-git push  # unless and untill you didn't fork
+https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/
+
+Using the Fork-and-Branch Git Workflow
+Fork a GitHub repository.
+Clone the forked repository to your local system.
+Add a Git remote for the original repository.
+Create a feature branch in which to place your changes.
+Make your changes to the new branch.
+Commit the changes to the branch.
+Push the branch to GitHub.
 
 --------------------------------------------------------------------------------------------------------
 
