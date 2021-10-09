@@ -392,6 +392,24 @@ ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
 
 ---------------------------------------------------------------------------------------------------------------
 
+Tag:
+
+v0.1
+v0.2 ...
+v1.1
+v1.2 ...
+
+Branches:
+
+Master: Default
+Hotfix: Fix the Prod Bug 
+Release: Code fix and ready to push in Master to further push in Prod 
+Develop: Developer generally works in this branch
+Feature: Mutliple developers create a feature branch, once done push changes into Developer Branch
+
+-----------------------------------------------------------------------------------------------
+
+
 # git tag
 
 tag operation allows you to giving a meaningful names to a specific version in the repository
@@ -462,6 +480,45 @@ To git@github.com:xavyaly/devops-lab.git
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
 
 -----------------------------------------------------------------------------------------------
+
+# To reflect in UI
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git push origin --tags
+Counting objects: 95, done.
+Compressing objects: 100% (84/84), done.
+Writing objects: 100% (95/95), 17.13 KiB | 0 bytes/s, done.
+Total 95 (delta 47), reused 0 (delta 0)
+remote: Resolving deltas: 100% (47/47), completed with 1 local object.
+To git@github.com:xavyaly/devops-lab.git
+ * [new tag]         v0.1 -> v0.1
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+
+# How to remove the tag:
+
+$ git tag -d <tag_name>   # remove/delete the tag
+$ git tag -d v0.1 
+
+-----------------------------------------------------------------------------------------------
+
+# How to remove the workspace branch:
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch
+* master
+  staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch -d staging
+error: The branch 'staging' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D staging'.
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git branch -D staging
+Deleted branch staging (was 84d4bbd).
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+
+# How to remove the central branch:
+
+
+
+
+
+
 
 
 
