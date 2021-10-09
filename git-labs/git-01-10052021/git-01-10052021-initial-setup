@@ -1,11 +1,47 @@
-Create an Account in https://github.com 
+Create an Account in https://github.com   # UI
+
+CLI:
+$ sudo su 
+$ yum update -y OR $ apt-get update 
+$ yum install git
+$ git --version
+$ git config --global user.name "<user_name>"
+$ git config --global user.email "gmail_id"
+$ git config --list
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$ git config --list
+user.name=xavyaly
+user.email=wellboy.alam13@gmail.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=git@github.com:xavyaly/devops-lab.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs$
+
+--------------------------------------------------------------------------------------------------------
 
 Create an Account on AWS/Azure/GCP 
 
+--------------------------------------------------------------------------------------------------------
+
 Download putty
+
+--------------------------------------------------------------------------------------------------------
 
 Download puttygen # convert "*.pem" file to "*.ppk" file, do google how to convert if face challenges 
 
+--------------------------------------------------------------------------------------------------------
+
 Create an EC2 Instance in AWS 
 
+--------------------------------------------------------------------------------------------------------
+
 Connect AWS Instance through putty 
+
+--------------------------------------------------------------------------------------------------------
+
+
