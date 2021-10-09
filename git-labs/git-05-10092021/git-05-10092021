@@ -392,5 +392,65 @@ ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
 
 ---------------------------------------------------------------------------------------------------------------
 
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git branch
+* master
+  staging
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git tag
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git log -1
+commit 12ea16bc7a3db548768f259f2d9d0f1a5660ef98
+Merge: 91b2d26 8d7fa92
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Sat Oct 9 06:10:52 2021 +0000
+
+    Merge branch 'master' of github.com:xavyaly/devops-lab
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git tag -a v0.1 -m lastest_code 12ea16bc7a3db548768f259f2d9d0f1a5660ef98
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git tag
+v0.1
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git sho
+shortlog      show          show-branch
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git sho
+shortlog      show          show-branch
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git show v0.1
+tag v0.1
+Tagger: xavyaly <wellboy.alam13@gmail.com>
+Date:   Sat Oct 9 06:17:46 2021 +0000
+
+lastest_code
+
+commit 12ea16bc7a3db548768f259f2d9d0f1a5660ef98
+Merge: 91b2d26 8d7fa92
+Author: xavyaly <wellboy.alam13@gmail.com>
+Date:   Sat Oct 9 06:10:52 2021 +0000
+
+    Merge branch 'master' of github.com:xavyaly/devops-lab
+
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git add .
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git commit -m "added tagging with v0.1"
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+        modified:   ../git-life-cycle.sh
+
+Untracked files:
+        ../../git-03-10072021
+
+no changes added to commit
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git push origin master
+Counting objects: 8, done.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 1.04 KiB | 0 bytes/s, done.
+Total 8 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To git@github.com:xavyaly/devops-lab.git
+   8d7fa92..12ea16b  master -> master
+ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
+
+-----------------------------------------------------------------------------------------------
+
+
 
 
