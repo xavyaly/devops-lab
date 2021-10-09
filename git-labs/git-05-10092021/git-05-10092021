@@ -392,6 +392,18 @@ ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$
 
 ---------------------------------------------------------------------------------------------------------------
 
+# git tag
+
+tag operation allows you to giving a meaningful names to a specific version in the repository
+
+how to apply tag:
+$ git tag     # show all tags
+
+syntax:
+$ git log -1
+$ git tag -a <tag_name> -m <msg> <commit_id>
+
+
 ubuntu@ip-172-31-7-0:~/git/devops-lab/git-labs/git-05-10092021$ git branch
 * master
   staging
