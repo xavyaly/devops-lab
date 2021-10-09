@@ -44,4 +44,27 @@ Connect AWS Instance through putty
 
 --------------------------------------------------------------------------------------------------------
 
+Clone:
+
+$ git clone https://github.com/xavyaly/devops-lab.git   
+
+$ git clone git@github.com:xavyaly/devops-lab.git   # add SSH and GPG Key (google) (paste ur *.pem file into text box)
+
+--------------------------------------------------------------------------------------------------------
+
+fork in UI
+
+When u clone someone repo
+Clone will reside into your workspace
+Do some changes in any file 
+git push  # unless and untill you didn't fork
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
