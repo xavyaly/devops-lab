@@ -4,6 +4,9 @@
 
 Refer to “AWS-Lab” attached file 
 
+Created AWS EC2 Machine
+Open Inbound Ports in SG
+
 ---------------------------------------------------------------------------------------------------------------
 
 Pre-Requisites to Install Jenkins: “java, maven, git” 
@@ -35,6 +38,7 @@ OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
 
 ---------------------------------------------------------------------------------------------------------------
 Error:
+
 ubuntu@ip-172-31-7-0:~$ sudo apt-get install jenkins
 Reading package lists... Done
 Building dependency tree
@@ -51,18 +55,21 @@ https://askubuntu.com/questions/512867/unable-to-install-recover-jenkins-after-u
 
 ----------------------------------------------------------------------------------------------------
 
-Installing jenikin
+Installing jenkins
 
 ubuntu@ip-172-31-7-0:~$ wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 OK
 ubuntu@ip-172-31-7-0:~$ sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+
 ubuntu@ip-172-31-7-0:~$ sudo apt-get update
+
 ubuntu@ip-172-31-7-0:~$ sudo apt-get install jenkins
 
 Refer:
 https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04
 
 ubuntu@ip-172-31-7-0:~$ sudo systemctl start jenkins
+
 ubuntu@ip-172-31-7-0:~$ sudo systemctl status jenkins
 ● jenkins.service - LSB: Start Jenkins at boot time
    Loaded: loaded (/etc/init.d/jenkins; bad; vendor preset: enabled)
@@ -102,7 +109,374 @@ ubuntu@ip-172-31-7-0:~$ sudo ufw status
 Status: inactive
 ubuntu@ip-172-31-7-0:~$
 
-Skipping.....
+Skipping.....because ufw was unable to active
+
+----------------------------------------------------------------------------------------------------------------------
+
+ufw troubleshooting In MAC: skip as of now 
+
+Allow/Deny UFW Rules after jenkins Installation:
+
+Normal Process: https://linoxide.com/firewall/guide-ufw-firewall-ubuntu-16-10/
+
+Steps to enable: https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04
+
+// Issues faced to make active:
+
+$ sudo ufw allow 8080
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+$ sudo ufw status
+Status: inactive
+
+// Troubleshoot:
+
+$ sudo ufw allow OpenSSH
+Rules updated
+Rules updated (v6)
+$ sudo ufw status
+ERROR: You need to be root to run this script
+$ sudo ufw status
+Status: inactive
+$ sudo ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+8080                       ALLOW       Anywhere                  
+22                         ALLOW       Anywhere                  
+80                         ALLOW       Anywhere                  
+443                        ALLOW       Anywhere                  
+OpenSSH                    ALLOW       Anywhere                  
+8080 (v6)                  ALLOW       Anywhere (v6)             
+22 (v6)                    ALLOW       Anywhere (v6)             
+80 (v6)                    ALLOW       Anywhere (v6)             
+443 (v6)                   ALLOW       Anywhere (v6)             
+OpenSSH (v6)               ALLOW       Anywhere (v6)             
+$ 
+
+-----------------------------------
+In Ubuntu: 16.04 Machine
+-----------------------------------
+
+ubuntu@ip-172-31-7-0:~$ sudo ufw status
+Status: inactive
+ubuntu@ip-172-31-7-0:~$
+ubuntu@ip-172-31-7-0:~$ sudo ufw allow 8080
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+ubuntu@ip-172-31-7-0:~$ sudo ufw status
+Status: inactive
+ubuntu@ip-172-31-7-0:~$ sudo ufw allow OpenSSH
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+ubuntu@ip-172-31-7-0:~$ sudo ufw status
+Status: inactive
+ubuntu@ip-172-31-7-0:~$
+ubuntu@ip-172-31-7-0:~$ sudo ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+ubuntu@ip-172-31-7-0:~$
+ubuntu@ip-172-31-7-0:~$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+8080                       ALLOW       Anywhere
+OpenSSH                    ALLOW       Anywhere
+8080 (v6)                  ALLOW       Anywhere (v6)
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+
+ubuntu@ip-172-31-7-0:~$
+
+----------------------------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:~$ java -version
+openjdk version "1.8.0_292"
+OpenJDK Runtime Environment (build 1.8.0_292-8u292-b10-0ubuntu1~16.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
+ubuntu@ip-172-31-7-0:~$ git --version
+git version 2.7.4
+ubuntu@ip-172-31-7-0:~$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+8080                       ALLOW       Anywhere
+OpenSSH                    ALLOW       Anywhere
+8080 (v6)                  ALLOW       Anywhere (v6)
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+
+ubuntu@ip-172-31-7-0:~$
+
+----------------------------------------------------------------------------------------------------------------------
+
+//: comments 
+
+// After Installing the jenkins:
+
+// Copy the Public-IP from AWS Console
+
+// Execute in CLI For Cross Verification:
+
+ubuntu@ip-172-31-7-0:~$ curl http://3.109.155.38:8080
+<html><head><meta http-equiv='refresh' content='1;url=/login?from=%2F'/><script>window.location.replace('/login?from=%2F');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>                                                                                                                                                                                                                                                                                                            ubuntu@ip-172-31-7-0:~$
+
+----------------------------------------------------------------------------------------------------------------------
+
+// Now Hit in browser like as below:
+
+$ sudo usermod -a -G root jenkins	// Add Jenkins user to root group
+
+// http:<Public-IP>:8080
+
+// redirected to this page:
+http://3.109.155.38:8080/login?from=%2F
+
+ubuntu@ip-172-31-7-0:~$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+6a7a8884c492429dae886f69ce037f63
+ubuntu@ip-172-31-7-0:~$
+
+Click on Continue
+
+Click on "Install Suggested Plugins"
+
+// Populate the “Administrator Password” from above command
+
+// Click on “Continue”
+   // Two options
+
+// Click on “Install suggested plugins”	// Almost 20 Plugins would be installed
+
+Plugins List:
+   Folders 
+	OWASP Markup Formatter 
+	Build Timeout 
+	Credentials Binding 
+	Timestamper 
+	Workspace Cleanup 
+	Ant 
+	Gradle 
+	Pipeline 
+	GitHub Branch Source 
+	Pipeline: GitHub Groovy Libraries 
+	Pipeline: Stage View 
+	Git 
+	Subversion 
+	SSH Slaves 
+	Matrix Authorization Strategy 
+	PAM Authentication 
+	LDAP 
+	Email Extension 
+	Mailer
+  
+Notes:
+ubuntu@ip-172-31-7-0:~$ whoami
+ubuntu
+ubuntu@ip-172-31-7-0:~$ users
+ubuntu
+ubuntu@ip-172-31-7-0:~$
+
+
+// Till here all Plugins Installed Successfully
+
+	// Create First Admin User
+		// Populate all the required fields like 
+		// Username: xavyaly
+		// Password: ****
+		// Confirm Password: ****
+		// Full name: xavyaly
+		// E-mail address: wellboy.alam13@gmail.com
+	
+	// Click on “Save and Continue”
+
+	// Copy the Jenkins URL: http://<PUBLIC_IP>:8080/	   # Ex: http://3.109.155.38:8080/
+
+	// Click on “Save and Finish”
+	
+	// Click on “Start using Jenkins”
+   
+// Restart Jenkins   # Not possible in real time
+http://3.109.155.38:8080/restart -> yes 
+
+// Re-Insert the credentials and Re-Login
+
+// Play with Jenkins
+
+// Done
+
+----------------------------------------------------------------------------------------------------------------------
+
+Install Maven: 
+
+Steps to Install Maven:
+https://sharadchhetri.com/2018/12/25/install-setup-maven-linux-jenkins/
+
+Visit: https://maven.apache.org/download.cgi		// always choose the latest
+
+Search for “Binary tar.gz archive”: “apache-maven-3.6.2-bin.tar.gz”	// right click and copy the link
+
+// Cross verification before installation:
+ubuntu@ip-172-31-7-0:~$ mvn -v
+The program 'mvn' is currently not installed. You can install it by typing:
+sudo apt install maven
+ubuntu@ip-172-31-7-0:~$
+
+// Install Maven:
+
+// Download Apache Maven
+// Always download the latest and stable Apache Maven from it official websites.
+ubuntu@ip-172-31-7-0:~$ wget https://dlcdn.apache.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz
+--2021-10-13 03:05:07--  https://dlcdn.apache.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz
+Resolving dlcdn.apache.org (dlcdn.apache.org)... 151.101.2.132, 2a04:4e42::644
+Connecting to dlcdn.apache.org (dlcdn.apache.org)|151.101.2.132|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9042049 (8.6M) [application/x-gzip]
+Saving to: ‘apache-maven-3.8.3-bin.tar.gz’
+
+apache-maven-3.8.3-bin.tar.gz           100%[============================================================================>]   8.62M  --.-KB/s    in 0.08s
+
+2021-10-13 03:05:07 (113 MB/s) - ‘apache-maven-3.8.3-bin.tar.gz’ saved [9042049/9042049]
+
+ubuntu@ip-172-31-7-0:~$ ls -l
+total 130008
+-rw-rw-r-- 1 ubuntu ubuntu  9042049 Sep 27 18:48 apache-maven-3.8.3-bin.tar.gz
+
+// List the tar file; successfully downloaded
+ubuntu@ip-172-31-7-0:~$ ls -l apache-maven-3.8.3-bin.tar.gz
+-rw-rw-r-- 1 ubuntu ubuntu 9042049 Sep 27 18:48 apache-maven-3.8.3-bin.tar.gz
+ubuntu@ip-172-31-7-0:~$
+
+// Create Maven installation directory
+ubuntu@ip-172-31-7-0:~$ sudo mkdir -p /opt/maven
+ubuntu@ip-172-31-7-0:~$ ls -ol /opt/maven/
+total 0
+ubuntu@ip-172-31-7-0:~$
+
+// Extract the downloaded Maven binary file
+ubuntu@ip-172-31-7-0:~$ sudo tar -xvzf apache-maven-3.8.3-bin.tar.gz -C /opt/maven/ --strip-components=1
+ubuntu@ip-172-31-7-0:~$ ls -l /opt/maven/
+bin/        boot/       conf/       lib/        LICENSE     NOTICE      README.txt
+ubuntu@ip-172-31-7-0:~$ ls -l /opt/maven/
+ubuntu@ip-172-31-7-0:~$ ls -l /opt/maven/
+total 48
+drwxr-xr-x 2 root root  4096 Oct 13 03:10 bin
+drwxr-xr-x 2 root root  4096 Oct 13 03:10 boot
+drwxr-xr-x 3 root root  4096 Sep 27 18:25 conf
+drwxr-xr-x 4 root root  4096 Oct 13 03:10 lib
+-rw-r--r-- 1 root root 17800 Sep 27 18:25 LICENSE
+-rw-r--r-- 1 root root  5141 Sep 27 18:25 NOTICE
+-rw-r--r-- 1 root root  2612 Sep 27 18:25 README.txt
+ubuntu@ip-172-31-7-0:~$
+
+// Create symlink to make mvn command available to all users
+ubuntu@ip-172-31-7-0:~$ sudo ln -s /opt/maven/bin/mvn /usr/bin/mvn
+ubuntu@ip-172-31-7-0:~$ ls -l /usr/bin/mvn
+lrwxrwxrwx 1 root root 18 Oct 13 03:13 /usr/bin/mvn -> /opt/maven/bin/mvn
+ubuntu@ip-172-31-7-0:~$
+
+// Now you can verify the absolute path of mvn command by using which command. Here is the output from our system.
+ubuntu@ip-172-31-7-0:~$ which mvn
+/usr/bin/mvn
+ubuntu@ip-172-31-7-0:~$
+
+// You can also validate by using some parameter with mvn command. For example, mvn --version
+ubuntu@ip-172-31-7-0:~$ mvn -v
+Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)
+Maven home: /opt/maven
+Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.4.0-1128-aws", arch: "amd64", family: "unix"
+ubuntu@ip-172-31-7-0:~$
+
+// Till here we have installed Maven & Java
+
+----------------------------------------------------------------------------------------------------------------------
+
+Troubleshoot If Jenkins doesn’t run:
+
+https://stackoverflow.com/questions/39621263/jenkins-fails-when-running-service-start-jenkins
+
+----------------------------------------------------------------------------------------------------------------------
+
+Note: In AWS EC2 Git installed by default
+
+
+Install GIT:
+
+http://trimc-devops.blogspot.com/2014/12/git-installation-on-ubuntu.html
+
+
+// Steps to Install git:
+
+How to see the git version:
+
+$ git --version		// It’s already installed
+git version 2.7.4
+
+$ sudo apt-get install git 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+git is already the newest version (1:2.7.4-0ubuntu1.6).
+0 upgraded, 0 newly installed, 0 to remove and 14 not upgraded.
+
+// Setting your Username and Email
+$ git config --global user.name “xavyaly”
+$ git config user.name
+xavyaly
+$ git config --global user.email "wellboy.alam13@gmail.com"
+$ git config user.email
+wellboy.alam13@gmail.com
+
+ubuntu@ip-172-31-7-0:~$ git config --list
+user.name=xavyaly
+user.email=wellboy.alam13@gmail.com
+ubuntu@ip-172-31-7-0:~$
+   
+	
+// Clone a repository:
+$ mkdir GitLabs
+$ cd GitLabs
+$ git init
+$ git clone https://github.com/xavyaly/Git.git
+$ cd Git
+$ ls -l
+// List out all source from remote
+
+// Till here we have installed Java, Maven, Jenkins & Git	
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
