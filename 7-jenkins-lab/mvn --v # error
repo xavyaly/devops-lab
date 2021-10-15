@@ -1,0 +1,52 @@
+---------------------------------------------------------------------------
+# ERROR
+---------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:~$ export JAVA_HOME=/usr/local/java-current
+
+ubuntu@ip-172-31-7-0:~$ export PATH=$PATH:$JAVA_HOME/bin/
+
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ mvn -v
+The JAVA_HOME environment variable is not defined correctly,
+this environment variable is needed to run this program.
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$
+
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ mvn compile package
+The JAVA_HOME environment variable is not defined correctly,
+this environment variable is needed to run this program.
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$
+
+---------------------------------------------------------------------------
+# TROUBLESHOOT & FIX:
+---------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ echo $JAVA_HOME
+/usr/local/java-current
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$
+
+ubuntu@ip-172-31-7-0:~$ ls -l /usr/lib/jvm/
+java-1.8.0-openjdk-amd64/        .java-1.8.0-openjdk-amd64.jinfo  java-8-openjdk-amd64/
+ubuntu@ip-172-31-7-0:~$ ls -l /usr/lib/jvm/
+java-1.8.0-openjdk-amd64/        .java-1.8.0-openjdk-amd64.jinfo  java-8-openjdk-amd64/
+ubuntu@ip-172-31-7-0:~$ ls -l /usr/lib/jvm/java-1.8.0-openjdk-amd64
+lrwxrwxrwx 1 root root 20 Apr 21 15:31 /usr/lib/jvm/java-1.8.0-openjdk-amd64 -> java-8-openjdk-amd64
+ubuntu@ip-172-31-7-0:~$
+
+ubuntu@ip-172-31-7-0:~$ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+
+ubuntu@ip-172-31-7-0:~$ echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-amd64
+ubuntu@ip-172-31-7-0:~$
+
+ubuntu@ip-172-31-7-0:~$ mvn --v
+Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)
+Maven home: /opt/maven
+Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.4.0-1128-aws", arch: "amd64", family: "unix"
+ubuntu@ip-172-31-7-0:~$
+
+---------------------------------------------------------------------------
+
+
+
