@@ -1,0 +1,42 @@
+# mvn compile pacakge
+
+ubuntu@ip-172-31-7-0:~$ mkdir gitlabs
+ubuntu@ip-172-31-7-0:~$ cd git
+ubuntu@ip-172-31-7-0:~/git$ cd ../gitlabs/
+ubuntu@ip-172-31-7-0:~/gitlabs$ ls -l
+total 0
+ubuntu@ip-172-31-7-0:~/gitlabs$ git init
+Initialized empty Git repository in /home/ubuntu/gitlabs/.git/
+ubuntu@ip-172-31-7-0:~/gitlabs$ git clone https://github.com/wakaleo/game-of-life.git
+Cloning into 'game-of-life'...
+remote: Enumerating objects: 9222, done.
+remote: Total 9222 (delta 0), reused 0 (delta 0), pack-reused 9222
+Receiving objects: 100% (9222/9222), 17.57 MiB | 17.99 MiB/s, done.
+Resolving deltas: 100% (5619/5619), done.
+Checking connectivity... done.
+ubuntu@ip-172-31-7-0:~/gitlabs$ ls -l
+total 4
+drwxrwxr-x 8 ubuntu ubuntu 4096 Oct 15 04:25 game-of-life
+ubuntu@ip-172-31-7-0:~/gitlabs$ cd game-of-life/
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life$ ls -l
+total 52
+drwxrwxr-x 3 ubuntu ubuntu  4096 Oct 15 04:25 gameoflife-acceptance-tests
+drwxrwxr-x 3 ubuntu ubuntu  4096 Oct 15 04:25 gameoflife-build
+drwxrwxr-x 7 ubuntu ubuntu  4096 Oct 15 04:25 gameoflife-core
+drwxrwxr-x 2 ubuntu ubuntu  4096 Oct 15 04:25 gameoflife-deploy
+drwxrwxr-x 4 ubuntu ubuntu  4096 Oct 15 04:25 gameoflife-web
+-rw-rw-r-- 1 ubuntu ubuntu    50 Oct 15 04:25 infinitest.filters
+-rw-rw-r-- 1 ubuntu ubuntu 22300 Oct 15 04:25 pom.xml
+-rw-rw-r-- 1 ubuntu ubuntu  3093 Oct 15 04:25 README.markdown
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life$
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life$
+
+# ERROR
+
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life$ mvn -v
+The JAVA_HOME environment variable is not defined correctly,
+this environment variable is needed to run this program.
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life$
+
+# REFER TO mvn 
+
