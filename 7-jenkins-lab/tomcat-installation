@@ -1,0 +1,567 @@
+# TOMCAT INSTALLATION
+
+https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04
+
+ubuntu@ip-172-31-7-0:~$ sudo apt-get update
+
+ubuntu@ip-172-31-7-0:~$ java -version
+openjdk version "1.8.0_292"
+OpenJDK Runtime Environment (build 1.8.0_292-8u292-b10-0ubuntu1~16.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
+ubuntu@ip-172-31-7-0:~$ 
+
+ubuntu@ip-172-31-7-0:~$ mvn -v
+Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)
+Maven home: /opt/maven
+Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.4.0-1128-aws", arch: "amd64", family: "unix"
+ubuntu@ip-172-31-7-0:~$
+
+ubuntu@ip-172-31-7-0:~$ sudo groupadd tomcat
+
+ubuntu@ip-172-31-7-0:~$ sudo -s /bin/false -g tomcat -d /opt/tomcat tomcat
+
+# Download tomcat from here (Binary Distributions -> Core -> *.tar.gz)
+# http://tomcat.apache.org/download-80.cgi  
+
+-------------------------------------------------------------------------------------------------------------------------------
+# ERROR
+
+ubuntu@ip-172-31-7-0:~$ curl -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.72/bin/apache-tomcat-8.5.72.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (60) server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none
+More details here: http://curl.haxx.se/docs/sslcerts.html
+
+curl performs SSL certificate verification by default, using a "bundle"
+ of Certificate Authority (CA) public keys (CA certs). If the default
+ bundle file isn't adequate, you can specify an alternate file
+ using the --cacert option.
+If this HTTPS server uses a certificate signed by a CA represented in
+ the bundle, the certificate verification probably failed due to a
+ problem with the certificate (it might be expired, or the name might
+ not match the domain name in the URL).
+If you'd like to turn off curl's verification of the certificate, use
+ the -k (or --insecure) option.
+ubuntu@ip-172-31-7-0:~$
+
+# SOLUTION:
+
+ubuntu@ip-172-31-7-0:~$ cd /tmp/
+
+ubuntu@ip-172-31-7-0:/tmp$ curl -k -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.72/bin/apache-tomcat-8.5.72.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 10.0M  100 10.0M    0     0  66.9M      0 --:--:-- --:--:-- --:--:-- 67.2M
+ubuntu@ip-172-31-7-0:/tmp$ ls -l
+total 13596
+-rw-rw-r-- 1 ubuntu  ubuntu  10579860 Oct 15 12:05 apache-tomcat-8.5.72.tar.gz
+ubuntu@ip-172-31-7-0:/tmp$ 
+
+# This link didn't help
+https://stackoverflow.com/questions/21181231/server-certificate-verification-failed-cafile-etc-ssl-certs-ca-certificates-c
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:/tmp$ sudo mkdir /opt/tomcat
+ubuntu@ip-172-31-7-0:/tmp$
+ubuntu@ip-172-31-7-0:/tmp$ sudo tar xvzf apache-tomcat-8.5.72.tar.gz -C /opt/tomcat/ --strip-component=1
+apache-tomcat-8.5.72/conf/
+
+ubuntu@ip-172-31-7-0:/tmp$ cd /opt/tomcat/
+ubuntu@ip-172-31-7-0:/opt/tomcat$ ls -l
+total 148
+drwxr-x--- 2 root root  4096 Oct 15 12:24 bin
+-rw-r----- 1 root root 19481 Oct  1 15:15 BUILDING.txt
+drwx------ 2 root root  4096 Oct  1 15:15 conf
+-rw-r----- 1 root root  6210 Oct  1 15:15 CONTRIBUTING.md
+drwxr-x--- 2 root root  4096 Oct 15 12:24 lib
+-rw-r----- 1 root root 57011 Oct  1 15:15 LICENSE
+drwxr-x--- 2 root root  4096 Oct  1 15:15 logs
+-rw-r----- 1 root root  1726 Oct  1 15:15 NOTICE
+-rw-r----- 1 root root  3372 Oct  1 15:15 README.md
+-rw-r----- 1 root root  7136 Oct  1 15:15 RELEASE-NOTES
+-rw-r----- 1 root root 16507 Oct  1 15:15 RUNNING.txt
+drwxr-x--- 2 root root  4096 Oct 15 12:24 temp
+drwxr-x--- 7 root root  4096 Oct  1 15:15 webapps
+drwxr-x--- 2 root root  4096 Oct  1 15:15 work
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chgrp -R tomcat /opt/tomcat/
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chmod -R g+r conf/
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chmod g+x conf/
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chown -R tomcat webapps/ work/ temp/ logs/
+chown: invalid user: ‘tomcat’           # IGNORE ERRORS 
+ubuntu@ip-172-31-7-0:/opt/tomcat$ 
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ls -l webapps/
+total 20
+drwxr-x--- 15 root tomcat 4096 Oct 15 12:24 docs
+drwxr-x---  7 root tomcat 4096 Oct 15 12:24 examples
+drwxr-x---  6 root tomcat 4096 Oct 15 12:24 host-manager
+drwxr-x---  6 root tomcat 4096 Oct 15 12:24 manager
+drwxr-x---  3 root tomcat 4096 Oct 15 12:24 ROOT
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ls -l work/
+total 0
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ls -l temp/
+total 0
+-rw-r----- 1 root tomcat 0 Oct  1 15:15 safeToDelete.tmp
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ls -l logs/
+total 0
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo update-java-alternatives -l
+java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo nano /etc/systemd/system/tomcat.service
+ubuntu@ip-172-31-7-0:/opt/tomcat$ cat -n /etc/systemd/system/tomcat.service
+     1  [Unit]
+     2  Description=Apache Tomcat Web Application Container
+     3  After=network.target
+     4
+     5  [Service]
+     6  Type=forking
+     7
+     8  Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+     9  Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+    10  Environment=CATALINA_HOME=/opt/tomcat
+    11  Environment=CATALINA_BASE=/opt/tomcat
+    12  Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+    13  Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+    14
+    15  ExecStart=/opt/tomcat/bin/startup.sh
+    16  ExecStop=/opt/tomcat/bin/shutdown.sh
+    17
+    18  User=tomcat
+    19  Group=tomcat
+    20  UMask=0007
+    21  RestartSec=10
+    22  Restart=always
+    23
+    24  [Install]
+    25  WantedBy=multi-user.target
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ cat /etc/systemd/system/tomcat.service | grep "JAVA"
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl daemon-reload
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl start tomcat   # ERROR
+Job for tomcat.service failed because the control process exited with error code. See "systemctl status tomcat.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# SHELL SCRIPT
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo cat -n /opt/tomcat/bin/startup.sh
+     1  #!/bin/sh
+     2
+     3  # Licensed to the Apache Software Foundation (ASF) under one or more
+     4  # contributor license agreements.  See the NOTICE file distributed with
+     5  # this work for additional information regarding copyright ownership.
+     6  # The ASF licenses this file to You under the Apache License, Version 2.0
+     7  # (the "License"); you may not use this file except in compliance with
+     8  # the License.  You may obtain a copy of the License at
+     9  #
+    10  #     http://www.apache.org/licenses/LICENSE-2.0
+    11  #
+    12  # Unless required by applicable law or agreed to in writing, software
+    13  # distributed under the License is distributed on an "AS IS" BASIS,
+    14  # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    15  # See the License for the specific language governing permissions and
+    16  # limitations under the License.
+    17
+    18  # -----------------------------------------------------------------------------
+    19  # Start Script for the CATALINA Server
+    20  # -----------------------------------------------------------------------------
+    21
+    22  # Better OS/400 detection: see Bugzilla 31132
+    23  os400=false
+    24  case "`uname`" in
+    25  OS400*) os400=true;;
+    26  esac
+    27
+    28  # resolve links - $0 may be a softlink
+    29  PRG="$0"
+    30
+    31  while [ -h "$PRG" ] ; do
+    32    ls=`ls -ld "$PRG"`
+    33    link=`expr "$ls" : '.*-> \(.*\)$'`
+    34    if expr "$link" : '/.*' > /dev/null; then
+    35      PRG="$link"
+    36    else
+    37      PRG=`dirname "$PRG"`/"$link"
+    38    fi
+    39  done
+    40
+    41  PRGDIR=`dirname "$PRG"`
+    42  EXECUTABLE=catalina.sh
+    43
+    44  # Check that target executable exists
+    45  if $os400; then
+    46    # -x will Only work on the os400 if the files are:
+    47    # 1. owned by the user
+    48    # 2. owned by the PRIMARY group of the user
+    49    # this will not work if the user belongs in secondary groups
+    50    eval
+    51  else
+    52    if [ ! -x "$PRGDIR"/"$EXECUTABLE" ]; then
+    53      echo "Cannot find $PRGDIR/$EXECUTABLE"
+    54      echo "The file is absent or does not have execute permission"
+    55      echo "This file is needed to run this program"
+    56      exit 1
+    57    fi
+    58  fi
+    59
+    60  exec "$PRGDIR"/"$EXECUTABLE" start "$@"
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo cat -n /opt/tomcat/bin/shutdown.sh
+     1  #!/bin/sh
+     2
+     3  # Licensed to the Apache Software Foundation (ASF) under one or more
+     4  # contributor license agreements.  See the NOTICE file distributed with
+     5  # this work for additional information regarding copyright ownership.
+     6  # The ASF licenses this file to You under the Apache License, Version 2.0
+     7  # (the "License"); you may not use this file except in compliance with
+     8  # the License.  You may obtain a copy of the License at
+     9  #
+    10  #     http://www.apache.org/licenses/LICENSE-2.0
+    11  #
+    12  # Unless required by applicable law or agreed to in writing, software
+    13  # distributed under the License is distributed on an "AS IS" BASIS,
+    14  # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    15  # See the License for the specific language governing permissions and
+    16  # limitations under the License.
+    17
+    18  # -----------------------------------------------------------------------------
+    19  # Stop script for the CATALINA Server
+    20  # -----------------------------------------------------------------------------
+    21
+    22  # Better OS/400 detection: see Bugzilla 31132
+    23  os400=false
+    24  case "`uname`" in
+    25  OS400*) os400=true;;
+    26  esac
+    27
+    28  # resolve links - $0 may be a softlink
+    29  PRG="$0"
+    30
+    31  while [ -h "$PRG" ] ; do
+    32    ls=`ls -ld "$PRG"`
+    33    link=`expr "$ls" : '.*-> \(.*\)$'`
+    34    if expr "$link" : '/.*' > /dev/null; then
+    35      PRG="$link"
+    36    else
+    37      PRG=`dirname "$PRG"`/"$link"
+    38    fi
+    39  done
+    40
+    41  PRGDIR=`dirname "$PRG"`
+    42  EXECUTABLE=catalina.sh
+    43
+    44  # Check that target executable exists
+    45  if $os400; then
+    46    # -x will Only work on the os400 if the files are:
+    47    # 1. owned by the user
+    48    # 2. owned by the PRIMARY group of the user
+    49    # this will not work if the user belongs in secondary groups
+    50    eval
+    51  else
+    52    if [ ! -x "$PRGDIR"/"$EXECUTABLE" ]; then
+    53      echo "Cannot find $PRGDIR/$EXECUTABLE"
+    54      echo "The file is absent or does not have execute permission"
+    55      echo "This file is needed to run this program"
+    56      exit 1
+    57    fi
+    58  fi
+    59
+    60  exec "$PRGDIR"/"$EXECUTABLE" stop "$@"
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl start tomcat
+Job for tomcat.service failed because the control process exited with error code. See "systemctl status tomcat.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+# ERROR
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl status tomcat.service
+● tomcat.service - Apache Tomcat Web Application Container
+   Loaded: loaded (/etc/systemd/system/tomcat.service; disabled; vendor preset: enabled)
+   Active: activating (auto-restart) (Result: exit-code) since Fri 2021-10-15 12:44:54 UTC; 8s ago
+  Process: 3960 ExecStart=/opt/tomcat/bin/startup.sh (code=exited, status=217/USER)
+
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: tomcat.service: Service hold-off time over, scheduling restart.
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: Stopped Apache Tomcat Web Application Container.
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: Starting Apache Tomcat Web Application Container...
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: tomcat.service: Control process exited, code=exited status=217
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: Failed to start Apache Tomcat Web Application Container.        # red color 
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: tomcat.service: Unit entered failed state.
+Oct 15 12:44:54 ip-172-31-7-0 systemd[1]: tomcat.service: Failed with result 'exit-code'.
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo journalctl -xe
+-- Subject: Unit tomcat.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has failed.
+--
+-- The result is failed.
+Oct 15 12:46:36 ip-172-31-7-0 systemd[1]: tomcat.service: Unit entered failed state.
+Oct 15 12:46:36 ip-172-31-7-0 systemd[1]: tomcat.service: Failed with result 'exit-code'.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: tomcat.service: Service hold-off time over, scheduling restart.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: Stopped Apache Tomcat Web Application Container.
+-- Subject: Unit tomcat.service has finished shutting down
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has finished shutting down.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: Starting Apache Tomcat Web Application Container...
+-- Subject: Unit tomcat.service has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has begun starting up.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[3988]: tomcat.service: Failed at step USER spawning /opt/tomcat/bin/startup.sh: No such process
+-- Subject: Process /opt/tomcat/bin/startup.sh could not be executed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- The process /opt/tomcat/bin/startup.sh could not be executed and failed.
+--
+-- The error number returned by this process is 3.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: tomcat.service: Control process exited, code=exited status=217
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: Failed to start Apache Tomcat Web Application Container.
+-- Subject: Unit tomcat.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has failed.
+--
+-- The result is failed.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: tomcat.service: Unit entered failed state.
+Oct 15 12:46:46 ip-172-31-7-0 systemd[1]: tomcat.service: Failed with result 'exit-code'.
+Oct 15 12:46:48 ip-172-31-7-0 sudo[3990]:   ubuntu : TTY=pts/0 ; PWD=/opt/tomcat ; USER=root ; COMMAND=/bin/journalctl -xe
+Oct 15 12:46:48 ip-172-31-7-0 sudo[3990]: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ java -version
+openjdk version "1.8.0_292"
+OpenJDK Runtime Environment (build 1.8.0_292-8u292-b10-0ubuntu1~16.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ cd /bin/
+
+ubuntu@ip-172-31-7-0:/opt$ cat /etc/systemd/system/tomcat.service | grep JAVA
+#Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+ubuntu@ip-172-31-7-0:/opt$
+
+ubuntu@ip-172-31-7-0:/opt$ cd tomcat/
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ ls -l
+total 148
+drwxr-x--- 2 root tomcat  4096 Oct 15 12:24 bin
+-rw-r----- 1 root tomcat 19481 Oct  1 15:15 BUILDING.txt
+drwxr-x--- 2 root tomcat  4096 Oct  1 15:15 conf
+-rw-r----- 1 root tomcat  6210 Oct  1 15:15 CONTRIBUTING.md
+drwxr-x--- 2 root tomcat  4096 Oct 15 12:24 lib
+-rw-r----- 1 root tomcat 57011 Oct  1 15:15 LICENSE
+drwxr-x--- 2 root tomcat  4096 Oct  1 15:15 logs
+-rw-r----- 1 root tomcat  1726 Oct  1 15:15 NOTICE
+-rw-r----- 1 root tomcat  3372 Oct  1 15:15 README.md
+-rw-r----- 1 root tomcat  7136 Oct  1 15:15 RELEASE-NOTES
+-rw-r----- 1 root tomcat 16507 Oct  1 15:15 RUNNING.txt
+drwxr-x--- 2 root tomcat  4096 Oct 15 12:24 temp
+drwxr-x--- 7 root tomcat  4096 Oct  1 15:15 webapps
+drwxr-x--- 2 root tomcat  4096 Oct  1 15:15 work
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl start tomcat
+Warning: tomcat.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+Job for tomcat.service failed because the control process exited with error code. See "systemctl status tomcat.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ systemctl daemon-reload
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ systemctl daemon-reload
+==== AUTHENTICATING FOR org.freedesktop.systemd1.reload-daemon ===
+Authentication is required to reload the systemd state.
+Authenticating as: Ubuntu (ubuntu)
+Password:
+polkit-agent-helper-1: pam_authenticate failed: Authentication failure
+==== AUTHENTICATION FAILED ===
+Failed to execute operation: Access denied
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl daemon-reload
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl status tomcat.service
+● tomcat.service - Apache Tomcat Web Application Container
+   Loaded: loaded (/etc/systemd/system/tomcat.service; disabled; vendor preset: enabled)
+   Active: activating (auto-restart) (Result: exit-code) since Fri 2021-10-15 12:55:08 UTC; 7s ago
+  Process: 4431 ExecStart=/opt/tomcat/bin/startup.sh (code=exited, status=217/USER)
+ubuntu@ip-172-31-7-0:/opt/tomcat$ systemctl status tomcat.service
+● tomcat.service - Apache Tomcat Web Application Container
+   Loaded: loaded (/etc/systemd/system/tomcat.service; disabled; vendor preset: enabled)
+   Active: activating (auto-restart) (Result: exit-code) since Fri 2021-10-15 12:55:18 UTC; 3s ago
+  Process: 4454 ExecStart=/opt/tomcat/bin/startup.sh (code=exited, status=217/USER)
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ journalctl -xe
+Oct 15 12:55:18 ip-172-31-7-0 systemd[1]: tomcat.service: Control process exited, code=exited status=217
+Oct 15 12:55:18 ip-172-31-7-0 systemd[1]: Failed to start Apache Tomcat Web Application Container.
+-- Subject: Unit tomcat.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has failed.
+--
+-- The result is failed.
+Oct 15 12:55:18 ip-172-31-7-0 systemd[1]: tomcat.service: Unit entered failed state.
+Oct 15 12:55:18 ip-172-31-7-0 systemd[1]: tomcat.service: Failed with result 'exit-code'.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: tomcat.service: Service hold-off time over, scheduling restart.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: Stopped Apache Tomcat Web Application Container.
+-- Subject: Unit tomcat.service has finished shutting down
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has finished shutting down.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: Starting Apache Tomcat Web Application Container...
+-- Subject: Unit tomcat.service has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has begun starting up.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[4459]: tomcat.service: Failed at step USER spawning /opt/tomcat/bin/startup.sh: No such process
+-- Subject: Process /opt/tomcat/bin/startup.sh could not be executed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- The process /opt/tomcat/bin/startup.sh could not be executed and failed.
+--
+-- The error number returned by this process is 3.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: tomcat.service: Control process exited, code=exited status=217
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: Failed to start Apache Tomcat Web Application Container.
+-- Subject: Unit tomcat.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit tomcat.service has failed.
+--
+-- The result is failed.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: tomcat.service: Unit entered failed state.
+Oct 15 12:55:28 ip-172-31-7-0 systemd[1]: tomcat.service: Failed with result 'exit-code'.
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+# NEXT
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ id -nG
+ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ id tomcat
+id: ‘tomcat’: no such user
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ groups
+ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo groupadd tomcat
+groupadd: group 'tomcat' already exists
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ users tomcat
+ubuntu@ip-172-31-7-0:/opt/tomcat$ groups tomcat
+tomcat : tomcat
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+ubuntu@ip-172-31-7-0:/opt/tomcat$ cat /etc/passwd | grep "tomcat"
+tomcat:x:1001:1001::/opt/tomcat:/bin/false
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chmod -R g+r conf
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chmod g+x conf
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo chown -R tomcat webapps/ work/ temp/ logs/
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl daemon-reload
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl start tomcat
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo systemctl status tomcat
+● tomcat.service - Apache Tomcat Web Application Container
+   Loaded: loaded (/etc/systemd/system/tomcat.service; disabled; vendor preset: enabled)
+   Active: active (running) since Fri 2021-10-15 13:05:43 UTC; 8min ago
+ Main PID: 4785 (java)
+   CGroup: /system.slice/tomcat.service
+           └─4785 /usr/lib/jvm/java-1.8.0-openjdk-amd64/bin/java -Djava.util.logging.config.file=/opt/tomcat/conf/logging.properties -Djava.util.logging.mana
+
+Oct 15 13:05:43 ip-172-31-7-0 systemd[1]: tomcat.service: Service hold-off time over, scheduling restart.
+Oct 15 13:05:43 ip-172-31-7-0 systemd[1]: Stopped Apache Tomcat Web Application Container.
+Oct 15 13:05:43 ip-172-31-7-0 systemd[1]: Starting Apache Tomcat Web Application Container...
+Oct 15 13:05:43 ip-172-31-7-0 startup.sh[4777]: Tomcat started.
+Oct 15 13:05:43 ip-172-31-7-0 systemd[1]: Started Apache Tomcat Web Application Container.
+Oct 15 13:14:25 ip-172-31-7-0 systemd[1]: Started Apache Tomcat Web Application Container.
+lines 1-13/13 (END)
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+# ERROR RESOLVED
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+8080                       ALLOW       Anywhere
+OpenSSH                    ALLOW       Anywhere
+8080 (v6)                  ALLOW       Anywhere (v6)
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+If your aim is to mostly use Jenkins, you should set up Tomcat to use another port, either 8080 for HTTP or 8443 for HTTPS.
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ufw allow 8443
+Rule added
+Rule added (v6)
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+ubuntu@ip-172-31-7-0:/opt/tomcat$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+8080                       ALLOW       Anywhere
+OpenSSH                    ALLOW       Anywhere
+8443                       ALLOW       Anywhere
+8080 (v6)                  ALLOW       Anywhere (v6)
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+8443 (v6)                  ALLOW       Anywhere (v6)
+
+ubuntu@ip-172-31-7-0:/opt/tomcat$
+
+
+
+
+
+
+
+
+
+
+
+
+
