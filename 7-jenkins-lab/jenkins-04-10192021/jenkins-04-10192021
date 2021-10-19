@@ -1,1 +1,195 @@
 # Jenkins Job Types
+
+Link to connect to jenkins: http://<PUBLIC-IP>:8080/
+Enter the credentials: ********/******
+
+RED: Jenkins Jobs Failed
+BLUE: Jenkins Jobs Passed/SUCCESS
+GREEN: Jenkins Jobs Passed/SUCCESS
+
+KINDS OF JENKINS JOBS:
+	FreeStyle Project:				// Manual triggered by us or developer
+		Click on “create new jobs” OR Click on “New Item”
+		Enter an item name as: Devops-lab-1-test
+		Select a “Freestyle project”
+		Click “OK”
+		Click on Build -> Execute shell
+			Given any shell script commands
+		Click on “Save”
+		Click on “Build Now” at left 
+		Click on “Console Output” to view the results or logs
+	
+	Configure the same project:
+		Click on project
+		Click on “Configure”
+		Click on Build -> Execute shell
+			echo "Hello World"
+			echo "Hello Worldsss"
+			echo "Hello World-1"
+			echo "Hello World-2222"
+		Click on “Console Output” to view the results or logs		
+		
+	Copy a Job from the existing one:
+		Click on New Item
+		Enter an item name: devops-lab-2-copyjob
+		Copy from: devops-lab-1-test
+		Execute on shell -> command: 
+			echo "Hello World"
+			echo "Hello this is a copy Job"
+		Click on Save
+		Click on Build Now
+		SUCEESS/FAILURE
+
+	Note:
+	Master/Nodes would be only on in Jenkins by default where we have installed the Jenkins
+	Slaves/Nodes would be multiple, Even though we can force any specific to execute in specific slaves
+	
+	How to Install/Unstall a Plugin:
+		Click on Manage Jenkins
+		Click on Manage Plugins
+		Search for Green balls
+		Select the checkbox
+		Choose Install with our restart
+		
+	
+	How to restart the jenkins:
+		http://<PUBLIC-IP>:8080/restart
+		Are you sure you want to restart Jenkins? Yes
+		OR
+    CLI:
+		sudo service jenkins status
+		sudo service jenkins stop
+		sudo service jenkins start
+		sudo service jenkins status
+    sudo service jenkins restart
+    OR
+    sudo systemctl jenkins status
+		sudo systemctl jenkins stop
+		sudo systemctl jenkins start
+		sudo systemctl jenkins status
+    sudo systemctl jenkins restart
+    
+ --------------------------------------------------------------------------------------------
+ 
+ In Mac:
+
+Install Java on MacOs:		// Steps already mentioned in previous lecture
+Install Maven on MacOs:	// Steps already mentioned in previous lecture
+Install Git on MacOs:		// Steps already mentioned in previous lecture
+Install Jenkins In Mac:		// Follow the Link
+https://www.macminivault.com/installing-jenkins-on-macos/	// Follow the instruction to install jenkins in Mac
+https://www.youtube.com/watch?v=Y1lZmIV63wM				// Video to help to install
+
+Note:
+Linux		// yum or rpm used to install any packages
+Ubuntu		// apt-get or apt
+Mac			// pip; brew
+
+--------------------------------------------------------------------------------------------
+
+crontab: used to scheduled some automation jobs
+
+Read the below Article regarding crontab:
+https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
+
+Example:
+15 0 * * * root <path-of-script.php> -S > /dev/null 2>&1
+
+Explanations:
+1: Minute (0-59)
+2: Hours (0-23)
+3: Day (0-31)
+4: Month (0-12 [12 == December])
+5: Day of the week(0-7 [7 or 0 == sunday])
+/path/to/command – Script or command name to schedule
+
+--------------------------------------------------------------------------------------------
+
+Create a build triggered Job in Jenkins:
+
+	Click on New Items
+	Enter an item name: devops-lab-3-buildtriggered
+	Select the free style jobs
+	Click on Ok
+	Build Triggers -> Build periodically -> Schedule -> */1 * * * * 
+	Build -> Execute shell -> uptime
+	Click on Save
+	
+Note:
+Keep on checking the job after every 1 min
+
+--------------------------------------------------------------------------------------------
+
+How to disable Jenkins Jobs ?
+	Click on that specific job 
+	Click on “Disable Project”
+
+--------------------------------------------------------------------------------------------
+
+POLL SCM 
+
+Difference between Build Triggered and Poll SCM Jobs ?
+Build Triggered: It executes the specific job as per your configurations 
+Poll SCM: It executes only if some commits happens 
+
+Definition:
+Poll SCM periodically polls the SCM to check whether changes were made (i.e. new commits) and builds the project if new commits where pushed since the last build, whereas build periodically builds the project periodically even if nothing has changed.
+
+Click on New Items
+	Enter an item name: devops-lab-3-buildtriggered
+	Select the free style jobs
+	Click on Ok
+	Build Triggers -> Poll SCM -> Schedule -> */1 * * * * 
+	Build -> Execute shell -> uptime
+	Click on Save
+
+--------------------------------------------------------------------------------------------
+
+Why fork is required ? 
+To avoid the below issue fork is required
+
+In general:
+$ git clone <https-url>		// https://github.com/wakaleo/game-of-life.git
+$ git status
+$ git add .
+$ git commit -m “<useful-comment>”
+$ git branch
+$ git push	// Error
+remote: Permission to wakaleo/game-of-life.git denied to xavyaly.
+fatal: unable to access 'https://github.com/wakaleo/game-of-life.git/': The requested URL returned error: 403
+
+Definition:
+Fork a repo. A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
+
+Why push is required ?
+During Jenkins job configuration you need to provide a GIT URL 
+
+How to do fork ?
+Go to the browser -> Click on fork -> copy the clone URL -> Start cloning now
+
+To avoid Error we used Fork Concept:
+// Click on Fork				
+$ git clone <https-url> 			// https://github.com/wakaleo/game-of-life.git
+$ git status
+$ git add game-of-life
+$ git commit -m “<useful-comment>”
+$ git branch
+$ git push						// I hope no error came
+// It will upload your current local repo into remote; Verify it in browser
+
+--------------------------------------------------------------------------------------------
+
+Already we have seen:
+
+Manual execution of game-of-life ?
+
+We will try to create a *.jar file inside the target folder.
+
+What is pom.xml ?
+POM is an acronym for Project Object Model. The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc. Maven reads the pom.xml file, then executes the goal.
+
+--------------------------------------------------------------------------------------------
+
+
+  
+    
