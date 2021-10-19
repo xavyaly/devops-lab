@@ -1101,4 +1101,98 @@ drwxrwxr-x 3 ubuntu ubuntu 4096 Oct 15 04:25 src
 drwxrwxr-x 5 ubuntu ubuntu 4096 Oct 15 04:44 target
 ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$
 
+---------------------------------------------------------------------------------
 
+Second Time compiling:
+
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ mvn compile package
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-build:jar:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] --------------< com.wakaleo.gameoflife:gameoflife-build >---------------
+[INFO] Building gameoflife-build 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ gameoflife-build ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ gameoflife-build ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.7.2.201409121644:prepare-agent (jacoco-initialize) @ gameoflife-build ---
+[WARNING] The artifact xml-apis:xml-apis:jar:2.0.2 has been relocated to xml-apis:xml-apis:jar:1.0.b2
+[INFO] argLine set to -javaagent:/home/ubuntu/.m2/repository/org/jacoco/org.jacoco.agent/0.7.2.201409121644/org.jacoco.agent-0.7.2.201409121644-runtime.jar=destfile=/home/ubuntu/gitlabs/game-of-life/gameoflife-build/target/jacoco.exec
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ gameoflife-build ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ gameoflife-build ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ gameoflife-build ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.7.2.201409121644:prepare-agent (jacoco-initialize) @ gameoflife-build ---
+[INFO] argLine set to -javaagent:/home/ubuntu/.m2/repository/org/jacoco/org.jacoco.agent/0.7.2.201409121644/org.jacoco.agent-0.7.2.201409121644-runtime.jar=destfile=/home/ubuntu/gitlabs/game-of-life/gameoflife-build/target/jacoco.exec
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ gameoflife-build ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ gameoflife-build ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/ubuntu/gitlabs/game-of-life/gameoflife-build/src/test/resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ gameoflife-build ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.11:test (default-test) @ gameoflife-build ---
+[INFO] Tests are skipped.
+[INFO]
+[INFO] --- maven-surefire-plugin:2.11:test (unit-tests) @ gameoflife-build ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /home/ubuntu/gitlabs/game-of-life/gameoflife-build/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-easyb-plugin:1.4:test (default) @ gameoflife-build ---
+[INFO] /home/ubuntu/gitlabs/game-of-life/gameoflife-build/src/test/stories does not exists.  Skipping easyb testing
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ gameoflife-build ---
+[INFO] Building jar: /home/ubuntu/gitlabs/game-of-life/gameoflife-build/target/gameoflife-build-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.192 s
+[INFO] Finished at: 2021-10-19T03:19:28Z
+[INFO] ------------------------------------------------------------------------
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ ls -ll
+total 12
+-rw-rw-r-- 1 ubuntu ubuntu  549 Oct 19 03:13 pom.xml
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct 19 03:13 src
+drwxrwxr-x 5 ubuntu ubuntu 4096 Oct 19 03:19 target
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ ls -l target/
+classes/                           jacoco.exec                        surefire/
+gameoflife-build-1.0-SNAPSHOT.jar  maven-archiver/
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$ ls -l target/gameoflife-build-1.0-SNAPSHOT.jar
+-rw-rw-r-- 1 ubuntu ubuntu 5936 Oct 19 03:19 target/gameoflife-build-1.0-SNAPSHOT.jar
+ubuntu@ip-172-31-7-0:~/gitlabs/game-of-life/gameoflife-build$
+
+---------------------------------------------------------------------------------
+
+gameoflife-build-1.0-SNAPSHOT.jar
+
+---------------------------------------------------------------------------------
