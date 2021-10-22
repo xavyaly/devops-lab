@@ -1,0 +1,17 @@
+# Convert "*.pem" to "*.ppk" to connect ec2 machine in AWS 
+
+Steps:
+
+1. open putty gen
+2. conversion --> import key(Click on Load) --> select 'your keypair'
+3. choose SSH-2 instead of SSH-1 for type of key to generate
+4. click on 'save private key' button
+5. close puttygen
+6. open putty.exe
+7. host : your public dns on AWS
+8. on category panel select SSH --> auth --> browse private keys --> select your .ppk file
+9. click 'open' button
+10. login as : ubuntu
+11. have fun
+
+The key is on step 3, you save it as SSH-2.
