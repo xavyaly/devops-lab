@@ -1,4 +1,6 @@
-# Application Version Details
+# Application Version Details: 10/23/2021
+
+-------------------------------------------------------------------------------------------------------
 
 # Java Version: 1.8.9_292
 
@@ -8,6 +10,7 @@ OpenJDK Runtime Environment (build 1.8.0_292-8u292-b10-0ubuntu1~16.04.1-b10)
 OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
 ubuntu@ip-172-31-15-137:~$ 
 
+-------------------------------------------------------------------------------------------------------
 
 # Git Version: 2.7.4
 
@@ -15,6 +18,7 @@ ubuntu@ip-172-31-15-137:~$ git --version
 git version 2.7.4
 ubuntu@ip-172-31-15-137:~$
 
+-------------------------------------------------------------------------------------------------------
 
 # Jenkins Version: 2.317
 
@@ -28,5 +32,33 @@ ubuntu@ip-172-31-15-137:~$ java -jar /usr/share/jenkins/jenkins.war --version
 2.317
 ubuntu@ip-172-31-15-137:~$
 
+-------------------------------------------------------------------------------------------------------
 
-# Maven Version: 
+# Maven Version: 3.8.3
+
+ubuntu@ip-172-31-15-137:~$ mvn -v
+Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)
+Maven home: /opt/maven
+Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.4.0-1128-aws", arch: "amd64", family: "unix"
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$ mvn --v
+Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)
+Maven home: /opt/maven
+Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.4.0-1128-aws", arch: "amd64", family: "unix"
+ubuntu@ip-172-31-15-137:~$
+
+-------------------------------------------------------------------------------------------------------
+
+# Terraform Version: v1.0.9
+
+ubuntu@ip-172-31-15-137:~$ terraform --version
+Terraform v1.0.9
+on linux_amd64
+ubuntu@ip-172-31-15-137:~$
+
+-------------------------------------------------------------------------------------------------------
+
