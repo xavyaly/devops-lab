@@ -82,9 +82,10 @@ ubuntu@ip-172-31-15-137:~$ cat /home/ubuntu/.ssh/authorized_keys
 ubuntu@ip-172-31-15-137:~$
 
 # Copy the Public from Master and Append the pub key in authorized_keys
+$ cat ~/.ssh/id_rsa.pub
 
-
-ubuntu@ip-172-31-15-137:~$ echo "<cat /home/ubuntu/.ssh/authorized_keys> >> /home/ubuntu/.ssh/authorized_keys
+# jenkins-slave-1
+$ echo "<cat /home/ubuntu/.ssh/authorized_keys> >> /home/ubuntu/.ssh/authorized_keys
 
 ubuntu@ip-172-31-15-137:~$
 ubuntu@ip-172-31-15-137:~$ cat /home/ubuntu/.ssh/authorized_keys
@@ -92,9 +93,10 @@ ubuntu@ip-172-31-15-137:~$
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# sudo systemctl status jenkins
-# sudo systemctl start jenkins
-# sudo systemctl restart jenkins
+# Master 
+$ sudo systemctl status jenkins
+$ sudo systemctl start jenkins
+$ sudo systemctl restart jenkins
 
 # Login to Jenkins as a UI 
 
