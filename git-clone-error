@@ -1,0 +1,21 @@
+# Clone Error
+
+ubuntu@ip-172-31-15-137:~/git$ git clone git@github.com:xavyaly/devops-lab.git
+Cloning into 'devops-lab'...
+The authenticity of host 'github.com (13.234.176.102)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,13.234.176.102' (RSA) to the list of known hosts.
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+ubuntu@ip-172-31-15-137:~/git$
+
+
+# Troubleshooting/Configuration Steps:
+Setting -> SSH and GPG Keys -> New SSH Key -> 
+$ cat ~/.ssh/id_rsa.pub
+Paste and Give a name
+
