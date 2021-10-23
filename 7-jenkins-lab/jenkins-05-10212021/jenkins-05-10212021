@@ -50,39 +50,10 @@ The key's randomart image is:
 ubuntu@ip-172-31-7-0:~$ cat /home/ubuntu/.ssh/
 authorized_keys  id_rsa           id_rsa.pub       known_hosts
 ubuntu@ip-172-31-7-0:~$ cat /home/ubuntu/.ssh/id_rsa
------BEGIN RSA PRIVATE KEY-----
-MIIEpgIBAAKCAQEA1aIK3OWGN3SIFm18UMT9IboKWSUi0IHLvrPCy3GXIft96tTg
-bOPa4c4ULFthBqJw0ODmxIkHOaNQFgjhynSiTgUmqHEILx4hlXFk6FIsw02efi4/
-gQfLK1Ho2dK6fX5+kJuyJ0R74Z2dxivoVv5GFy4gj3psae1hBpcG56A1NrIq+ZfX
-YNmEkugK9Gg3mvmQorOoow6jG5jkntEhhtlyE9y7MPEohZPLXtSQmDRqs8jRaNBe
-Na54YS0x28seE9vCLKssPt84UMu0XhlFPgScp7xSuG9csjbdF3MRjTR90I0P1jw1
-7+aDy543S5U4I+yZ/wM+9qWvMzlKicKOGkNUZQIDAQABAoIBAQDD9+9rDwl92WH0
-4N5G4U0rIRPZDp3PEyGpgBDSuxJeU+r//eMZQDNLK9WJkxGAGobOtWA7LU/5aXxP
-mjo1k6RHWaZKodVWE5fPFMPx8V+qkIsxSI9sd4/B31NwbUQxVlYXpRtZthLFteZD
-IYfyNTJqlR+9PhoxWVXFy8jDtUzbLAuo5CIlZyp8jU08okLetThCsRFSd5JWIR+o
-YxdXpAmr2QG5ETHYH4KlO9nEq4ACh/vHhaXLD8k6jryhu71NVz9r51h7fuvFGMwt
-+V18GKGkdiIyjwmgHz36FTGTbXNNA24bJeJzbzut3e9mccWkZOdNaaH/UE2CCF9m
-JQ7kNXbBAoGBAPNOJ1zBqzN9Hi4rvIc+Umke/dfbFZ19flxm+emLIpgYqX4gS4lJ
-LYJ+cTw3JBnX8QCUIhLJAzw/SGYONOb3/eflIk57pwvJVXECN2uGZrxVufhnH8ZK
-jZ4Rsbo7i7Zz5O6RFlJYKqPEuDepqE2aueUb9TBE0m9JPF5Ev9D2H4qtAoGBAODH
-jbHp1xlPqwq0n/Ap/vTKQ7OoCk6j2slP/ZQaodGGV1nGLI4NaGS9VxQYAMmHtS1v
-B4I+ItUA7RptGc8iQG/4dHNLDY9hjV8nXMXKbel2Zsk8EuOYJHAqggE0hQpB+s3f
-jcAfwOuy0NrhwJQVWDthJcDH6EyV093s6cfkaJ+ZAoGBAL6KKhFeKjD8fzIxVkej
-6u4gMzNkg5z+toKusnDPYZwzVClOKVmuUVGsrAk4NbF3h2momLaVbU81UAF8hrmK
-5PFCZIeKFtwIJD2IOtaePr6ndCiwuhWUNSvhN4pdL6EHSfX68bwzB9GRMaOF3iRI
-U+S07GOMwjAc7oX02TNQTItRAoGBAK9G7JbvYWu7VATlFFKSbN01W9WcE21/F/wj
-A/mZStW3jCXVAqlCi0UC4AQrM3HzALSM/63wBflS35DbwmRisRyfAS9mNwy3ZSXt
-68nQMCT8zuncjl4rJT7R5s5JxfRZvtkKmd5W5Hjm1zXXE/RlMIgdGPNa7ynJK4zC
-UQoucecBAoGBALM19OgLGLbyw2DcJKEOoY07ZTID7G8q7T/BLOWpgkEf6DCKspIX
-sCrJ7MCEQq/seluo2Xs4MKQKTH3cd4ATja9XbRVKqQQHkJkTUOwynlgZfOPz9fo/
-hwpcAoJKpbRFFBiNdAF/DBefoh7g3Vp8I8qYO9yMBiZZNPP8LJ2TOZBZ
------END RSA PRIVATE KEY-----
-ubuntu@ip-172-31-7-0:~$
+
 ubuntu@ip-172-31-7-0:~$ cat /home/ubuntu/.ssh/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVogrc5YY3dIgWbXxQxP0hugpZJSLQgcu+s8LLcZch+33q1OBs49rhzhQsW2EGonDQ4ObEiQc5o1AWCOHKdKJOBSaocQgvHiGVcWToUizDTZ5+Lj+BB8srUejZ0rp9fn6Qm7InRHvhnZ3GK+hW/kYXLiCPemxp7WEGlwbnoDU2sir5l9dg2YSS6Ar0aDea+ZCis6ijDqMbmOSe0SGG2XIT3Lsw8SiFk8te1JCYNGqzyNFo0F41rnhhLTHbyx4T28Isqyw+3zhQy7ReGUU+BJynvFK4b1yyNt0XcxGNNH3QjQ/WPDXv5oPLnjdLlTgj7Jn/Az72pa8zOUqJwo4aQ1Rl ubuntu@ip-172-31-7-0
 ubuntu@ip-172-31-7-0:~$
 ubuntu@ip-172-31-7-0:~$ cat /home/ubuntu/.ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1pFZWBeg9r58UVkb5YD6ZWkGeUWW9JIutRiwxtXfKf0uDXgDm2YFzLJIsVTdybwxGczsKJyBPDBynWHDZrHq4TJi8u4/tW5zHfmKg/FwcBijJ4xR9BQ9OT2cBXGYgakH4Jb1MjCiD0Ixi6r5UHFQ8/S9UBh6iX7VUDOkCbTzdvUNyYVxCejg3nf0xRe0CGYU3Q4Mug/GFfzPeXeXgNK4krXgOz6VAXHFuyEjVfyvYMkJCKVaFyui4G/TzEjOBCplFlzRQaatrVWDweook1aYhQNoAz5XeBKRoCTm8DkyX389fEj5G3k4H14hIqz+BLpThoivcXiXKQNSjPYFxogAn ubuntu_16.04
 ubuntu@ip-172-31-7-0:~$
 
 # cross check the ping to new "jenkins-slave-1" server from master
@@ -108,16 +79,15 @@ ubuntu@ip-172-31-15-137:~$ ls -l /home/ubuntu/.ssh/
 total 4
 -rw------- 1 ubuntu ubuntu 394 Oct 21 03:24 authorized_keys
 ubuntu@ip-172-31-15-137:~$ cat /home/ubuntu/.ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1pFZWBeg9r58UVkb5YD6ZWkGeUWW9JIutRiwxtXfKf0uDXgDm2YFzLJIsVTdybwxGczsKJyBPDBynWHDZrHq4TJi8u4/tW5zHfmKg/FwcBijJ4xR9BQ9OT2cBXGYgakH4Jb1MjCiD0Ixi6r5UHFQ8/S9UBh6iX7VUDOkCbTzdvUNyYVxCejg3nf0xRe0CGYU3Q4Mug/GFfzPeXeXgNK4krXgOz6VAXHFuyEjVfyvYMkJCKVaFyui4G/TzEjOBCplFlzRQaatrVWDweook1aYhQNoAz5XeBKRoCTm8DkyX389fEj5G3k4H14hIqz+BLpThoivcXiXKQNSjPYFxogAn ubuntu_16.04
 ubuntu@ip-172-31-15-137:~$
 
 # Copy the Public from Master and Append the pub key in authorized_keys
 
-ubuntu@ip-172-31-15-137:~$ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVogrc5YY3dIgWbXxQxP0hugpZJSLQgcu+s8LLcZch+33q1OBs49rhzhQsW2EGonDQ4ObEiQc5o1AWCOHKdKJOBSaocQgvHiGVcWToUizDTZ5+Lj+BB8srUejZ0rp9fn6Qm7InRHvhnZ3GK+hW/kYXLiCPemxp7WEGlwbnoDU2sir5l9dg2YSS6Ar0aDea+ZCis6ijDqMbmOSe0SGG2XIT3Lsw8SiFk8te1JCYNGqzyNFo0F41rnhhLTHbyx4T28Isqyw+3zhQy7ReGUU+BJynvFK4b1yyNt0XcxGNNH3QjQ/WPDXv5oPLnjdLlTgj7Jn/Az72pa8zOUqJwo4aQ1Rl ubuntu@ip-172-31-7-0" >> /home/ubuntu/.ssh/authorized_keys
+
+ubuntu@ip-172-31-15-137:~$ echo "<cat /home/ubuntu/.ssh/authorized_keys> >> /home/ubuntu/.ssh/authorized_keys
+
 ubuntu@ip-172-31-15-137:~$
 ubuntu@ip-172-31-15-137:~$ cat /home/ubuntu/.ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1pFZWBeg9r58UVkb5YD6ZWkGeUWW9JIutRiwxtXfKf0uDXgDm2YFzLJIsVTdybwxGczsKJyBPDBynWHDZrHq4TJi8u4/tW5zHfmKg/FwcBijJ4xR9BQ9OT2cBXGYgakH4Jb1MjCiD0Ixi6r5UHFQ8/S9UBh6iX7VUDOkCbTzdvUNyYVxCejg3nf0xRe0CGYU3Q4Mug/GFfzPeXeXgNK4krXgOz6VAXHFuyEjVfyvYMkJCKVaFyui4G/TzEjOBCplFlzRQaatrVWDweook1aYhQNoAz5XeBKRoCTm8DkyX389fEj5G3k4H14hIqz+BLpThoivcXiXKQNSjPYFxogAn ubuntu_16.04
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVogrc5YY3dIgWbXxQxP0hugpZJSLQgcu+s8LLcZch+33q1OBs49rhzhQsW2EGonDQ4ObEiQc5o1AWCOHKdKJOBSaocQgvHiGVcWToUizDTZ5+Lj+BB8srUejZ0rp9fn6Qm7InRHvhnZ3GK+hW/kYXLiCPemxp7WEGlwbnoDU2sir5l9dg2YSS6Ar0aDea+ZCis6ijDqMbmOSe0SGG2XIT3Lsw8SiFk8te1JCYNGqzyNFo0F41rnhhLTHbyx4T28Isqyw+3zhQy7ReGUU+BJynvFK4b1yyNt0XcxGNNH3QjQ/WPDXv5oPLnjdLlTgj7Jn/Az72pa8zOUqJwo4aQ1Rl ubuntu@ip-172-31-7-0
 ubuntu@ip-172-31-15-137:~$
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -155,33 +125,6 @@ Private Key -> Enter directly (select the radio button) -> Click on "Add" Button
 # Fetch the Private key from Master Jenkins Server
 
 ubuntu@ip-172-31-7-0:~$ cat /home/ubuntu/.ssh/id_rsa
------BEGIN RSA PRIVATE KEY-----
-MIIEpgIBAAKCAQEA1aIK3OWGN3SIFm18UMT9IboKWSUi0IHLvrPCy3GXIft96tTg
-bOPa4c4ULFthBqJw0ODmxIkHOaNQFgjhynSiTgUmqHEILx4hlXFk6FIsw02efi4/
-gQfLK1Ho2dK6fX5+kJuyJ0R74Z2dxivoVv5GFy4gj3psae1hBpcG56A1NrIq+ZfX
-YNmEkugK9Gg3mvmQorOoow6jG5jkntEhhtlyE9y7MPEohZPLXtSQmDRqs8jRaNBe
-Na54YS0x28seE9vCLKssPt84UMu0XhlFPgScp7xSuG9csjbdF3MRjTR90I0P1jw1
-7+aDy543S5U4I+yZ/wM+9qWvMzlKicKOGkNUZQIDAQABAoIBAQDD9+9rDwl92WH0
-4N5G4U0rIRPZDp3PEyGpgBDSuxJeU+r//eMZQDNLK9WJkxGAGobOtWA7LU/5aXxP
-mjo1k6RHWaZKodVWE5fPFMPx8V+qkIsxSI9sd4/B31NwbUQxVlYXpRtZthLFteZD
-IYfyNTJqlR+9PhoxWVXFy8jDtUzbLAuo5CIlZyp8jU08okLetThCsRFSd5JWIR+o
-YxdXpAmr2QG5ETHYH4KlO9nEq4ACh/vHhaXLD8k6jryhu71NVz9r51h7fuvFGMwt
-+V18GKGkdiIyjwmgHz36FTGTbXNNA24bJeJzbzut3e9mccWkZOdNaaH/UE2CCF9m
-JQ7kNXbBAoGBAPNOJ1zBqzN9Hi4rvIc+Umke/dfbFZ19flxm+emLIpgYqX4gS4lJ
-LYJ+cTw3JBnX8QCUIhLJAzw/SGYONOb3/eflIk57pwvJVXECN2uGZrxVufhnH8ZK
-jZ4Rsbo7i7Zz5O6RFlJYKqPEuDepqE2aueUb9TBE0m9JPF5Ev9D2H4qtAoGBAODH
-jbHp1xlPqwq0n/Ap/vTKQ7OoCk6j2slP/ZQaodGGV1nGLI4NaGS9VxQYAMmHtS1v
-B4I+ItUA7RptGc8iQG/4dHNLDY9hjV8nXMXKbel2Zsk8EuOYJHAqggE0hQpB+s3f
-jcAfwOuy0NrhwJQVWDthJcDH6EyV093s6cfkaJ+ZAoGBAL6KKhFeKjD8fzIxVkej
-6u4gMzNkg5z+toKusnDPYZwzVClOKVmuUVGsrAk4NbF3h2momLaVbU81UAF8hrmK
-5PFCZIeKFtwIJD2IOtaePr6ndCiwuhWUNSvhN4pdL6EHSfX68bwzB9GRMaOF3iRI
-U+S07GOMwjAc7oX02TNQTItRAoGBAK9G7JbvYWu7VATlFFKSbN01W9WcE21/F/wj
-A/mZStW3jCXVAqlCi0UC4AQrM3HzALSM/63wBflS35DbwmRisRyfAS9mNwy3ZSXt
-68nQMCT8zuncjl4rJT7R5s5JxfRZvtkKmd5W5Hjm1zXXE/RlMIgdGPNa7ynJK4zC
-UQoucecBAoGBALM19OgLGLbyw2DcJKEOoY07ZTID7G8q7T/BLOWpgkEf6DCKspIX
-sCrJ7MCEQq/seluo2Xs4MKQKTH3cd4ATja9XbRVKqQQHkJkTUOwynlgZfOPz9fo/
-hwpcAoJKpbRFFBiNdAF/DBefoh7g3Vp8I8qYO9yMBiZZNPP8LJ2TOZBZ
------END RSA PRIVATE KEY-----
 
 Paster under the text box
 Click on "Add" Button
