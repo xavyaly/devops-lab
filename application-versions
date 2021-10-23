@@ -1,0 +1,32 @@
+# Application Version Details
+
+# Java Version: 1.8.9_292
+
+ubuntu@ip-172-31-15-137:~$ java -version
+openjdk version "1.8.0_292"
+OpenJDK Runtime Environment (build 1.8.0_292-8u292-b10-0ubuntu1~16.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
+ubuntu@ip-172-31-15-137:~$ 
+
+
+# Git Version: 2.7.4
+
+ubuntu@ip-172-31-15-137:~$ git --version
+git version 2.7.4
+ubuntu@ip-172-31-15-137:~$
+
+
+# Jenkins Version: 2.317
+
+ubuntu@ip-172-31-15-137:~$ cat /var/lib/jenkins/config.xml | grep "version"
+<?xml version='1.1' encoding='UTF-8'?>
+  <version>2.317</version>
+ubuntu@ip-172-31-15-137:~$ grep version /var/lib/jenkins/config.xml
+<?xml version='1.1' encoding='UTF-8'?>
+  <version>2.317</version>
+ubuntu@ip-172-31-15-137:~$ java -jar /usr/share/jenkins/jenkins.war --version
+2.317
+ubuntu@ip-172-31-15-137:~$
+
+
+# Maven Version: 
