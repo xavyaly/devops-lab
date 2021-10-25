@@ -1,0 +1,21 @@
+# Pipeline Scenario
+
+Declarative
+
+Suppose you code pushed from Dev-1 in Development Branch 
+You need to push the changes in Development Branch 
+v1.0 
+
+Suppose we have environments and branches details:
+dev
+qa
+staging
+preprod
+hotfix
+prod
+
+# Build with Jenkins Job 
+
+Scripted
+
+
