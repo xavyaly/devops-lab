@@ -28,3 +28,35 @@ pipeline {
     }
 }
 
+O/P:
+    
+Started by user xavyaly
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/pipeline-test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Parameters)
+[Pipeline] echo
+Hello Mr Jenkins
+[Pipeline] echo
+Biography: No Biography
+[Pipeline] echo
+Toggle: true
+[Pipeline] echo
+Choice: One
+[Pipeline] echo
+Warning: A secret was passed to "echo" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [PASSWORD]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
+Password: SECRET
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+
+---------------------------------------------------------------------------------------------------
+    
+
