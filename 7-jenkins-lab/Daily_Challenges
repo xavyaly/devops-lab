@@ -7,6 +7,7 @@ Q-2: Create a jenkins backup job jenkins in shell scripting ?
 10292021:
 
 Q-3: Add a Slave node in Jenkins Master ?
+Sol: https://digitalvarys.com/how-to-configure-jenkins-master-slave-setup/
 
 Q-4: 5 Difference between Application Load Balancer and Network Load Balancer ?
 
