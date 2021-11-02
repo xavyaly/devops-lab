@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    options{
+        timestamps()
+    }
+    triggers{
+        pollSCM('* * * * *')
+    }
+    stages {
+        stage("cron") {
+            steps {
+                echo "Execute if commit occurs"
+                git url:"git@github.com:xavyaly/Git-Lab.git"
+            }
+        }
+    }
+}
+
+$ git clone "URL"
+# Do some changes 
+# Monitor the Jenkins Job 
