@@ -1,0 +1,28 @@
+# Maven Job
+
+---------------------------------------------------------------------------------------------------------
+
+Manage Jenkins -> Global Tool Configuration:
+
+JDK -> JDK installations -> JDK -> Name: Java_1.8 + JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Maven -> Maven installations -> Maven -> Name: mvn + MAVEN_HOME: /opt/maven
+
+---------------------------------------------------------------------------------------------------------
+
+Install "Maven Integration Plugin"
+
+---------------------------------------------------------------------------------------------------------
+
+Create a new Maven Job
+
+Source Code Management -> Git -> Repositories -> Repository URL: https://github.com/xavyaly/game-of-life.git
+Credentials: NA
+
+Branches to build -> Branch Specifier (blank for 'any'): */master
+
+Build -> Root POM -> gameoflife-build/pom.xml
+Goals and options: compile package
+
+Save 
+
+---------------------------------------------------------------------------------------------------------
