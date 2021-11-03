@@ -16,3 +16,9 @@ Q-5: 5 Difference between CMD VS ENTRYPOINT ?
 Q-6: Why we use RUN and CMD in Dockerfile ?
 
 Q-7: How to minimize the size of Dockerfile ?
+
+11032021:
+
+Q-8: Read about Jacoco Plugin and Create a Jenkins Job ?
+
+Q-9: Read about $ git cherry-pick and write an article ?
