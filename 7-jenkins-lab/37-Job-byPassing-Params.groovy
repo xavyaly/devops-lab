@@ -33,14 +33,13 @@ pipeline {
             stage("build") {
                 steps {
                     script {
-                        echo "$Nodes"
+                        echo "Nodes"
                         echo "Versions"
                         echo "Path"
                     }
                 }
             }
         }
-    
 }
 
 /*Next Create this Job*/
