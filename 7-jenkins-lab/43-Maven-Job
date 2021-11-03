@@ -2,6 +2,11 @@
 
 ---------------------------------------------------------------------------------------------------------
 
+Priority:
+Install "Git + Jenkins + Java + Maven"
+
+---------------------------------------------------------------------------------------------------------
+
 Manage Jenkins -> Global Tool Configuration:
 
 JDK -> JDK installations -> JDK -> Name: Java_1.8 + JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
