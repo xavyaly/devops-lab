@@ -14,14 +14,64 @@ pipeline {
         stage("pollSCM") {
             steps {
                 echo "Execute if commit occurs"
-                git url:"git@github.com:xavyaly/Git-Lab.git"
+                git url:"https://github.com/xavyaly/Python-Lab.git"
             }
         }
     }
 }
 
 /*
-$ git clone "URL"
-# Do some changes 
-# Monitor the Jenkins Job 
+
+$ git clone "git@github.com:xavyaly/Python-Lab.git"
+OR
+$ git clone "https://github.com/xavyaly/Python-Lab.git"
+
+# Do some changes in any file
+
+$ git add <file-name>.txt
+$ git commit -m "added changes to <file-name>.txt"
+$ git push origin master
+
 */
+
+# Monitor the Jenkins Job 
+
+O/P:
+Started by an SCM change
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/pipeline-test-job
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (pollSCM)
+[Pipeline] echo
+11:31:10  Execute if commit occurs
+[Pipeline] git
+11:31:10  The recommended git tool is: NONE
+11:31:10  No credentials specified
+11:31:10   > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/pipeline-test-job/.git # timeout=10
+11:31:10  Fetching changes from the remote Git repository
+11:31:10   > git config remote.origin.url https://github.com/xavyaly/Python-Lab.git # timeout=10
+11:31:10  Fetching upstream changes from https://github.com/xavyaly/Python-Lab.git
+11:31:10   > git --version # timeout=10
+11:31:10   > git --version # 'git version 2.7.4'
+11:31:10   > git fetch --tags --progress https://github.com/xavyaly/Python-Lab.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+11:31:11   > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+11:31:11  Checking out Revision 043a84add307681c330bc34ef26925f15145e161 (refs/remotes/origin/master)
+11:31:11   > git config core.sparsecheckout # timeout=10
+11:31:11   > git checkout -f 043a84add307681c330bc34ef26925f15145e161 # timeout=10
+11:31:11   > git branch -a -v --no-abbrev # timeout=10
+11:31:11   > git branch -D master # timeout=10
+11:31:11   > git checkout -b master 043a84add307681c330bc34ef26925f15145e161 # timeout=10
+11:31:11  Commit message: "added one line"
+11:31:11   > git rev-list --no-walk ce244096b86e0bc96c7ee1fc752f525c3c967ae0 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
