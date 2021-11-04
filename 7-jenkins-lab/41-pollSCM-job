@@ -1,3 +1,5 @@
+/*Poll SCM- will trigger the job depends up the changes in code, if there is no commit it wont run.*/
+
 pipeline {
     agent any
     options{
