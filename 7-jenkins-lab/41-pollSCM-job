@@ -1,13 +1,15 @@
 pipeline {
     agent any
     options{
+        buildDiscarder(logRotator(numToKeepStr: '5')) 
         timestamps()
     }
-    triggers{
-        pollSCM('* * * * *')
+    //triggers { pollSCM 'H/5 * * * *' }    // every 5 mins
+    triggers{ 
+        pollSCM('* * * * *')        // every min
     }
     stages {
-        stage("cron") {
+        stage("pollSCM") {
             steps {
                 echo "Execute if commit occurs"
                 git url:"git@github.com:xavyaly/Git-Lab.git"
@@ -16,6 +18,8 @@ pipeline {
     }
 }
 
+/*
 $ git clone "URL"
 # Do some changes 
 # Monitor the Jenkins Job 
+*/
