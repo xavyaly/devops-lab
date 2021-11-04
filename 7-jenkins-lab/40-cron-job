@@ -1,3 +1,6 @@
+/*Cron - trigger job will run depends up the cron schedule*/
+/*job is running every min*/
+
 pipeline {
     agent any
     options { 
