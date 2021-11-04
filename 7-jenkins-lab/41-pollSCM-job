@@ -1,3 +1,6 @@
+/*https://stackoverflow.com/questions/56789174/what-does-the-pollscm-trigger-refer-to-in-this-jenkinsfile*/
+
+/*Main Job*/
 /*Poll SCM- will trigger the job depends up the changes in code, if there is no commit it wont run.*/
 
 pipeline {
