@@ -404,3 +404,7 @@ Stage "Branch C" skipped due to when conditional
 [Pipeline] // node
 [Pipeline] End of Pipeline
 Finished: SUCCESS
+
+
+/*Also refer this article for best understanding..*/
+https://newbedev.com/failing-a-build-in-jenkinsfile
