@@ -17,9 +17,17 @@ Credentials:
 Play with Docker:
 Create an AWS Machine 16.04
 Install Docker on AWS Machine:
-	https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
-  OR
-  https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+OR
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+
+Read about these articles:
+https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-an-introduction-to-common-components
+https://www.digitalocean.com/community/tutorials/how-to-provision-and-manage-remote-docker-hosts-with-docker-machine-on-ubuntu-16-04
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
+https://hub.docker.com/
+
+
   
  
 
