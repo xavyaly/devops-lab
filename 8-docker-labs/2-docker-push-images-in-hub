@@ -1,0 +1,705 @@
+Docker Installation:
+Docker Container
+Docker push Images into docker Hub 
+
+Get Started:
+	https://www.docker.com/get-started
+
+SignUp:	
+	https://hub.docker.com/signup
+
+Once Sign Up Completed:
+	Login Docker Hub through CLI:
+		$ docker login -u <user-name> 
+		Password: ********	
+
+Credentials:
+	Docker_ID/Password
+
+Play with Docker:
+Create an AWS Machine 16.04
+Install Docker on AWS Machine:
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+OR
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+
+Read about these articles:
+https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-an-introduction-to-common-components
+https://www.digitalocean.com/community/tutorials/how-to-provision-and-manage-remote-docker-hosts-with-docker-machine-on-ubuntu-16-04
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
+https://hub.docker.com/
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Step-1: Installing Docker => Completed
+Step-2: Executing the Docker Command without sudo => Completed
+Step-3: Using the Docker Command => Completed
+Step-4: Working with Docker Images => Completed
+
+
+login as: ubuntu
+Authenticating with public key "imported-openssh-key"
+=============================================================================
+       __|  __|_  )
+       _|  (     /   Deep Learning AMI (Ubuntu 16.04) Version 50.0
+      ___|\___|___|
+=============================================================================
+
+Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.4.0-1128-aws x86_64v)
+
+Please use one of the following commands to start the required environment with                                                                              the framework of your choice:
+for AWS MX 1.7 (+Keras2) with Python3 (CUDA 10.1 and Intel MKL-DNN) ____________                                                                             ___________________ source activate mxnet_p36
+for AWS MX 1.8 (+Keras2) with Python3 (CUDA + and Intel MKL-DNN) _______________                                                                             ____________ source activate mxnet_latest_p37
+for AWS MX(+Amazon Elastic Inference) with Python3 _____________________________                                                                             __________ source activate amazonei_mxnet_p36
+for AWS MX(+AWS Neuron) with Python3 ___________________________________________                                                                             ________ source activate aws_neuron_mxnet_p36
+for TensorFlow(+Keras2) with Python3 (CUDA + and Intel MKL-DNN) ________________                                                                             _____________ source activate tensorflow_p37
+for TensorFlow 2.3(+Keras2) with Python3 (CUDA +  and Intel MKL-DNN) ___________                                                                             ____________ source activate tensorflow2_p37
+for TensorFlow 2.4 with Python3 (CUDA + and Intel MKL-DNN) _____________________                                                                             _____ source activate tensorflow2_latest_p37
+for Tensorflow(+Amazon Elastic Inference) with Python3 _________________________                                                                             ____ source activate amazonei_tensorflow_p36
+for Tensorflow 2(+Amazon Elastic Inference) with Python3 _______________________                                                                             ___ source activate amazonei_tensorflow2_p36
+for Tensorflow(+AWS Neuron) with Python3 _______________________________________                                                                             __ source activate aws_neuron_tensorflow_p36
+for PyTorch 1.4 with Python3 (CUDA 10.1 and Intel MKL) _________________________                                                                             ________________ source activate pytorch_p36
+for PyTorch 1.7.1 with Python3.7 (CUDA 11.1 and Intel MKL) _____________________                                                                             ___________ source activate pytorch_latest_p37
+for PyTorch (+AWS Neuron) with Python3 _________________________________________                                                                             _____ source activate aws_neuron_pytorch_p36
+for PyTorch 1.3.1 with(+Amazon Elastic Inference) with Python3 _________________                                                                             ______________source activate amazonei_pytorch_p36
+for PyTorch 1.5.1 with(+Amazon Elastic Inference) with Python3 _________________                                                                             ______________source activate amazonei_pytorch_latest_p36
+for base Python3 (CUDA 10.0) ___________________________________________________                                                                             ____________________ source activate python3
+
+To automatically activate base conda environment upon login, run: 'conda config                                                                              --set auto_activate_base true'
+Official Conda User Guide: https://docs.conda.io/projects/conda/en/latest/user-g                                                                             uide/
+AWS Deep Learning AMI Homepage: https://aws.amazon.com/machine-learning/amis/
+Developer Guide and Release Notes: https://docs.aws.amazon.com/dlami/latest/devg                                                                             uide/what-is-dlami.html
+Support: https://forums.aws.amazon.com/forum.jspa?forumID=263
+For a fully managed experience, check out Amazon SageMaker at https://aws.amazon                                                                             .com/sagemaker
+When using INF1 type instances, please update regularly using the instructions a                                                                             t: https://github.com/aws/aws-neuron-sdk/tree/master/release-notes
+=============================================================================
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+UA Infra: Extended Security Maintenance (ESM) is not enabled.
+
+8 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+82 additional security updates can be applied with UA Infra: ESM
+Learn more about enabling UA Infra: ESM service for Ubuntu 16.04 at
+https://ubuntu.com/16-04
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$ ls -l
+total 48
+drwxrwxr-x 27 ubuntu ubuntu  4096 Oct  3 05:39 anaconda3
+drwxrwxr-x 10 ubuntu ubuntu  4096 Oct  3 05:37 examples
+drwxrwxr-x  4 ubuntu ubuntu  4096 Oct 23 03:04 git
+drwxrwxr-x  3 ubuntu ubuntu  4096 Oct 22 12:49 learn-terraform-docker-container
+-rw-rw-r--  1 ubuntu ubuntu 25646 Aug 19  2020 LICENSE
+-rw-rw-r--  1 ubuntu ubuntu  3227 Oct  3 07:17 README
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$ docker -v
+Docker version 20.10.7, build f0df350
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$ cd git/devops-lab/
+1-linux-labs/          3-python-labs/         5-git-labs/            7-jenkins-lab/         errors-debugging/
+2-shellscripting-labs/ 4-powershell-labs/     6-maven-labs/          8-docker-labs/         .git/
+ubuntu@ip-172-31-15-137:~$ cd git/devops-lab/8-docker-labs/
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ls -l
+total 2772
+-rw-rw-r-- 1 ubuntu ubuntu 2831989 Nov 22 02:31 1-docker-50.pdf
+-rw-rw-r-- 1 ubuntu ubuntu     128 Nov 22 02:31 2-docker-SignUp
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ git pull origin master
+remote: Enumerating objects: 19, done.
+remote: Counting objects: 100% (19/19), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 15 (delta 7), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (15/15), done.
+From github.com:xavyaly/devops-lab
+ * branch            master     -> FETCH_HEAD
+   940425a..26838fb  master     -> origin/master
+Updating 940425a..26838fb
+Fast-forward
+ 8-docker-labs/2-docker-SignUp | 65 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ application-versions          |  7 +++++++
+ 2 files changed, 71 insertions(+), 1 deletion(-)
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ls -l
+total 2772
+-rw-rw-r-- 1 ubuntu ubuntu 2831989 Nov 22 02:31 1-docker-50.pdf
+-rw-rw-r-- 1 ubuntu ubuntu    2197 Nov 25 02:38 2-docker-SignUp
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ vim 3-docker-
+login as: ubuntu
+Authenticating with public key "imported-openssh-key"
+=============================================================================
+       __|  __|_  )
+       _|  (     /   Deep Learning AMI (Ubuntu 16.04) Version 50.0
+      ___|\___|___|
+=============================================================================
+
+Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.4.0-1128-aws x86_64v)
+
+Please use one of the following commands to start the required environment with the framework of your choice:
+for AWS MX 1.7 (+Keras2) with Python3 (CUDA 10.1 and Intel MKL-DNN) _______________________________ source activate mxnet_p36
+for AWS MX 1.8 (+Keras2) with Python3 (CUDA + and Intel MKL-DNN) ___________________________ source activate mxnet_latest_p37
+for AWS MX(+Amazon Elastic Inference) with Python3 _______________________________________ source activate amazonei_mxnet_p36
+for AWS MX(+AWS Neuron) with Python3 ___________________________________________________ source activate aws_neuron_mxnet_p36
+for TensorFlow(+Keras2) with Python3 (CUDA + and Intel MKL-DNN) _____________________________ source activate tensorflow_p37
+for TensorFlow 2.3(+Keras2) with Python3 (CUDA +  and Intel MKL-DNN) _______________________ source activate tensorflow2_p37
+for TensorFlow 2.4 with Python3 (CUDA + and Intel MKL-DNN) __________________________ source activate tensorflow2_latest_p37
+for Tensorflow(+Amazon Elastic Inference) with Python3 _____________________________ source activate amazonei_tensorflow_p36
+for Tensorflow 2(+Amazon Elastic Inference) with Python3 __________________________ source activate amazonei_tensorflow2_p36
+for Tensorflow(+AWS Neuron) with Python3 _________________________________________ source activate aws_neuron_tensorflow_p36
+for PyTorch 1.4 with Python3 (CUDA 10.1 and Intel MKL) _________________________________________ source activate pytorch_p36
+for PyTorch 1.7.1 with Python3.7 (CUDA 11.1 and Intel MKL) ________________________________ source activate pytorch_latest_p37
+for PyTorch (+AWS Neuron) with Python3 ______________________________________________ source activate aws_neuron_pytorch_p36
+for PyTorch 1.3.1 with(+Amazon Elastic Inference) with Python3 _______________________________source activate amazonei_pytorch_p36
+for PyTorch 1.5.1 with(+Amazon Elastic Inference) with Python3 _______________________________source activate amazonei_pytorch_latest_p36
+for base Python3 (CUDA 10.0) _______________________________________________________________________ source activate python3
+
+To automatically activate base conda environment upon login, run: 'conda config --set auto_activate_base true'
+Official Conda User Guide: https://docs.conda.io/projects/conda/en/latest/user-guide/
+AWS Deep Learning AMI Homepage: https://aws.amazon.com/machine-learning/amis/
+Developer Guide and Release Notes: https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html
+Support: https://forums.aws.amazon.com/forum.jspa?forumID=263
+For a fully managed experience, check out Amazon SageMaker at https://aws.amazon.com/sagemaker
+When using INF1 type instances, please update regularly using the instructions at: https://github.com/aws/aws-neuron-sdk/tree/master/release-notes
+=============================================================================
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+UA Infra: Extended Security Maintenance (ESM) is not enabled.
+
+8 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+82 additional security updates can be applied with UA Infra: ESM
+Learn more about enabling UA Infra: ESM service for Ubuntu 16.04 at
+https://ubuntu.com/16-04
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+New release '18.04.6 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+ubuntu@ip-172-31-15-137:~$ ls -l
+total 48
+drwxrwxr-x 27 ubuntu ubuntu  4096 Oct  3 05:39 anaconda3
+drwxrwxr-x 10 ubuntu ubuntu  4096 Oct  3 05:37 examples
+drwxrwxr-x  4 ubuntu ubuntu  4096 Oct 23 03:04 git
+drwxrwxr-x  3 ubuntu ubuntu  4096 Oct 22 12:49 learn-terraform-docker-container
+-rw-rw-r--  1 ubuntu ubuntu 25646 Aug 19  2020 LICENSE
+-rw-rw-r--  1 ubuntu ubuntu  3227 Oct  3 07:17 README
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$
+ubuntu@ip-172-31-15-137:~$ cd git/devops-lab/8-docker-labs/
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ls -l
+total 2772
+-rw-rw-r-- 1 ubuntu ubuntu 2831989 Nov 22 02:31 1-docker-50.pdf
+-rw-rw-r-- 1 ubuntu ubuntu    2197 Nov 25 02:38 2-docker-SignUp
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    ba6acccedd29   5 weeks ago    72.8MB
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED      STATUS                  PORTS     NAMES
+8a0434a2dc29   hello-world   "/hello"   3 days ago   Exited (0) 3 days ago             affectionate_lalande
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run ubuntu
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+484db8aea470   ubuntu        "bash"     6 seconds ago   Exited (0) 4 seconds ago             wizardly_aryabhata
+8a0434a2dc29   hello-world   "/hello"   3 days ago      Exited (0) 3 days ago                affectionate_lalande
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run -it 484db8aea470
+Unable to find image '484db8aea470:latest' locally
+docker: Error response from daemon: pull access denied for 484db8aea470, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    ba6acccedd29   5 weeks ago    72.8MB
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi $(docker images -a)
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: conflict: unable to remove repository reference "ubuntu" (must force) - container 484db8aea470 is using its referenced image ba6acccedd29
+Error: No such image: latest
+Error response from daemon: conflict: unable to delete ba6acccedd29 (must be forced) - image is being used by stopped container 484db8aea470
+Error: No such image: 5
+Error: No such image: weeks
+Error: No such image: ago
+Error response from daemon: invalid reference format: repository name must be lowercase
+Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container 8a0434a2dc29 is using its referenced image feb5d9fea6a5
+Error: No such image: latest
+Error response from daemon: conflict: unable to delete feb5d9fea6a5 (must be forced) - image is being used by stopped container 8a0434a2dc29
+Error: No such image: 2
+Error: No such image: months
+Error: No such image: ago
+Error response from daemon: invalid reference format: repository name must be lowercase
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    ba6acccedd29   5 weeks ago    72.8MB
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi $(docker image)
+
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+"docker rmi" requires at least 1 argument.
+See 'docker rmi --help'.
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+Remove one or more images
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi $(docker images -a -q)
+Error response from daemon: conflict: unable to delete ba6acccedd29 (must be forced) - image is being used by stopped container 484db8aea470
+Error response from daemon: conflict: unable to delete feb5d9fea6a5 (must be forced) - image is being used by stopped container 8a0434a2dc29
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
+484db8aea470   ubuntu        "bash"     About a minute ago   Exited (0) About a minute ago             wizardly_aryabhata
+8a0434a2dc29   hello-world   "/hello"   3 days ago           Exited (0) 3 days ago                     affectionate_lalande
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker stop 48
+48
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker stop 48a
+Error response from daemon: No such container: 48a
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker stop 48a -force
+unknown shorthand flag: 'f' in -force
+See 'docker stop --help'.
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker stop 48a -f
+unknown shorthand flag: 'f' in -f
+See 'docker stop --help'.
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+484db8aea470   ubuntu        "bash"     2 minutes ago   Exited (0) 2 minutes ago             wizardly_aryabhata
+8a0434a2dc29   hello-world   "/hello"   3 days ago      Exited (0) 3 days ago                affectionate_lalande
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rm 48
+48
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED      STATUS                  PORTS     NAMES
+8a0434a2dc29   hello-world   "/hello"   3 days ago   Exited (0) 3 days ago             affectionate_lalande
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rm 8a
+8a
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    ba6acccedd29   5 weeks ago    72.8MB
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi ubuntu:latest
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322
+Deleted: sha256:ba6acccedd2923aee4c2acc6a23780b14ed4b8a5fa4e14e252a23b846df9b6c1
+Deleted: sha256:9f54eef412758095c8079ac465d494a2872e02e90bf1fb5f12a1641c0d1bb78b
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi hello-world:latest
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:cc15c5b292d8525effc0f89cb299f1804f3a725c8d05e158653a563f15e4f685
+Deleted: sha256:feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412
+Deleted: sha256:e07ee1baac5fae6a26f30cabfe54a36d3402f96afda318fe0a96cec4ca393359
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete
+Digest: sha256:cc15c5b292d8525effc0f89cb299f1804f3a725c8d05e158653a563f15e4f685
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+6d3d9cdbf017   hello-world   "/hello"   9 seconds ago   Exited (0) 8 seconds ago             vibrant_franklin
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+7b1a6ab2e44d: Pull complete
+Digest: sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    ba6acccedd29   5 weeks ago    72.8MB
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+6d3d9cdbf017   hello-world   "/hello"   37 seconds ago   Exited (0) 36 seconds ago             vibrant_franklin
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run ubuntu
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+71267b6a9010   ubuntu        "bash"     4 seconds ago    Exited (0) 2 seconds ago              gracious_noyce
+6d3d9cdbf017   hello-world   "/hello"   48 seconds ago   Exited (0) 46 seconds ago             vibrant_franklin
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run -it ubuntu
+root@b98e806e6f20:/# exit
+exit
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
+b98e806e6f20   ubuntu        "bash"     20 seconds ago       Exited (0) 2 seconds ago                  cranky_bell
+71267b6a9010   ubuntu        "bash"     55 seconds ago       Exited (0) 53 seconds ago                 gracious_noyce
+6d3d9cdbf017   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago             vibrant_franklin
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+Step-5: Running a Docker Container 
+
+Note: 
+Whenever you wanna to exit from container
+ctrl+pq => container keep on running and moved out
+exit => container stopped and exited {Not a good practice}
+
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run -it ubuntu
+root@cdca295f8dca:/# ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
+cdca295f8dca   ubuntu        "bash"     10 seconds ago       Up 8 seconds                              practical_yonath
+b98e806e6f20   ubuntu        "bash"     42 seconds ago       Exited (0) 24 seconds ago                 cranky_bell
+71267b6a9010   ubuntu        "bash"     About a minute ago   Exited (0) About a minute ago             gracious_noyce
+6d3d9cdbf017   hello-world   "/hello"   2 minutes ago        Exited (0) About a minute ago             vibrant_franklin
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run -it ubuntu
+root@8b5436288f7d:/# node -v
+bash: node: command not found
+root@8b5436288f7d:/# apt-get update
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal InRelease [265 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal-backports InRelease [101 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB]
+Get:6 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [30.1 kB]
+Get:7 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1280 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
+Get:9 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [823 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [177 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [1692 kB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [682 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1098 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [738 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [33.3 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [7185 B]
+Get:18 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [2668 B]
+Fetched 19.8 MB in 4s (4780 kB/s)
+Reading package lists... Done
+root@8b5436288f7d:/# apt-get install -y nodejs
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates libc-ares2 libicu66 libnghttp2-14 libnode64 libssl1.1 libuv1 nodejs-doc openssl tzdata
+Suggested packages:
+  npm
+The following NEW packages will be installed:
+  ca-certificates libc-ares2 libicu66 libnghttp2-14 libnode64 libssl1.1 libuv1 nodejs nodejs-doc openssl tzdata
+0 upgraded, 11 newly installed, 0 to remove and 0 not upgraded.
+Need to get 17.9 MB of archives.
+After this operation, 74.6 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libssl1.1 amd64 1.1.1f-1ubuntu2.9 [1321 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 openssl amd64 1.1.1f-1ubuntu2.9 [622 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ca-certificates all 20210119~20.04.2 [145 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 tzdata all 2021e-0ubuntu0.20.04 [295 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libicu66 amd64 66.1-2ubuntu2.1 [8515 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libuv1 amd64 1.34.2-1ubuntu1.3 [80.8 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal/main amd64 libnghttp2-14 amd64 1.40.0-1build1 [78.7 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libc-ares2 amd64 1.15.0-1ubuntu0.1 [38.2 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal/universe amd64 libnode64 amd64 10.19.0~dfsg-3ubuntu1 [5765 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/universe amd64 nodejs-doc all 10.19.0~dfsg-3ubuntu1 [942 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal/universe amd64 nodejs amd64 10.19.0~dfsg-3ubuntu1 [61.1 kB]
+Fetched 17.9 MB in 3s (5416 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libssl1.1:amd64.
+(Reading database ... 4127 files and directories currently installed.)
+Preparing to unpack .../00-libssl1.1_1.1.1f-1ubuntu2.9_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.1f-1ubuntu2.9) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../01-openssl_1.1.1f-1ubuntu2.9_amd64.deb ...
+Unpacking openssl (1.1.1f-1ubuntu2.9) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../02-ca-certificates_20210119~20.04.2_all.deb ...
+Unpacking ca-certificates (20210119~20.04.2) ...
+Selecting previously unselected package tzdata.
+Preparing to unpack .../03-tzdata_2021e-0ubuntu0.20.04_all.deb ...
+Unpacking tzdata (2021e-0ubuntu0.20.04) ...
+Selecting previously unselected package libicu66:amd64.
+Preparing to unpack .../04-libicu66_66.1-2ubuntu2.1_amd64.deb ...
+Unpacking libicu66:amd64 (66.1-2ubuntu2.1) ...
+Selecting previously unselected package libuv1:amd64.
+Preparing to unpack .../05-libuv1_1.34.2-1ubuntu1.3_amd64.deb ...
+Unpacking libuv1:amd64 (1.34.2-1ubuntu1.3) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../06-libnghttp2-14_1.40.0-1build1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.40.0-1build1) ...
+Selecting previously unselected package libc-ares2:amd64.
+Preparing to unpack .../07-libc-ares2_1.15.0-1ubuntu0.1_amd64.deb ...
+Unpacking libc-ares2:amd64 (1.15.0-1ubuntu0.1) ...
+Selecting previously unselected package libnode64:amd64.
+Preparing to unpack .../08-libnode64_10.19.0~dfsg-3ubuntu1_amd64.deb ...
+Unpacking libnode64:amd64 (10.19.0~dfsg-3ubuntu1) ...
+Selecting previously unselected package nodejs-doc.
+Preparing to unpack .../09-nodejs-doc_10.19.0~dfsg-3ubuntu1_all.deb ...
+Unpacking nodejs-doc (10.19.0~dfsg-3ubuntu1) ...
+Selecting previously unselected package nodejs.
+Preparing to unpack .../10-nodejs_10.19.0~dfsg-3ubuntu1_amd64.deb ...
+Unpacking nodejs (10.19.0~dfsg-3ubuntu1) ...
+Setting up libssl1.1:amd64 (1.1.1f-1ubuntu2.9) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.30.0 /usr/local/share/perl/5.30.0 /usr/lib/x86_64-linux-gnu/perl5/5.30 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.30 /usr/share/perl/5.30 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libnghttp2-14:amd64 (1.40.0-1build1) ...
+Setting up libc-ares2:amd64 (1.15.0-1ubuntu0.1) ...
+Setting up tzdata (2021e-0ubuntu0.20.04) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.30.0 /usr/local/share/perl/5.30.0 /usr/lib/x86_64-linux-gnu/perl5/5.30 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.30 /usr/share/perl/5.30 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Configuring tzdata
+------------------
+
+Please select the geographic area in which you live. Subsequent configuration questions will narrow this down by presenting a list of cities, representing
+the time zones in which they are located.
+
+  1. Africa   3. Antarctica  5. Arctic  7. Atlantic  9. Indian    11. SystemV  13. Etc
+  2. America  4. Australia   6. Asia    8. Europe    10. Pacific  12. US
+Geographic area: 9
+
+Please select the city or region corresponding to your time zone.
+
+  1. Antananarivo  2. Chagos  3. Christmas  4. Cocos  5. Comoro  6. Kerguelen  7. Mahe  8. Maldives  9. Mauritius  10. Mayotte  11. Reunion
+Time zone: 1
+
+
+Current default time zone: 'Indian/Antananarivo'
+Local time is now:      Thu Nov 25 06:10:52 EAT 2021.
+Universal Time is now:  Thu Nov 25 03:10:52 UTC 2021.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+Setting up libuv1:amd64 (1.34.2-1ubuntu1.3) ...
+Setting up nodejs-doc (10.19.0~dfsg-3ubuntu1) ...
+Setting up openssl (1.1.1f-1ubuntu2.9) ...
+Setting up libicu66:amd64 (66.1-2ubuntu2.1) ...
+Setting up ca-certificates (20210119~20.04.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.30.0 /usr/local/share/perl/5.30.0 /usr/lib/x86_64-linux-gnu/perl5/5.30 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.30 /usr/share/perl/5.30 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+128 added, 0 removed; done.
+Setting up libnode64:amd64 (10.19.0~dfsg-3ubuntu1) ...
+Setting up nodejs (10.19.0~dfsg-3ubuntu1) ...
+update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/js.1.gz because associated file /usr/share/man/man1/nodejs.1.gz (of link group js) doesn't exist
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for ca-certificates (20210119~20.04.2) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+root@8b5436288f7d:/#
+root@8b5436288f7d:/# node -v
+v10.19.0
+root@8b5436288f7d:/#
+
+Step-5: Running a Docker Container  => Completed
+
+Step-6: Manage Docker Containers
+
+Syntax:
+$ docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    ba6acccedd29   5 weeks ago    72.8MB
+hello-world   latest    feb5d9fea6a5   2 months ago   13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+8b5436288f7d   ubuntu        "bash"     8 minutes ago    Up 8 minutes                          naughty_maxwell
+cdca295f8dca   ubuntu        "bash"     9 minutes ago    Up 9 minutes                          practical_yonath
+b98e806e6f20   ubuntu        "bash"     9 minutes ago    Exited (0) 9 minutes ago              cranky_bell
+71267b6a9010   ubuntu        "bash"     10 minutes ago   Exited (0) 10 minutes ago             gracious_noyce
+6d3d9cdbf017   hello-world   "/hello"   11 minutes ago   Exited (0) 11 minutes ago             vibrant_franklin
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+$ docker commit -m "added node.js or install java" -a "xavy" 8b5436288f7d xavy/ubuntu-node
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker commit -m "added node.js or install java" -a "xavy" 8b5436288f7d xavy/ubuntu-node
+sha256:7eae73787a4182623347cadec10cc7094b796f30fbed2cdaa751565852de3450
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+Step-7: Committing Changes in a Container to a Docker => Completed
+
+Step 8: Pushing Docker Images to a Docker Repository
+
+Create an account if don’t have:
+https://hub.docker.com/
+782782/******
+
+ubuntu@ip-172-31-13-237:~$ docker login -u docker-registry-username
+Password: 
+ubuntu@ip-172-31-13-237:~$ 
+ubuntu@ip-172-31-13-237:~$ docker login -u 782782
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker login -u 782782
+Password:
+WARNING! Your password will be stored unencrypted in /home/ubuntu/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ cat /home/ubuntu/.docker/config.json
+{
+        "auths": {
+                "https://index.docker.io/v1/": {
+                        "auth": "NzgyNzgyOnJlZEhBVEAxMjM="
+                }
+        }
+}ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images | grep xavy
+xavy/ubuntu-node   latest    7eae73787a41   6 minutes ago   171MB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+Tag Syntax:
+$ docker tag sammy/ubuntu-nodejs docker-registry-username/ubuntu-nodejs
+
+$ docker tag xavy/ubuntu-node 782782/ubuntu-node
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker tag xavy/ubuntu-node 782782/ubuntu-node
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY           TAG       IMAGE ID       CREATED         SIZE
+782782/ubuntu-node   latest    7eae73787a41   9 minutes ago   171MB
+xavy/ubuntu-node     latest    7eae73787a41   9 minutes ago   171MB
+ubuntu               latest    ba6acccedd29   5 weeks ago     72.8MB
+hello-world          latest    feb5d9fea6a5   2 months ago    13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker push 782782/ubuntu-node
+Using default tag: latest
+The push refers to repository [docker.io/782782/ubuntu-node]
+487005eb215b: Pushed
+9f54eef41275: Mounted from library/ubuntu
+latest: digest: sha256:681a299ae454a8af66b81e51ecfc357d4de4c5f559d9e845a58c6ba887c0ba3d size: 741
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY           TAG       IMAGE ID       CREATED          SIZE
+782782/ubuntu-node   latest    7eae73787a41   12 minutes ago   171MB
+xavy/ubuntu-node     latest    7eae73787a41   12 minutes ago   171MB
+ubuntu               latest    ba6acccedd29   5 weeks ago      72.8MB
+hello-world          latest    feb5d9fea6a5   2 months ago     13.3kB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a -q
+7eae73787a41
+7eae73787a41
+ba6acccedd29
+feb5d9fea6a5
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+
+Verify In UI:
+https://hub.docker.com/u/782782
+
+Step 8 — Pushing Docker Images to a Docker Repository => Completed
+
+
+
+
+
+
+
+
+ 
+
+
