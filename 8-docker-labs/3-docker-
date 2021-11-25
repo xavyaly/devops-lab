@@ -1,0 +1,120 @@
+Installation Of Docker:
+	Mac
+	Windows
+	Ubuntu
+	….
+
+Pre-Requisites to create a Docker File:
+	Important Terms
+
+Docker Images:
+How we can create the Images
+List all the Images
+Prune all Images
+Remove an existing Images
+Re-Create the Images
+Inspect the Images
+
+Docker Containers:
+Create a Container with the help of Images
+List the Containers
+Prune the Containers
+Remove the Containers
+Re-Create the Containers
+Test the Containers
+Multiple Operations while creating a Containers
+Inspect the Containers
+
+Docker Logs:
+How to see the Container Logs
+How to debug the Container Logs
+
+----------------------------------------------------------------------------------------------------------
+
+Docker Installation:
+
+Get Started:
+	https://www.docker.com/get-started
+
+SignUp:	
+	https://hub.docker.com/signup
+
+Once Sign Up Completed:
+	Login Docker Hub through CLI:
+		$ docker login -u <user-name> 
+		Password: ********	
+
+Credentials:
+	Docker_ID/Password
+
+Play with Docker:
+Create an AWS Machine 16.04
+Install Docker on AWS Machine:
+	https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+----------------------------------------------------------------------------------------------------------
+
+Why we are using the Docker ?
+	Develop Faster
+	Build Faster
+	Test Faster
+	Deploy Faster
+	Update Faster
+	Recover Faster
+
+Benefits of Docker:
+	70% reduction in VM Costs
+	67% fewer CPUs
+	10x average CPU utilisation
+	66% Cost Reduction
+  
+----------------------------------------------------------------------------------------------------------
+
+Docker Syntax:
+
+OLD Structure:
+	$ docker <command> (options)
+
+NEW Structure:
+	$ docker <commands> <sub-commands> (options)
+  
+----------------------------------------------------------------------------------------------------------
+
+Docker Root Dir: /var/lib/docker
+
+----------------------------------------------------------------------------------------------------------
+
+Images Vs Containers
+
+An image is the application you want to execute/run 
+A container is an instance of the image running as a process
+Can create as many containers from the same image
+Docker default image “registry” is called Docker Hub (hub.docker.com)
+
+----------------------------------------------------------------------------------------------------------
+
+Docker Images Commands:
+
+$ docker images							# To list all Images
+$ docker images -a						# To list hidden images 
+$ docker rmi <image-id>					# To remove a single image
+$ docker rmi <image-id1> <image-id2>		# To remove 2 images
+$ docker rmi $(docker images -a -q)			# To remove all images
+$ docker pull <image-name>				# To pull any docker images from the Docker Hub
+$ docker images prune						# To remove prune images
+
+Docker Container Commands:
+
+$ docker container ls -a					# To list all the containers
+$ docker ps -a							# To list all the containers
+$ docker rm <container-id>					# To remove a single container
+$ docker rm <container-id1> <container-id2>	# To remove 2 containers
+$ docker rm $(docker ps -a -q)				# To remove all containers
+$ docker ps -a -f status=exited				# To list all the containers in “exited” state/status
+$ docker rm $(docker ps -a -f status=exited)	# To remove all the containers which are in “exited” state/status
+$ docker container prune					# To remove the prune container
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+  
