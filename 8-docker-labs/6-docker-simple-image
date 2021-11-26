@@ -86,3 +86,33 @@ ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run a6a1d0173cad 
 Lets' start palying with Docker
 ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
 
+OR
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build -t docker-play:0.1 .
+Sending build context to Docker daemon  2.903MB
+Step 1/2 : FROM ubuntu
+ ---> ba6acccedd29
+Step 2/2 : CMD ["echo","Lets' start palying with Docker"]
+ ---> Using cache
+ ---> a6a1d0173cad
+Successfully built a6a1d0173cad
+Successfully tagged docker-play:0.1
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+docker-play   0.1       a6a1d0173cad   7 minutes ago   72.8MB             // new one
+docker-play   v1        a6a1d0173cad   7 minutes ago   72.8MB
+nginx         latest    ea335eea17ab   8 days ago      141MB
+ubuntu        latest    ba6acccedd29   5 weeks ago     72.8MB
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run a6a1d0173cad
+Lets' start palying with Docker
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run a6a1d0173cad
+Lets' start palying with Docker
+
+docker build … => used to create an image
+docker run … => used to create a container
+
+
+
