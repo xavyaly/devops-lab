@@ -1,0 +1,87 @@
+Keywords of Docker:
+	Develop 
+	Ship
+	Run Anywhere
+
+Note:
+Docker is for developers to easily develop applications, 
+Ship them into Containers which can then be deployed anywhere
+
+Components of Docker:
+
+Docker for Mac/Linux/Windows:
+	It allows one to run the Docker Containers on the Mac/Linux/Windows OS
+Docker Engine:
+	It is used for building docker images and docker containers
+Docker Hub:
+	It is the registry which is used to host various Docker Images, you can create your own docker images and host publicly
+Docker Compose:
+	This is used to define applications using multiple docker containers
+
+Official Site:
+Https://www.docker.com
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Note:
+$ uname -a				# Linux kernel version is 4.2.0-27 which is higher than version 3.8, so we are good to go.
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ uname -a
+Linux ip-172-31-15-137 4.4.0-1128-aws #142-Ubuntu SMP Fri Apr 16 12:42:33 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+$ sudo apt-get update		# This command will connect to the internet and download the latest system packages for Ubuntu.
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ sudo apt-get update
+Hit:1 https://apt.releases.hashicorp.com xenial InRelease
+Hit:2 https://download.docker.com/linux/ubuntu xenial InRelease
+Get:3 https://nvidia.github.io/libnvidia-container/stable/ubuntu16.04/amd64  InRelease [1,484 B]
+Get:4 https://nvidia.github.io/nvidia-container-runtime/stable/ubuntu16.04/amd64  InRelease [1,481 B]
+Get:5 https://nvidia.github.io/nvidia-docker/ubuntu16.04/amd64  InRelease [1,474 B]
+Hit:6 http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial InRelease
+Hit:7 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu xenial InRelease
+Hit:8 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu xenial-updates InRelease
+Get:9 http://security.ubuntu.com/ubuntu xenial-security InRelease [109 kB]
+Ign:10 http://pkg.jenkins-ci.org/debian binary/ InRelease
+Hit:11 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu xenial-backports InRelease
+Get:12 http://pkg.jenkins-ci.org/debian binary/ Release [2,044 B]
+Hit:13 https://apt.repos.neuron.amazonaws.com xenial InRelease
+Get:14 http://pkg.jenkins-ci.org/debian binary/ Release.gpg [833 B]
+Ign:14 http://pkg.jenkins-ci.org/debian binary/ Release.gpg
+Get:15 https://esm.ubuntu.com/infra/ubuntu xenial-infra-security InRelease [7,515 B]
+Get:16 https://esm.ubuntu.com/infra/ubuntu xenial-infra-updates InRelease [7,475 B]
+Hit:17 http://pkg.jenkins-ci.org/debian binary/ Packages
+Ign:17 http://pkg.jenkins-ci.org/debian binary/ Packages
+Hit:17 http://pkg.jenkins-ci.org/debian binary/ Packages
+Ign:17 http://pkg.jenkins-ci.org/debian binary/ Packages
+Hit:17 http://pkg.jenkins-ci.org/debian binary/ Packages
+Fetched 132 kB in 1s (82.3 kB/s)
+Reading package lists... Done
+W: GPG error: http://pkg.jenkins-ci.org/debian binary/ Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY FCEF32E745F2C3D5
+W: The repository 'http://pkg.jenkins-ci.org/debian binary/ Release' is not signed.
+N: Data from such a repository can't be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+Install Docker On Ubuntu 16.04:
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+Install Docker On Windows: Toolbox is necessary
+https://docs.docker.com/docker-for-windows/
+
+Install Docker ToolBox For Mac & Windows:
+https://www.docker.com/products/docker-desktop
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Docker Life Cycle:
+
+Created -> Running (Pause <-> Unpause)
+
+Created -> Running -> Killed
+
+Created -> Running (Stop <-> Restart)
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+
