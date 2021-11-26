@@ -1,0 +1,88 @@
+DOCKERFILE -> IMAGES -> CONTAINERS
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ vim Dockerfile
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ cat Dockerfile
+# This is a simple Image
+
+FROM ubuntu
+
+CMD ["echo","Lets' start palying with Docker"]
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ls -l
+total 2840
+-rw-rw-r-- 1 ubuntu ubuntu 2831989 Nov 22 02:31 1-docker-50.pdf
+-rw-rw-r-- 1 ubuntu ubuntu   42714 Nov 26 02:09 2-docker-push-images-in-hub
+-rw-rw-r-- 1 ubuntu ubuntu    3552 Nov 26 02:09 3-docker-theory
+-rw-rw-r-- 1 ubuntu ubuntu   14993 Nov 26 03:13 4-docker-detach
+-rw-rw-r-- 1 ubuntu ubuntu    4067 Nov 26 03:13 5-docker-theory
+-rw-rw-r-- 1 ubuntu ubuntu      89 Nov 26 03:14 Dockerfile
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ echo "Lets' start palying with Docker"
+Lets' start palying with Docker
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+nginx        latest    ea335eea17ab   8 days ago   141MB
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+bb407c5cd9fa   nginx     "/docker-entrypoint.…"   26 minutes ago   Exited (0) 5 minutes ago              musing_lewin
+8d8c561c2e85   nginx     "/docker-entrypoint.…"   27 minutes ago   Exited (0) 26 minutes ago             loving_zhukovsky
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi nginx:latest ^C
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build -t docker-play:v1
+"docker build" requires exactly 1 argument.
+See 'docker build --help'.
+
+Usage:  docker build [OPTIONS] PATH | URL | -
+
+Build an image from a Dockerfile
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ls -l Dockerfile
+-rw-rw-r-- 1 ubuntu ubuntu 89 Nov 26 03:14 Dockerfile
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build -t docker-play:v1 .
+Sending build context to Docker daemon  2.903MB
+Step 1/2 : FROM ubuntu
+latest: Pulling from library/ubuntu
+7b1a6ab2e44d: Pull complete
+Digest: sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322
+Status: Downloaded newer image for ubuntu:latest
+ ---> ba6acccedd29
+Step 2/2 : CMD ["echo","Lets' start palying with Docker"]
+ ---> Running in 414e9ae5ee91
+Removing intermediate container 414e9ae5ee91
+ ---> a6a1d0173cad
+Successfully built a6a1d0173cad
+Successfully tagged docker-play:v1
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+docker-play   v1        a6a1d0173cad   39 seconds ago   72.8MB              // Important
+nginx         latest    ea335eea17ab   8 days ago       141MB
+ubuntu        latest    ba6acccedd29   5 weeks ago      72.8MB
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker rmi docker-play:v1 ^C
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ cat Dockerfile
+# This is a simple Image
+
+FROM ubuntu
+
+CMD ["echo","Lets' start palying with Docker"]
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED              SIZE
+docker-play   v1        a6a1d0173cad   About a minute ago   72.8MB
+nginx         latest    ea335eea17ab   8 days ago           141MB
+ubuntu        latest    ba6acccedd29   5 weeks ago          72.8MB
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run ba6acccedd29   // no output
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run a6a1d0173cad   // got the actual output
+Lets' start palying with Docker
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
