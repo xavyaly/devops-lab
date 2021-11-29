@@ -2,3 +2,10 @@ How to write an excellent Dockerfiles:
 
 https://rock-it.pl/how-to-write-excellent-dockerfiles/
 
+Questions:
+1. Difference between CMD and ENTRYPOINT ?
+2. Difference between ADD and COPY ?
+3. Difference between RUN and CMD ?
+4. How to minimize your DOCKERFILE ?
+5. When we need to use ENTRYPOINT in DOCKERFILE ?
+
