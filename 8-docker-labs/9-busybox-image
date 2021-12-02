@@ -1,0 +1,135 @@
+-------------------------------------------------------------------------------------------------
+busybox
+-------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ cat Dockerfile
+FROM busybox
+RUN echo "Building a simple docker image"
+CMD echo "hello container"
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build -t hello:busybox .
+Sending build context to Docker daemon  2.934MB
+Step 1/3 : FROM busybox
+latest: Pulling from library/busybox
+3aab638df1a9: Pull complete
+Digest: sha256:52817dece4cfe26f581c834d27a8e1bcc82194f914afe6d50afad5a101234ef1
+Status: Downloaded newer image for busybox:latest
+ ---> d23834f29b38
+Step 2/3 : RUN echo "Building a simple docker image"
+ ---> Running in 3b044744632f
+Building a simple docker image
+Removing intermediate container 3b044744632f
+ ---> 813bf4c6af6e
+Step 3/3 : CMD echo "hello container"
+ ---> Running in 512b7a3a0272
+Removing intermediate container 512b7a3a0272
+ ---> e33e3ed195ea
+Successfully built e33e3ed195ea
+Successfully tagged hello:busybox
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+<none>        <none>    813bf4c6af6e   50 seconds ago   1.24MB
+hello         busybox   e33e3ed195ea   50 seconds ago   1.24MB
+busybox       latest    d23834f29b38   47 hours ago     1.24MB
+
+-------------------------------------------------------------------------------------------------
+Ubuntu Image:
+-------------------------------------------------------------------------------------------------
+
+Install vim 
+Install git 
+Install curl 
+Show git version when run a container 
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ cat Dockerfile
+FROM ubuntu:18.04
+RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y
+RUN apt-get install vim -y
+RUN apt-get install git -y
+RUN apt-get install curl -y
+
+CMD ["git","--verion"]
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build -t install .
+Sending build context to Docker daemon  2.934MB
+...
+...
+Successfully built 5e48febcf8bd
+Successfully tagged install:latest
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+install       latest    5e48febcf8bd   8 seconds ago    253MB
+<none>        <none>    8a04bd12f166   8 seconds ago    253MB
+<none>        <none>    80519c60853a   12 seconds ago   251MB
+<none>        <none>    3c4e27d30b34   27 seconds ago   162MB
+<none>        <none>    94ddd63958cb   37 seconds ago   102MB
+<none>        <none>    813bf4c6af6e   11 minutes ago   1.24MB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+-------------------------------------------------------------------------------------------------
+anaconda 
+-------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ cat Dockerfile
+# Base Image
+FROM continuumio/anaconda3:2019.03
+
+MAINTAINER xyz@gmail.com
+
+RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y
+RUN apt-get install vim -y
+RUN apt-get install git -y
+RUN apt-get install curl -y
+RUN apt-get install ffmpeg -y
+RUN apt-get install imagemagick -y
+RUN conda install pytorch torchvision cudatoolkit=9.0 -c pytorch -y
+
+#Python Packages
+RUN pip install --upgrade \
+    pip==19.1.1 \
+    && pip install \
+    autopep8==1.4.4 \
+    setuptools>=41.0.0 \
+    opencv-python==3.4.3.18 \
+    opencv-contrib-python==3.4.3.18 \
+    Pillow \
+    numpy \
+    pandas \
+    scipy \
+    matplotlib \
+    h5py \
+    Keras==2.2.4 \
+    scikit-learn \
+    scikit-image \
+    six \
+    sklearn \
+    spacy \
+    requests \
+    beautifulsoup4 \
+    tensorflow==1.14.0
+
+# Current Working directory
+WORKDIR /workdir
+
+EXPOSE 8888
+
+#Start jupyter notebook
+ENTRYPOINT ["jupyter-lab","--ip=0.0.0.0","--port=8888","--no-browser","--allow-root","--NotebookApp.token=''"]
+
+#Set workdir as notebook dir
+CMD ["--noteook-dir=/workdir"]
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build -t conda_docker .
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker build run -it -p 8888:8888 --name doconda --mount type=bind,src=`pwd`,dst=/workdir conda_docker 
+
+// check in browser
+localhost:8888
+
+
+
+
