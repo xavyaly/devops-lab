@@ -1,0 +1,375 @@
+-------------------------------------------------------------------------------------
+inspect, pause, unpause, IP, detached mode, stats
+-------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run -d -p 8080:80 nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+e5ae68f74026: Pull complete
+21e0df283cd6: Pull complete
+ed835de16acd: Pull complete
+881ff011f1c9: Pull complete
+77700c52c969: Pull complete
+44be98c0fab6: Pull complete
+Digest: sha256:4a49b1fbd5f544755121dee04f7f717416c21ae1bf5ef862aa34fbffbb9e434f
+Status: Downloaded newer image for nginx:latest
+520b3521b118b53cbe7c737f92c64cf5a7744c85d2e04b5b3f14c4143468d194
+docker: Error response from daemon: driver failed programming external connectivity on endpoint sharp_lichterman (bd4996c570f720e85980ec4bd60525f7b96a3e0673c02956dbfdeff6fb7c9fc1): Error starting userland proxy: listen tcp4 0.0.0.0:8080: bind: address already in use.
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+nginx        latest    f652ca386ed1   16 hours ago   141MB
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS    PORTS     NAMES
+520b3521b118   nginx     "/docker-entrypoint.…"   45 seconds ago   Created             sharp_lichterman
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ps -ef | grep "8080"
+jenkins   1585     1  0 02:41 ?        00:00:00 /usr/bin/daemon --name=jenkins --inherit --env=JENKINS_HOME=/var/lib/jenkins --output=/var/log/jenkins/jenkins.log --pidfile=/var/run/jenkins/jenkins.pid -- /usr/bin/java -Djava.awt.headless=true -jar /usr/share/jenkins/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
+jenkins   1586  1585  6 02:41 ?        00:00:37 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/jenkins/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
+ubuntu    3146  2766  0 02:51 pts/0    00:00:00 grep --color=auto 8080
+
+# 8080 was already bind with jenkins that's the reason error throws 
+# used different port for nginx
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker run -d -p 8081:80 nginx
+fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+nginx        latest    f652ca386ed1   16 hours ago   141MB
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+fa8eaff8cc0b   nginx     "/docker-entrypoint.…"   36 seconds ago   Up 35 seconds   0.0.0.0:8081->80/tcp, :::8081->80/tcp   tender_galileo
+520b3521b118   nginx     "/docker-entrypoint.…"   2 minutes ago    Created                                                 sharp_lichterman
+
+# Important Command
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker stats fa
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O        PIDS
+fa8eaff8cc0b   tender_galileo   0.00%     4.727MiB / 990.8MiB   0.48%     1.09kB / 0B   7.5MB / 8.19kB   2
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker top fa
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                3269                3248                0                   02:52               ?                   00:00:00            nginx: master process nginx -g daemon off;
+systemd+            3330                3269                0                   02:52               ?                   00:00:00            nginx: worker process
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ date
+Fri Dec  3 03:00:31 UTC 2021
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ ps -ef | grep "8080"
+jenkins   1585     1  0 02:41 ?        00:00:00 /usr/bin/daemon --name=jenkins --inherit --env=JENKINS_HOME=/var/lib/jenkins --output=/var/log/jenkins/jenkins.log --pidfile=/var/run/jenkins/jenkins.pid -- /usr/bin/java -Djava.awt.headless=true -jar /usr/share/jenkins/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
+jenkins   1586  1585  3 02:41 ?        00:00:38 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/jenkins/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
+ubuntu    3485  2766  0 03:02 pts/0    00:00:00 grep --color=auto 8080
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+#Read this page
+https://hub.docker.com/_/jenkins
+ubuntu@ip-172-31-13-237:~$ docker run -p 8989:80 -p 50000:50000 jenkins
+
+# Commands
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+nginx        latest    f652ca386ed1   16 hours ago   141MB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+nginx        latest    f652ca386ed1   16 hours ago   141MB
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+fa8eaff8cc0b   nginx     "/docker-entrypoint.…"   15 minutes ago   Up 15 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   tender_galileo
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker pause fa
+fa
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                   PORTS                                   NAMES
+fa8eaff8cc0b   nginx     "/docker-entrypoint.…"   15 minutes ago   Up 15 minutes (Paused)   0.0.0.0:8081->80/tcp, :::8081->80/tcp   tender_galileo
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker unpause fa
+fa
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+fa8eaff8cc0b   nginx     "/docker-entrypoint.…"   15 minutes ago   Up 15 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   tender_galileo
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+# Most Important Command:
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker inspect nginx:latest
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker inspect fa
+[
+    {
+        "Id": "fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263",
+        "Created": "2021-12-03T02:52:29.800845179Z",
+        "Path": "/docker-entrypoint.sh",
+        "Args": [
+            "nginx",
+            "-g",
+            "daemon off;"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-12-03T02:52:30.345062284Z",
+            "FinishedAt": "2021-12-03T03:10:49.256634667Z"
+        },
+        "Image": "sha256:f652ca386ed135a4cbe356333e08ef0816f81b2ac8d0619af01e2b256837ed3e",
+        "ResolvConfPath": "/var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/hostname",
+        "HostsPath": "/var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/hosts",
+        "LogPath": "/var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263-json.log",
+        "Name": "/tender_galileo",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {
+                "80/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8081"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/86700337d6468fb4d87159a583b406dc284501532a281e25cf8f6f813ae787db-init/diff:/var/lib/docker/overlay2/2823a7f5267ba13c4ffeb199e03b213df7112b3ba5a5427036bef78f80896022/diff:/var/lib/docker/overlay2/565e98d2f6b179efb2d0470fb24516dddcf74bfc2a8f102576ed990ec087e7c8/diff:/var/lib/docker/overlay2/ad02406277e12550eedfd5551d9b251de1403401224295e0e4a41a9b588b4071/diff:/var/lib/docker/overlay2/07ce20776ab2e6477f47ef0b631667cccde5a61a98822e5f1dff6172fa6c71cc/diff:/var/lib/docker/overlay2/993617e67e0791987c06efb141b33856c0a53bb435cffd428d349b1455b40f92/diff:/var/lib/docker/overlay2/4f11eb5042ca99ee9eff4974a8087c11f3894d6e0891af446ae2b123c59a37f7/diff",
+                "MergedDir": "/var/lib/docker/overlay2/86700337d6468fb4d87159a583b406dc284501532a281e25cf8f6f813ae787db/merged",
+                "UpperDir": "/var/lib/docker/overlay2/86700337d6468fb4d87159a583b406dc284501532a281e25cf8f6f813ae787db/diff",
+                "WorkDir": "/var/lib/docker/overlay2/86700337d6468fb4d87159a583b406dc284501532a281e25cf8f6f813ae787db/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "fa8eaff8cc0b",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NGINX_VERSION=1.21.4",
+                "NJS_VERSION=0.7.0",
+                "PKG_RELEASE=1~bullseye"
+            ],
+            "Cmd": [
+                "nginx",
+                "-g",
+                "daemon off;"
+            ],
+            "Image": "nginx",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+            },
+            "StopSignal": "SIGQUIT"
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "ea11a8c561b282f728ad895d922eb34da368130003e4e053e12df2b251f4e0d8",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/ea11a8c561b2",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "0ca11bcc5a6c24bc4cf7e3698badabcb9d57a7d182076345fc960820f8058b88",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ tail -10 /var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263-json.log
+tail: cannot open '/var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263-json.log' for reading: Permission denied
+
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ sudo tail -10 /var/lib/docker/containers/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263/fa8eaff8cc0b4f60e559d4a0dadf5e80ab4984079a7ad36d713c9116e3f0a263-json.log
+{"log":"2021/12/03 02:52:30 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576\n","stream":"stderr","time":"2021-12-03T02:52:30.431916979Z"}
+{"log":"2021/12/03 02:52:30 [notice] 1#1: start worker processes\n","stream":"stderr","time":"2021-12-03T02:52:30.43208276Z"}
+{"log":"2021/12/03 02:52:30 [notice] 1#1: start worker process 33\n","stream":"stderr","time":"2021-12-03T02:52:30.432244287Z"}
+{"log":"2021/12/03 03:10:49 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down\n","stream":"stderr","time":"2021-12-03T03:10:49.24155679Z"}
+{"log":"2021/12/03 03:10:49 [notice] 33#33: gracefully shutting down\n","stream":"stderr","time":"2021-12-03T03:10:49.241576299Z"}
+{"log":"2021/12/03 03:10:49 [notice] 33#33: exiting\n","stream":"stderr","time":"2021-12-03T03:10:49.241581295Z"}
+{"log":"2021/12/03 03:10:49 [notice] 33#33: exit\n","stream":"stderr","time":"2021-12-03T03:10:49.241585208Z"}
+{"log":"2021/12/03 03:10:49 [notice] 1#1: signal 17 (SIGCHLD) received from 33\n","stream":"stderr","time":"2021-12-03T03:10:49.255344573Z"}
+{"log":"2021/12/03 03:10:49 [notice] 1#1: worker process 33 exited with code 0\n","stream":"stderr","time":"2021-12-03T03:10:49.255357572Z"}
+{"log":"2021/12/03 03:10:49 [notice] 1#1: exit\n","stream":"stderr","time":"2021-12-03T03:10:49.255362287Z"}
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+# Container IP
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker inspect fa | grep "IP"
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+fa8eaff8cc0b   nginx     "/docker-entrypoint.…"   23 minutes ago   Exited (0) 4 minutes ago             tender_galileo
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker start fa
+fa
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$ docker inspect fa | grep "IP"
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+ubuntu@ip-172-31-15-137:~/git/devops-lab/8-docker-labs$
+
+
+
